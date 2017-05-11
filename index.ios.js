@@ -12,6 +12,8 @@ import {
   View
 } from 'react-native';
 
+import styles from './styles/styles'
+
 export default class buzzpoint extends Component {
   render() {
     return (
@@ -32,24 +34,5 @@ export default class buzzpoint extends Component {
 }
 
 
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#3d8af7',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
 
 AppRegistry.registerComponent('buzzpoint', () => buzzpoint);
