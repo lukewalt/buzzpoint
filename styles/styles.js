@@ -4,10 +4,13 @@ import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1
+  },
+  tabContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#3d8af7',
+    backgroundColor: 'white',
   },
   welcome: {
     fontSize: 20,
@@ -16,9 +19,13 @@ const styles = StyleSheet.create({
   },
   instructions: {
     textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+    color: '#3d8af7',
+    fontWeight: 'bold',
+    fontSize: 50,
+    fontFamily: "Verdana",
+    letterSpacing: -6,
   },
+
 });
 
 export default styles;
