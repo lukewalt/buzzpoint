@@ -26,6 +26,18 @@ const styles = StyleSheet.create({
     fontSize:20,
     color: '#3d8af7',
   },
+  thepost: {
+    borderColor: '#ffc581',
+    backgroundColor: '#ffc581',
+    alignSelf: 'stretch',
+    paddingHorizontal: 100,
+    textAlign: 'center',
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 50,
+    fontFamily: "Verdana",
+    letterSpacing: -6,
+  },
   textInput: {
     height: 100,
     marginHorizontal: 20,
@@ -45,6 +57,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 30,
     height: 120,
     width: 120,
+  },
+  address: {
+    marginVertical: 10,
+    textAlign: 'left',
+    color: '#3d8af7',
+    fontWeight: 'bold',
   },
 });
 

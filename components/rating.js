@@ -6,7 +6,6 @@ import {
   Text,
   TouchableHighlight,
 } from 'react-native'
-import axios from 'axios'
 import styles from '../styles/styles';
 
 import TabBar from './tab-bar';
@@ -48,15 +47,6 @@ export default class Rating extends Component {
   }
 
   revGeoCode = () => {
-    // makes a call to get formatted address
-    axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.userLat},${this.state.userLng}&key=AIzaSyDvFLz0icFJDxnp8FyEJkZwhqWZQsp0qB8`)
-    .then( geo => {
-     let formattedAddress = geo.data.results[0].formatted_address
-     this.setState({
-       'formattedAddress': formattedAddress,
-     })
-     console.log(this.state);
-    })
   }
 
   // goes to post page to finalize post
@@ -64,7 +54,9 @@ export default class Rating extends Component {
     this.props.navigator.push({
       component: PostIt,
       title: 'BuzzPoint',
+      passProps: {userLat: this.state.userLat, userLng: this.state.userLng}
     });
+
   }
   // goes to zones to view aggregate posts
   _onToZones = () => {
