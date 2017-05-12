@@ -1,17 +1,19 @@
 'use strict';
 
+import React, { Component, PropTypes } from 'react';
 import {
   View,
   Text,
   TouchableHighlight,
 } from 'react-native'
-
-import React, { Component, PropTypes } from 'react';
+import axios from 'axios'
 import styles from '../styles/styles';
 
 import TabBar from './tab-bar';
 import PostIt from './postit';
 import User from './user';
+
+
 
 export default class Rating extends Component {
 
@@ -31,11 +33,13 @@ export default class Rating extends Component {
           userLat: position.coords.latitude,
           userLng: position.coords.longitude,
           locationERR: null,
-        });
+        })
+        // axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.userLat},${this.state.userLng}&key=AIzaSyDvFLz0icFJDxnp8FyEJkZwhqWZQsp0qB8`)
+        // .then( geo => console.log(geo);)
       },
       (error) => this.setState({ locationERR: error.message }),
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
-    );
+    )
     console.log(this.state);
   }
 

@@ -10,13 +10,17 @@ import {
 import React, { Component, PropTypes } from 'react';
 import styles from '../styles/styles';
 
-import TabBar from './tab-bar';
+import Rating from './rating';
 
 
 export default class PostIt extends Component {
 
   // feedback for successful post
   thanksForPost = () => {
+    // this.props.navigator.pop({
+    //   component: Rating,
+    //   title: 'BuzzPoint'
+    // })
     Alert.alert('Thanks For Your Post')
   }
 
