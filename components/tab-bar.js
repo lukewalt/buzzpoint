@@ -3,7 +3,6 @@
 import styles from '../styles/styles.js'
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   Text,
   View,
   TabBarIOS
