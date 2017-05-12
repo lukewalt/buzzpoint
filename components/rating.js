@@ -22,25 +22,33 @@ export default class Rating extends Component {
     this.state = {
       'userLat': null,
       'userLng': null,
+      'formattedAddress': null,
       'locationERR': null
     }
   }
 
   componentDidMount() {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
+    // gets current position
+    navigator.geolocation.getCurrentPosition( position => {
+        console.log(position);
         this.setState({
           userLat: position.coords.latitude,
           userLng: position.coords.longitude,
           locationERR: null,
         })
-        // axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.userLat},${this.state.userLng}&key=AIzaSyDvFLz0icFJDxnp8FyEJkZwhqWZQsp0qB8`)
-        // .then( geo => console.log(geo);)
       },
       (error) => this.setState({ locationERR: error.message }),
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
     )
-    console.log(this.state);
+    // makes a call to get formatted address
+    axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=40.7128,-74.0059&key=AIzaSyDvFLz0icFJDxnp8FyEJkZwhqWZQsp0qB8`)
+    .then( geo => {
+      let formattedAddress = geo.data.results[0].formatted_address
+      this.setState({
+        'formattedAddress': formattedAddress,
+      })
+      console.log(this.state);
+    })
   }
 
   static propTypes = {
@@ -76,7 +84,7 @@ export default class Rating extends Component {
         <Text>{this.state.userLat}</Text>
         <Text>{this.state.userLng}</Text>
         <TouchableHighlight onPress={this._onToUserPage}>
-          <Text style={styles.small}>USER</Text>
+          <Text style={styles.small}>POOP</Text>
         </TouchableHighlight>
         <TouchableHighlight onPress={this._onToZones}>
           <Text style={styles.small}>ZONES</Text>
