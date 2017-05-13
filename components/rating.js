@@ -19,6 +19,7 @@ export default class Rating extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      'userId': 1,
       'userLat': null,
       'userLng': null,
       'formattedAddress': null,
@@ -71,6 +72,9 @@ export default class Rating extends Component {
     this.props.navigator.push({
       component: User,
       title: 'BuzzPoint',
+      passProps: {
+        userId: this.state.userId
+      }
     })
   }
 

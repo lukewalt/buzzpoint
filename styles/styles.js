@@ -13,6 +13,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingHorizontal: 30,
   },
+  userPost: {
+    marginTop: 10,
+    paddingHorizontal: 40,
+  },
   instructions: {
     textAlign: 'center',
     color: '#3d8af7',
@@ -60,6 +64,10 @@ const styles = StyleSheet.create({
     height: 120,
     width: 120,
   },
+  userProfileImg: {
+    height: 75,
+    width: 75,
+  },
   address: {
     margin: 10,
     textAlign: 'left',
@@ -78,6 +86,22 @@ const styles = StyleSheet.create({
     paddingHorizontal: 25,
     backgroundColor: '#9ec4ff',
     color: '#0844a4'
+  },
+  listview: {
+    flex: 1,
+    flexDirection: 'column'
+  },
+  post: {
+    paddingHorizontal: 10,
+    borderWidth: 2,
+    borderColor: '#3d8af7',
+    paddingVertical: 50,
+    marginVertical: 5,
+    borderRadius: 7,
+  },
+  postTitle: {
+    color: '#3d8af7',
+    fontWeight: 'bold',
   }
 });
 
