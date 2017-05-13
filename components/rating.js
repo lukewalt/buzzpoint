@@ -46,15 +46,16 @@ export default class Rating extends Component {
     )
   }
 
-  revGeoCode = () => {
-  }
 
   // goes to post page to finalize post
   _onToPost = () => {
     this.props.navigator.push({
       component: PostIt,
       title: 'BuzzPoint',
-      passProps: {userLat: this.state.userLat, userLng: this.state.userLng}
+      passProps: {
+        userLat: this.state.userLat,
+        userLng: this.state.userLng
+      }
     });
 
   }
@@ -78,13 +79,13 @@ export default class Rating extends Component {
       <View style={styles.tabContainer}>
         <Text>{this.state.userLat}</Text>
         <Text>{this.state.userLng}</Text>
-        <TouchableHighlight onPress={this._onToUserPage}>
+        <TouchableHighlight underlayColor='white' onPress={this._onToUserPage}>
           <Text style={styles.small}>USER</Text>
         </TouchableHighlight>
-        <TouchableHighlight onPress={this._onToZones}>
+        <TouchableHighlight underlayColor='white' onPress={this._onToZones}>
           <Text style={styles.small}>ZONES</Text>
         </TouchableHighlight>
-        <TouchableHighlight onPress={this._onToPost}>
+        <TouchableHighlight underlayColor='white' onPress={this._onToPost}>
           <Text style={styles.instructions}>RATE</Text>
         </TouchableHighlight>
       </View>
