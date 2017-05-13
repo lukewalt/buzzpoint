@@ -13,7 +13,6 @@ import TabBar from './components/tab-bar'
 import Rating from './components/rating'
 
 
-const url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=AIzaSyAurfrmaCXp4gCMfaU2YNvHCxacbwt1xQw'
 
 export default class buzzpoint extends Component {
 
@@ -26,9 +25,7 @@ export default class buzzpoint extends Component {
         }}
         style={{flex: 1}}
       />
-      // <View style={styles.container}>
-      //   <TabBar/>
-      // </View>
+
     )
   }
 }
