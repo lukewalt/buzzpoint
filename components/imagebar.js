@@ -18,10 +18,10 @@ export default class ImageBar extends Component {
     return (
       <View style={styles.imgBarCont}>
         <TouchableHighlight onPress={this.thanksForPost}>
-        <Image style={styles.img} source={require('../img/camera.png')} />
+          <Image style={styles.img} source={require('../img/takepic.png')} />
         </TouchableHighlight>
         <TouchableHighlight onPress={this.thanksForPost}>
-        <Image style={styles.img} source={require('../img/selectpic.png')} />
+          <Image style={styles.img} source={require('../img/selectpicture.png')} />
         </TouchableHighlight>
       </View>
     )
