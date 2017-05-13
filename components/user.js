@@ -53,52 +53,51 @@ export default class User extends Component {
 
   render() {
     // sets a loading view until movies state changes
-        if (!this.state.loaded) {
-          return this.renderLoadingView()
-        }
+    if (!this.state.loaded) {
+      return this.renderLoadingView()
+    }
+    // renders the movies based on listview
+    return (
+      <View style={{paddingTop: 100}}>
+        <View style={{alignItems: 'center'}}>
+          <Image
+          style={styles.userProfileImg}
+          source={require('../img/profilePlace.png')}
+          />
+          <Text>{this.state.userName}</Text>
+        </View>
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={this.renderPosts}
+          style={styles.userPost}
+        />
+      </View>
+    )
+  }
 
-        // renders the movies based on listview
-        return (
-          <View style={{paddingTop: 100}}>
-            <View style={{alignItems: 'center'}}>
-              <Image
-              style={styles.userProfileImg}
-              source={require('../img/profilePlace.png')}
-              />
-              <Text>{this.state.userName}</Text>
-            </View>
-            <ListView
-              dataSource={this.state.dataSource}
-              renderRow={this.renderPosts}
-              style={styles.userPost}
-            />
-          </View>
-        )
-      }
+  renderLoadingView() {
+    return (
+      <View style={styles.tabContainer}>
 
-      renderLoadingView() {
-        return (
-          <View style={styles.tabContainer}>
+        <ActivityIndicator
+          animating={true}
+          size="large"
+          color='#3d8af7'
+        />
+      </View>
+    );
+  }
 
-            <ActivityIndicator
-              animating={true}
-              size="large"
-              color='#3d8af7'
-            />
-          </View>
-        );
-      }
-
-      renderPosts(posts) {
-        return (
-          <View style={styles.post}>
-            <View style={{flex: 1,flexDirection: 'row'}}>
-              <Text style={styles.subtitle}> {posts.zone}</Text>
-              <Text style={styles.postTitle}>{posts.comment}</Text>
-              <Text style={styles.subtitle}> {posts.zipcode}</Text>
-            </View>
-          </View>
-        );
-      }
+  renderPosts(posts) {
+    return (
+      <View style={styles.post}>
+        <View style={{flex: 1,flexDirection: 'row'}}>
+          <Text style={styles.subtitle}> {posts.zone}</Text>
+          <Text style={styles.postTitle}>{posts.comment}</Text>
+          <Text style={styles.subtitle}> {posts.zipcode}</Text>
+        </View>
+      </View>
+    );
+  }
 
 }
