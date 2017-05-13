@@ -1,17 +1,18 @@
 'use strict';
 
+import React, { Component, PropTypes } from 'react';
 import {
   View,
   Text,
   TouchableHighlight,
 } from 'react-native'
-
-import React, { Component, PropTypes } from 'react';
 import styles from '../styles/styles';
 
 import TabBar from './tab-bar';
 import PostIt from './postit';
 import User from './user';
+
+
 
 export default class Rating extends Component {
 
@@ -20,23 +21,9 @@ export default class Rating extends Component {
     this.state = {
       'userLat': null,
       'userLng': null,
+      'formattedAddress': null,
       'locationERR': null
     }
-  }
-
-  componentDidMount() {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        this.setState({
-          userLat: position.coords.latitude,
-          userLng: position.coords.longitude,
-          locationERR: null,
-        });
-      },
-      (error) => this.setState({ locationERR: error.message }),
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
-    );
-    console.log(this.state);
   }
 
   static propTypes = {
@@ -44,12 +31,33 @@ export default class Rating extends Component {
     navigator: PropTypes.object.isRequired,
   }
 
+  componentDidMount() {
+    // gets current position
+    navigator.geolocation.getCurrentPosition( position => {
+        console.log(position);
+        this.setState({
+          userLat: position.coords.latitude,
+          userLng: position.coords.longitude,
+          locationERR: null,
+        })
+      },
+      (error) => this.setState({ locationERR: error.message }),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+    )
+  }
+
+
   // goes to post page to finalize post
   _onToPost = () => {
     this.props.navigator.push({
       component: PostIt,
       title: 'BuzzPoint',
+      passProps: {
+        userLat: this.state.userLat,
+        userLng: this.state.userLng
+      }
     });
+
   }
   // goes to zones to view aggregate posts
   _onToZones = () => {
@@ -71,13 +79,13 @@ export default class Rating extends Component {
       <View style={styles.tabContainer}>
         <Text>{this.state.userLat}</Text>
         <Text>{this.state.userLng}</Text>
-        <TouchableHighlight onPress={this._onToUserPage}>
+        <TouchableHighlight underlayColor='white' onPress={this._onToUserPage}>
           <Text style={styles.small}>USER</Text>
         </TouchableHighlight>
-        <TouchableHighlight onPress={this._onToZones}>
+        <TouchableHighlight underlayColor='white' onPress={this._onToZones}>
           <Text style={styles.small}>ZONES</Text>
         </TouchableHighlight>
-        <TouchableHighlight onPress={this._onToPost}>
+        <TouchableHighlight underlayColor='white' onPress={this._onToPost}>
           <Text style={styles.instructions}>RATE</Text>
         </TouchableHighlight>
       </View>
