@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
+    paddingHorizontal: 30,
   },
   instructions: {
     textAlign: 'center',
@@ -30,6 +31,7 @@ const styles = StyleSheet.create({
     borderColor: '#fbb767',
     backgroundColor: '#fbb767',
     alignSelf: 'stretch',
+    marginTop: 15,
     paddingHorizontal: 80,
     paddingVertical: 7,
     textAlign: 'center',
@@ -41,7 +43,6 @@ const styles = StyleSheet.create({
   },
   textInput: {
     height: 100,
-    marginHorizontal: 20,
     paddingHorizontal: 20,
     borderColor: '#3d8af7',
     borderWidth: 1,
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
   },
   imgBarCont: {
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   img: {
     marginVertical: 10,
@@ -60,11 +61,24 @@ const styles = StyleSheet.create({
     width: 120,
   },
   address: {
-    marginVertical: 10,
+    margin: 10,
     textAlign: 'left',
     color: '#3d8af7',
     fontWeight: 'bold',
   },
+  tagList: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignSelf: 'stretch',
+    flexWrap: 'wrap',
+  },
+  tag: {
+    marginVertical: 7,
+    paddingVertical: 10,
+    paddingHorizontal: 25,
+    backgroundColor: '#9ec4ff',
+    color: '#0844a4'
+  }
 });
 
 export default styles;

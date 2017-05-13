@@ -14,13 +14,9 @@ import styles from '../styles/styles';
 
 import Rating from './rating';
 import ImageBar from './imagebar'
-
+import TagsListed from './tagslisted'
 
 export default class PostIt extends Component {
-
-  func = () => {
-
-  }
 
   constructor(props) {
     super(props);
@@ -62,6 +58,7 @@ export default class PostIt extends Component {
           value={this.state.text}
         />
         <ImageBar />
+        <TagsListed />
         <TouchableHighlight onPress={this.thanksForPost}>
           <Text style={styles.thepost}>POST</Text>
         </TouchableHighlight>

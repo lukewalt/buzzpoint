@@ -8,6 +8,7 @@ import {
 
 import React, { Component, PropTypes } from 'react';
 import styles from '../styles/styles';
+import axios from 'axios'
 
 
 export default class TagsListed extends Component {
@@ -21,6 +22,7 @@ export default class TagsListed extends Component {
       }),
       // handles buffer
       loaded: false,
+      userLoggedIn: 1,
     };
   }
 
@@ -33,23 +35,26 @@ export default class TagsListed extends Component {
   // holds the http req
   fetchData() {
     // gets data using predefined url above -> converts to json -> updates the state
-    axios.get('https://buzzpoint.herokuapp.com/api/posts/user/')
-    .then( res => res)
-    .then( data => {
-      console.log(data);
-      this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(data.movies),
-        loaded: true,
-      })
+    axios.get(`https://buzzpoint.herokuapp.com/api/tags/${this.state.userLoggedIn}`)
+    .then( res => {
+      console.log('data', res.data);
+      // this.setState({
+      //   dataSource: this.state.dataSource.cloneWithRows(res.data),
+      //   loaded: true,
+      // })
     })
+
+
     .done()
   }
 
 
   render() {
     return (
-      <View>
-        <Text></Text>
+      <View style={styles.tagList}>
+        <Text style={styles.tag}>Restaurant</Text>
+        <Text style={styles.tag}>Eats</Text>
+        <Text style={styles.tag}>Patio</Text>
       </View>
     )
   }
