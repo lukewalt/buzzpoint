@@ -6,6 +6,7 @@ import {
   TouchableHighlight,
   Alert,
   TextInput,
+  ListView,
 } from 'react-native'
 import axios from 'axios'
 
@@ -14,7 +15,6 @@ import styles from '../styles/styles';
 
 import Rating from './rating';
 import ImageBar from './imagebar'
-import TagsListed from './tagslisted'
 
 export default class PostIt extends Component {
 
@@ -22,6 +22,7 @@ export default class PostIt extends Component {
     super(props);
     console.log(props);
     this.state = {
+      dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
       user_id: 1,
       positive: this.props.userRating,
       comment: 'Whats the story?',
@@ -44,6 +45,11 @@ export default class PostIt extends Component {
         'formattedAddress': formattedAddress,
       })
       console.log(this.state);
+      // gets all tags for carousel
+      axios.get(`http://buzzpoint.herokuapp.com/api/tags`)
+      .then( tags => {
+
+      })
     })
   }
 
@@ -67,7 +73,9 @@ export default class PostIt extends Component {
           value={this.state.comment}
         />
         <ImageBar />
-        <TagsListed />
+        <View style={styles.tagList}>
+          <Text style={styles.tagForSubmit}>Patio</Text>
+        </View>
         <TouchableHighlight underlayColor='white' onPress={this.thanksForPost}>
           <Text style={styles.thepost}>POST</Text>
         </TouchableHighlight>

@@ -109,6 +109,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#9ec4ff',
     color: '#0844a4'
   },
+  tagOnCarousel: {
+    marginVertical: 7,
+    paddingVertical: 10,
+    paddingHorizontal: 25,
+    backgroundColor: '#9ec4ff',
+    color: '#0844a4',
+    fontWeight: 'bold',
+    marginHorizontal: 5,
+  },
   listview: {
     flex: 1,
     flexDirection: 'column'
@@ -151,6 +160,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 7,
     height: 20,
     width: 20,
+  },
+  tagCarousel: {
+    flex: 1,
   },
   tagSection: {
     backgroundColor: '#3d8af7',

@@ -8,11 +8,10 @@ import {
   Image,
 } from 'react-native'
 import styles from '../styles/styles';
-
 import TabBar from './tabBar';
 import PostIt from './postit';
 import User from './user';
-
+import TagCarousel from './tagCarousel'
 
 
 export default class Rating extends Component {
@@ -114,6 +113,7 @@ export default class Rating extends Component {
             <Image style={styles.rateThumb} source={require('../img/thumbDownRed.png')}/>
           </TouchableHighlight>
         </View>
+        <TagCarousel />
       </View>
     )
   }
