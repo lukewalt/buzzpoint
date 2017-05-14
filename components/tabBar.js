@@ -26,8 +26,12 @@ export default class TabBar extends Component {
     console.log('tab bar loaded');
       return (
         <TabBarIOS>
+        <Icon.TabBarItem
+                title="Search Books"
+                iconName="fa-search"
+                selectedIconName="fa-search"
+                >
           <TabBarIOS.Item
-            systemIcon="top-rated"
             selected={this.state.selectedTab === 'tabOne'}
             onPress={() => this.setTab('tabOne')}>
             <View style={styles.tabContainer}>
