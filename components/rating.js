@@ -5,6 +5,7 @@ import {
   View,
   Text,
   TouchableHighlight,
+  Image,
 } from 'react-native'
 import styles from '../styles/styles';
 
@@ -49,19 +50,34 @@ export default class Rating extends Component {
 
 
   // goes to post page to finalize post
-  _onToPost = () => {
+  _onToPostPositive = () => {
     this.props.navigator.push({
       component: PostIt,
       title: 'BuzzPoint',
       passProps: {
+        userRating: true,
         userLat: this.state.userLat,
         userLng: this.state.userLng,
         userId: this.state.userId,
         userTags: [1 ,2, 4]
       }
     });
-
   }
+  // goes to post page to finalize post
+  _onToPostNegative = () => {
+    this.props.navigator.push({
+      component: PostIt,
+      title: 'BuzzPoint',
+      passProps: {
+        userRating: false,
+        userLat: this.state.userLat,
+        userLng: this.state.userLng,
+        userId: this.state.userId,
+        userTags: [1 ,2, 4]
+      }
+    });
+  }
+
   // goes to zones to view aggregate posts
   _onToZones = () => {
     this.props.navigator.push({
@@ -82,18 +98,22 @@ export default class Rating extends Component {
 
   render() {
     return (
-      <View style={styles.tabContainer}>
-        <Text>{this.state.userLat}</Text>
-        <Text>{this.state.userLng}</Text>
+      <View style={styles.rateContainer}>
         <TouchableHighlight underlayColor='white' onPress={this._onToUserPage}>
-          <Text style={styles.small}>USER</Text>
+          <Image style={styles.rateProfileImg} source={require('../img/profilePic.png')}/>
         </TouchableHighlight>
-        <TouchableHighlight underlayColor='white' onPress={this._onToZones}>
+        <View style={{ justifyContent: 'center', alignItems: 'center'}}>
+          <TouchableHighlight underlayColor='white' onPress={this._onToZones}>
           <Text style={styles.small}>ZONES</Text>
-        </TouchableHighlight>
-        <TouchableHighlight underlayColor='white' onPress={this._onToPost}>
-          <Text style={styles.instructions}>RATE</Text>
-        </TouchableHighlight>
+          </TouchableHighlight>
+          <TouchableHighlight underlayColor='white' onPress={this._onToPostPositive}>
+            <Image style={styles.rateThumb} source={require('../img/thumbUpGreen.png')}/>
+          </TouchableHighlight>
+          <Image style={{height: 5, width: 150}} source={require('../img.subtract.png')}/>
+          <TouchableHighlight underlayColor='white' onPress={this._onToPostNegative}>
+            <Image style={styles.rateThumb} source={require('../img/thumbDownRed.png')}/>
+          </TouchableHighlight>
+        </View>
       </View>
     )
   }

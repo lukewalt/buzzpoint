@@ -23,7 +23,7 @@ export default class PostIt extends Component {
     console.log(props);
     this.state = {
       user_id: 1,
-      positive: false,
+      positive: this.props.userRating,
       comment: 'Whats the story?',
       image: "http://dummyimage.com/100x100.jpg/ff4444/ffffff",
       latitude: this.props.userLat,

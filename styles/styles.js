@@ -6,12 +6,27 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  rateContainer: {
+    flex: 1,
+    paddingTop: 100,
+    paddingHorizontal: 40,
+  },
   tabContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
     paddingHorizontal: 30,
+  },
+  rateProfileImg: {
+    height: 30,
+    width: 30,
+    alignSelf: 'flex-end',
+  },
+  rateThumb: {
+    height: 100,
+    width: 100,
+    marginVertical: 30,
   },
   userPosts: {
     marginTop: 10,
