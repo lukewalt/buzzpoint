@@ -17,6 +17,13 @@ const styles = StyleSheet.create({
     marginTop: 10,
     paddingHorizontal: 40,
   },
+  userTite: {
+    fontSize: 35,
+    fontWeight: 'bold',
+    fontFamily: "Verdana",
+    color: '#3d8af7',
+    letterSpacing: -4,
+  },
   instructions: {
     textAlign: 'center',
     color: '#3d8af7',
@@ -65,8 +72,8 @@ const styles = StyleSheet.create({
     width: 120,
   },
   userProfileImg: {
-    height: 75,
-    width: 75,
+    height: 90,
+    width: 90,
   },
   address: {
     margin: 10,

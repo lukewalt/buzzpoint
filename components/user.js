@@ -62,9 +62,9 @@ export default class User extends Component {
         <View style={{alignItems: 'center'}}>
           <Image
           style={styles.userProfileImg}
-          source={require('../img/profilePlace.png')}
+          source={require('../img/profilePic.png')}
           />
-          <Text>{this.state.userName}</Text>
+          <Text style={styles.userTite}>{this.state.userName}</Text>
         </View>
         <ListView
           dataSource={this.state.dataSource}
