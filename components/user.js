@@ -12,6 +12,7 @@ import {
 import React, { Component, PropTypes } from 'react';
 import axios from 'axios';
 import styles from '../styles/styles';
+
 import TotalCount from './totalCount'
 import TagsOnPost from './tagsOnPost'
 
@@ -32,7 +33,7 @@ export default class User extends Component {
   componentDidMount(){
     this.getCurrentUserInfo()
   }
-  // http request that gets user info then user posts
+
   getCurrentUserInfo() {
     axios.get(`https://buzzpoint.herokuapp.com/api/users/${this.state.userId}`)
     .then( userData => {
@@ -41,7 +42,6 @@ export default class User extends Component {
       })
       axios.get(`https://buzzpoint.herokuapp.com/api/posts/user/${this.state.userId}`)
       .then( posts => {
-        console.log(posts);
         this.setState({
           dataSource: this.state.dataSource.cloneWithRows(posts.data),
           loaded: true,
@@ -115,5 +115,6 @@ export default class User extends Component {
       </View>
     );
   }
+
 
 }
