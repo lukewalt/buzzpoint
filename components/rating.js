@@ -55,7 +55,9 @@ export default class Rating extends Component {
       title: 'BuzzPoint',
       passProps: {
         userLat: this.state.userLat,
-        userLng: this.state.userLng
+        userLng: this.state.userLng,
+        userId: this.state.userId,
+        userTags: [1 ,2, 4]
       }
     });
 

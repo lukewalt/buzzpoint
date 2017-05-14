@@ -29,23 +29,24 @@ export default class TagsListed extends Component {
 
   // fires when parent component is mounted
   componentDidMount() {
-    this.fetchData();
+    // this.fetchData();
+    console.log("Tags Listed for submit fired");
   }
 
   // holds the http req
   fetchData() {
     // gets data using predefined url above -> converts to json -> updates the state
-    axios.get(`https://buzzpoint.herokuapp.com/api/tags/${this.state.userLoggedIn}`)
-    .then( res => {
-      console.log('data', res.data);
+    // axios.get(`https://buzzpoint.herokuapp.com/api/tags/${this.state.userLoggedIn}`)
+    // .then( res => {
+    //   console.log('data', res.data);
       // this.setState({
       //   dataSource: this.state.dataSource.cloneWithRows(res.data),
       //   loaded: true,
       // })
-    })
+    //})
 
 
-    .done()
+    // .done()
   }
 
 

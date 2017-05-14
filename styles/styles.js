@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
   thepost: {
     borderColor: '#fbb767',
     backgroundColor: '#fbb767',
-    alignSelf: 'stretch',
     marginTop: 15,
     paddingHorizontal: 80,
     paddingVertical: 7,
