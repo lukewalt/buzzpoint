@@ -117,6 +117,20 @@ const styles = StyleSheet.create({
   postImg: {
     height: 50,
     width: 50,
+  },
+  countContainer: {
+    marginLeft: 40,
+    flexDirection: 'row',
+    marginTop: 15,
+  },
+  countSection: {
+    flexDirection: 'row',
+    marginRight: 7,
+  },
+  thumbcount: {
+    marginHorizontal: 7,
+    height: 20,
+    width: 20,
   }
 });
 
