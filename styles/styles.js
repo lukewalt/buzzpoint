@@ -13,9 +13,17 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingHorizontal: 30,
   },
-  userPost: {
+  userPosts: {
     marginTop: 10,
     paddingHorizontal: 40,
+    marginBottom: 150,
+  },
+  userTite: {
+    fontSize: 35,
+    fontWeight: 'bold',
+    fontFamily: "Verdana",
+    color: '#3d8af7',
+    letterSpacing: -4,
   },
   instructions: {
     textAlign: 'center',
@@ -65,8 +73,8 @@ const styles = StyleSheet.create({
     width: 120,
   },
   userProfileImg: {
-    height: 75,
-    width: 75,
+    height: 90,
+    width: 90,
   },
   address: {
     margin: 10,
@@ -92,16 +100,23 @@ const styles = StyleSheet.create({
     flexDirection: 'column'
   },
   post: {
-    paddingHorizontal: 10,
-    borderWidth: 2,
+    paddingHorizontal: 15,
+    borderWidth: 1,
     borderColor: '#3d8af7',
-    paddingVertical: 50,
+    paddingVertical: 20,
     marginVertical: 5,
-    borderRadius: 7,
+    borderRadius: 5,
   },
   postTitle: {
     color: '#3d8af7',
-    fontWeight: 'bold',
+  },
+  thumbPost: {
+    height: 30,
+    width: 30,
+  },
+  postImg: {
+    height: 50,
+    width: 50,
   }
 });
 

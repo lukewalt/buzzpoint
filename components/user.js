@@ -38,6 +38,7 @@ export default class User extends Component {
       })
       axios.get(`https://buzzpoint.herokuapp.com/api/posts/user/${this.state.userId}`)
       .then( posts => {
+        console.log(posts);
         this.setState({
           dataSource: this.state.dataSource.cloneWithRows(posts.data),
           loaded: true,
@@ -48,8 +49,7 @@ export default class User extends Component {
     })
   }
 
-  getUserPosts() {
-  }
+
 
   render() {
     // sets a loading view until movies state changes
@@ -62,14 +62,14 @@ export default class User extends Component {
         <View style={{alignItems: 'center'}}>
           <Image
           style={styles.userProfileImg}
-          source={require('../img/profilePlace.png')}
+          source={require('../img/profilePic.png')}
           />
-          <Text>{this.state.userName}</Text>
+          <Text style={styles.userTite}>{this.state.userName}</Text>
         </View>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderPosts}
-          style={styles.userPost}
+          style={styles.userPosts}
         />
       </View>
     )
@@ -89,12 +89,21 @@ export default class User extends Component {
   }
 
   renderPosts(posts) {
+    console.log(posts.image);
     return (
       <View style={styles.post}>
-        <View style={{flex: 1,flexDirection: 'row'}}>
-          <Text style={styles.subtitle}> {posts.zone}</Text>
+        <View style={{flex: 1,flexDirection: 'row', justifyContent: 'space-between'}}>
+          <View style={{marginRight: 10}}>
+            <Image
+              style={styles.thumbPost}
+              source={posts.positive === true ? require('../img/thumbupButton.png') : require('../img/thumbdownButton.png')}
+            />
+            <Text style={styles.subtitle}> {posts.zone}</Text>
+          </View>
           <Text style={styles.postTitle}>{posts.comment}</Text>
-          <Text style={styles.subtitle}> {posts.zipcode}</Text>
+          <View>
+            <Image style={styles.postImg} source={{uri: 'https://cdn.pixabay.com/photo/2013/10/21/04/51/color-198892_640.jpg'}}/>
+          </View>
         </View>
       </View>
     );
