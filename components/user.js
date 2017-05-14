@@ -96,9 +96,9 @@ export default class User extends Component {
           <View style={{marginRight: 10}}>
             <Image
               style={styles.thumbPost}
-              source={posts.positive === true ? require('../img/thumbupButton.png') : require('../img/thumbdownButton.png')}
+              source={posts.positive === true ? require('../img/tu.png') : require('../img/td.png')}
             />
-            <Text style={styles.subtitle}> {posts.zone}</Text>
+            <Text style={{fontWeight: 'bold', color: '#3d8af7'}}> {posts.zone}</Text>
           </View>
           <Text style={styles.postTitle}>{posts.comment}</Text>
           <View>
