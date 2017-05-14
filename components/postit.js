@@ -20,16 +20,24 @@ export default class PostIt extends Component {
 
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
-      text: 'Whats the story?',
-      userLat: this.props.userLat,
-      userLng: this.props.userLng,
+      user_id: 1,
+      positive: false,
+      comment: 'Whats the story?',
+      image: "http://dummyimage.com/100x100.jpg/ff4444/ffffff",
+      latitude: this.props.userLat,
+      longitude: this.props.userLng,
+      zipcode: 37152,
+      zone: 2,
+      timestamp: "2017-05-13T21:40:26.556Z",
+      tag_ids: this.props.userTags
     };
   }
 
   componentDidMount() {
     // makes a call to get formatted address
-    axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.userLat},${this.state.userLng}&key=AIzaSyDvFLz0icFJDxnp8FyEJkZwhqWZQsp0qB8`)
+    axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.latitude},${this.state.longitude}&key=AIzaSyDvFLz0icFJDxnp8FyEJkZwhqWZQsp0qB8`)
     .then( geo => {
       let formattedAddress = geo.data.results[0].formatted_address
       this.setState({
@@ -41,11 +49,12 @@ export default class PostIt extends Component {
 
   // feedback for successful post
   thanksForPost = () => {
-    // this.props.navigator.pop({
-    //   component: Rating,
-    //   title: 'BuzzPoint'
-    // })
-    Alert.alert('Thanks For Your Post')
+    axios.post(`https://buzzpoint.herokuapp.com/api/posts`, this.state)
+    .then( res => {
+      console.log(res)
+      Alert.alert('Thanks For Your Post')
+    })
+    .catch( err => console.log(err))
   }
 
   render() {
@@ -54,12 +63,12 @@ export default class PostIt extends Component {
         <Text style={styles.address}> {this.state.formattedAddress} </Text>
         <TextInput
           style={styles.textInput}
-          onChangeText={(text) => this.setState({text})}
-          value={this.state.text}
+          onChangeText={comment => this.setState({comment})}
+          value={this.state.comment}
         />
         <ImageBar />
         <TagsListed />
-        <TouchableHighlight onPress={this.thanksForPost}>
+        <TouchableHighlight underlayColor='white' onPress={this.thanksForPost}>
           <Text style={styles.thepost}>POST</Text>
         </TouchableHighlight>
       </View>

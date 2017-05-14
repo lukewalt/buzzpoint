@@ -13,9 +13,17 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingHorizontal: 30,
   },
-  userPost: {
+  userPosts: {
     marginTop: 10,
     paddingHorizontal: 40,
+    marginBottom: 180,
+  },
+  userTite: {
+    fontSize: 35,
+    fontWeight: 'bold',
+    fontFamily: "Verdana",
+    color: '#3d8af7',
+    letterSpacing: -4,
   },
   instructions: {
     textAlign: 'center',
@@ -34,7 +42,6 @@ const styles = StyleSheet.create({
   thepost: {
     borderColor: '#fbb767',
     backgroundColor: '#fbb767',
-    alignSelf: 'stretch',
     marginTop: 15,
     paddingHorizontal: 80,
     paddingVertical: 7,
@@ -65,8 +72,8 @@ const styles = StyleSheet.create({
     width: 120,
   },
   userProfileImg: {
-    height: 75,
-    width: 75,
+    height: 90,
+    width: 90,
   },
   address: {
     margin: 10,
@@ -80,7 +87,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     flexWrap: 'wrap',
   },
-  tag: {
+  tagForSubmit: {
     marginVertical: 7,
     paddingVertical: 10,
     paddingHorizontal: 25,
@@ -92,16 +99,53 @@ const styles = StyleSheet.create({
     flexDirection: 'column'
   },
   post: {
-    paddingHorizontal: 10,
-    borderWidth: 2,
+    paddingHorizontal: 0,
+    borderWidth: 1,
     borderColor: '#3d8af7',
-    paddingVertical: 50,
+    paddingVertical: 0,
     marginVertical: 5,
-    borderRadius: 7,
+    borderRadius: 4,
+  },
+  innerPost: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    paddingVertical: 20,
   },
   postTitle: {
     color: '#3d8af7',
-    fontWeight: 'bold',
+  },
+  thumbPost: {
+    height: 30,
+    width: 30,
+  },
+  postImg: {
+    height: 50,
+    width: 50,
+  },
+  countContainer: {
+    marginLeft: 40,
+    flexDirection: 'row',
+    marginTop: 15,
+  },
+  countSection: {
+    flexDirection: 'row',
+    marginRight: 7,
+  },
+  thumbcount: {
+    marginHorizontal: 7,
+    height: 20,
+    width: 20,
+  },
+  tagSection: {
+    backgroundColor: '#3d8af7',
+    flexDirection: 'row',
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+  },
+  tag: {
+    color: '#fff',
+    marginRight: 10,
   }
 });
 

@@ -8,7 +8,7 @@ import {
 } from 'react-native'
 import styles from '../styles/styles';
 
-import TabBar from './tab-bar';
+import TabBar from './tabBar';
 import PostIt from './postit';
 import User from './user';
 
@@ -55,7 +55,9 @@ export default class Rating extends Component {
       title: 'BuzzPoint',
       passProps: {
         userLat: this.state.userLat,
-        userLng: this.state.userLng
+        userLng: this.state.userLng,
+        userId: this.state.userId,
+        userTags: [1 ,2, 4]
       }
     });
 
