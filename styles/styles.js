@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   userPosts: {
     marginTop: 10,
     paddingHorizontal: 40,
-    marginBottom: 150,
+    marginBottom: 180,
   },
   userTite: {
     fontSize: 35,
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     borderColor: '#3d8af7',
     paddingVertical: 20,
     marginVertical: 5,
-    borderRadius: 5,
+    borderRadius: 4,
   },
   postTitle: {
     color: '#3d8af7',

@@ -13,6 +13,8 @@ import React, { Component, PropTypes } from 'react';
 import axios from 'axios';
 import styles from '../styles/styles';
 import TotalCount from './totalCount'
+import TagsOnPost from './tagsOnPost'
+
 
 export default class User extends Component {
 
@@ -109,6 +111,7 @@ export default class User extends Component {
             <Image style={styles.postImg} source={{uri: 'https://cdn.pixabay.com/photo/2013/10/21/04/51/color-198892_640.jpg'}}/>
           </View>
         </View>
+        <TagsOnPost/>
       </View>
     );
   }
