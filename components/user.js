@@ -10,8 +10,9 @@ import {
 } from 'react-native'
 
 import React, { Component, PropTypes } from 'react';
-import styles from '../styles/styles';
 import axios from 'axios';
+import styles from '../styles/styles';
+import TotalCount from './totalCount'
 
 export default class User extends Component {
 
@@ -25,11 +26,11 @@ export default class User extends Component {
     }
   }
 
+  // fires http request when the component loads
   componentDidMount(){
     this.getCurrentUserInfo()
-
   }
-
+  // http request that gets user info then user posts
   getCurrentUserInfo() {
     axios.get(`https://buzzpoint.herokuapp.com/api/users/${this.state.userId}`)
     .then( userData => {
@@ -50,13 +51,14 @@ export default class User extends Component {
   }
 
 
-
   render() {
-    // sets a loading view until movies state changes
+
+    // sets a loading view until posts load
     if (!this.state.loaded) {
       return this.renderLoadingView()
     }
-    // renders the movies based on listview
+
+    // View Structure
     return (
       <View style={{paddingTop: 100}}>
         <View style={{alignItems: 'center'}}>
@@ -66,6 +68,7 @@ export default class User extends Component {
           />
           <Text style={styles.userTite}>{this.state.userName}</Text>
         </View>
+        <TotalCount style={{marginHorizontal: 50}}/>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderPosts}
@@ -75,10 +78,10 @@ export default class User extends Component {
     )
   }
 
+  // Activity Indicator
   renderLoadingView() {
     return (
       <View style={styles.tabContainer}>
-
         <ActivityIndicator
           animating={true}
           size="large"
@@ -88,6 +91,7 @@ export default class User extends Component {
     );
   }
 
+  // List View of posts
   renderPosts(posts) {
     console.log(posts.image);
     return (
@@ -96,9 +100,9 @@ export default class User extends Component {
           <View style={{marginRight: 10}}>
             <Image
               style={styles.thumbPost}
-              source={posts.positive === true ? require('../img/thumbupButton.png') : require('../img/thumbdownButton.png')}
+              source={posts.positive === true ? require('../img/tu.png') : require('../img/td.png')}
             />
-            <Text style={styles.subtitle}> {posts.zone}</Text>
+            <Text style={{fontWeight: 'bold', color: '#3d8af7'}}> {posts.zone}</Text>
           </View>
           <Text style={styles.postTitle}>{posts.comment}</Text>
           <View>

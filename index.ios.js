@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import styles from './styles/styles'
 
-import TabBar from './components/tab-bar'
+import TabBar from './components/tabBar'
 import Rating from './components/rating'
 
 
