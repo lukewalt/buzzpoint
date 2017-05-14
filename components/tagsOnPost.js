@@ -20,9 +20,9 @@ export default class TagsOnPost extends Component {
 
   render() {
     return (
-      <View style={{backgroundColor: '#3d8af7', flexDirection: 'row'}}>
-          <Text>Drinks</Text>
-          <Text>Patios</Text>
+      <View style={styles.tagSection}>
+          <Text style={styles.tag}>Drinks</Text>
+          <Text style={styles.tag}>Patios</Text>
       </View>
     )
   }

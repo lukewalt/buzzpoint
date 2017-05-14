@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     flexWrap: 'wrap',
   },
-  tag: {
+  tagForSubmit: {
     marginVertical: 7,
     paddingVertical: 10,
     paddingHorizontal: 25,
@@ -100,12 +100,18 @@ const styles = StyleSheet.create({
     flexDirection: 'column'
   },
   post: {
-    paddingHorizontal: 15,
+    paddingHorizontal: 0,
     borderWidth: 1,
     borderColor: '#3d8af7',
-    paddingVertical: 20,
+    paddingVertical: 0,
     marginVertical: 5,
     borderRadius: 4,
+  },
+  innerPost: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    paddingVertical: 20,
   },
   postTitle: {
     color: '#3d8af7',
@@ -131,6 +137,16 @@ const styles = StyleSheet.create({
     marginHorizontal: 7,
     height: 20,
     width: 20,
+  },
+  tagSection: {
+    backgroundColor: '#3d8af7',
+    flexDirection: 'row',
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+  },
+  tag: {
+    color: '#fff',
+    marginRight: 10,
   }
 });
 

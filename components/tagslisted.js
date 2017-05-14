@@ -52,9 +52,9 @@ export default class TagsListed extends Component {
   render() {
     return (
       <View style={styles.tagList}>
-        <Text style={styles.tag}>Restaurant</Text>
-        <Text style={styles.tag}>Eats</Text>
-        <Text style={styles.tag}>Patio</Text>
+        <Text style={styles.tagForSubmit}>Restaurant</Text>
+        <Text style={styles.tagForSubmit}>Eats</Text>
+        <Text style={styles.tagForSubmit}>Patio</Text>
       </View>
     )
   }
