@@ -27,7 +27,7 @@ export default class TabBar extends Component {
       return (
         <TabBarIOS>
           <TabBarIOS.Item
-            systemIcon="featured"
+            systemIcon="top-rated"
             selected={this.state.selectedTab === 'tabOne'}
             onPress={() => this.setTab('tabOne')}>
             <View style={styles.tabContainer}>
