@@ -40,9 +40,9 @@ export default class PostIt extends Component {
     // makes a call to get formatted address
     axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.latitude},${this.state.longitude}&key=AIzaSyDvFLz0icFJDxnp8FyEJkZwhqWZQsp0qB8`)
     .then( geo => {
-      let formattedAddress = geo.data.results[0].formatted_address
+      let addressFromReq = geo.data.results[0].formatted_address
       this.setState({
-        'formattedAddress': formattedAddress,
+        formattedAddress: addressFromReq,
       })
       console.log(this.state);
       // gets all tags for carousel

@@ -19,11 +19,11 @@ export default class Rating extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      'userId': 1,
-      'userLat': null,
-      'userLng': null,
-      'formattedAddress': null,
-      'locationERR': null
+      userId: 1,
+      userLat: null,
+      userLng: null,
+      formattedAddress: null,
+      locationERR: null
     }
   }
 

@@ -3,9 +3,8 @@
 import {
   View,
   Text,
-  ScrollView,
+  ListView,
   TouchableHighlight,
-  Alert,
 } from 'react-native'
 
 import React, { Component, PropTypes } from 'react';
@@ -19,7 +18,8 @@ export default class TagCarousel extends Component {
     super(props);
     this.state = {
       dataSource: new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2}),
-      // userTagIds: ,
+      userTagIds: null,
+      canRate: false,
     }
   }
 
@@ -43,26 +43,33 @@ export default class TagCarousel extends Component {
     .done()
   }
 
-  _addTag = () => {
-    Alert.alert('tag')
+  _addTag = (tagId) => {
+    let arrayTagIds = []
+    arrayTagIds.push(tagId)
+    this.setState({
+      canRate: true,
+      userTagIds: arrayTagIds,
+    })
   }
-
 
   render() {
     return (
       <View style={{height: 50}}>
-        <ScrollView
+        <ListView
           dataSource={this.state.dataSource}
-          renderRow={this.renderTags.bind(this)}
+          renderRow={this.renderTags}
           style={styles.tagCarousel}
           horizontal={true}
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
+          centerContent={true}
         />
       </View>
     )
   }
 
-
   renderTags(tag) {
+    console.log(tag);
     return (
         <TouchableHighlight underlayColor='white' >
           <Text style={styles.tagOnCarousel} key={tag.id}>{tag.tag_name}</Text>
