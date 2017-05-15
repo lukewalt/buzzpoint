@@ -3,6 +3,7 @@
 import {
   Text,
   View,
+  TextInput,
   ListView,
   Image,
   ActivityIndicator,
@@ -13,6 +14,7 @@ import React, { Component } from 'react';
 import styles from '../styles/styles.js'
 import axios from 'axios'
 import TagsOnPost from './tagsOnPost'
+import TotalCount from './totalCount'
 
 export default class ZonesTab extends Component {
 
@@ -43,17 +45,28 @@ export default class ZonesTab extends Component {
   }
 
   render(){
+
+    // checks loading state
     if (!this.state.loaded) {
       return this.renderLoadingView()
     }
 
-
+    // Full Page
     return (
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={this.renderPosts}
-        style={styles.userPosts}
-      />
+      <View style={{flex: 1}}>
+        <View style={styles.searchBarBackground}>
+          <TextInput
+          style={styles.searchBar}
+          placeholder='Search'
+          />
+        </View>
+        <TotalCount style={{marginHorizontal: 50}}/>
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={this.renderPosts}
+          style={styles.zonePosts}
+        />
+      </View>
     )
 
   }
@@ -71,7 +84,7 @@ export default class ZonesTab extends Component {
     );
   }
 
-  // List View of posts
+  // List View of posts inside of page
   renderPosts(posts) {
     console.log(posts.image);
     return (

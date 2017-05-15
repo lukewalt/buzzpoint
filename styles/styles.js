@@ -9,14 +9,18 @@ const styles = StyleSheet.create({
   rateContainer: {
     flex: 1,
     paddingTop: 100,
-    paddingHorizontal: 40,
+    paddingHorizontal: 25,
   },
   tabContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
-    paddingHorizontal: 30,
+    paddingHorizontal: 25,
+  },
+  zonePosts: {
+    paddingHorizontal: 25,
+    marginVertical: 20,
   },
   rateProfileImg: {
     height: 30,
@@ -30,7 +34,7 @@ const styles = StyleSheet.create({
   },
   userPosts: {
     marginTop: 10,
-    paddingHorizontal: 40,
+    paddingHorizontal: 25,
     marginBottom: 180,
   },
   userTite: {
@@ -147,7 +151,7 @@ const styles = StyleSheet.create({
     width: 50,
   },
   countContainer: {
-    marginLeft: 40,
+    marginLeft: 25,
     flexDirection: 'row',
     marginTop: 15,
   },
@@ -183,7 +187,22 @@ const styles = StyleSheet.create({
     fontFamily: "Verdana",
     fontWeight: 'bold',
     letterSpacing: -6,
-  }
+  },
+  searchBarBackground: {
+    backgroundColor: '#3d8af7',
+    marginTop: 65,
+    height: 50,
+  },
+  searchBar: {
+    margin: 10,
+    paddingLeft: 25,
+    fontSize: 15,
+    height: 1,
+    backgroundColor: '#fff',
+    flex: .1,
+    borderRadius: 3,
+  },
+
 });
 
 export default styles;

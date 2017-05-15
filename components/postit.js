@@ -25,7 +25,7 @@ export default class PostIt extends Component {
       dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
       user_id: 1,
       positive: this.props.userRating,
-      comment: 'Whats the story?',
+      comment: null,
       image: "http://dummyimage.com/100x100.jpg/ff4444/ffffff",
       latitude: this.props.userLat,
       longitude: this.props.userLng,
@@ -71,6 +71,7 @@ export default class PostIt extends Component {
           style={styles.textInput}
           onChangeText={comment => this.setState({comment})}
           value={this.state.comment}
+          placeholder='Whats the Story?'
         />
         <ImageBar />
         <View style={styles.tagList}>
