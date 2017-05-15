@@ -58,7 +58,6 @@ const styles = StyleSheet.create({
     borderColor: '#fbb767',
     backgroundColor: '#fbb767',
     marginTop: 15,
-    paddingHorizontal: 80,
     paddingVertical: 7,
     textAlign: 'center',
     color: '#fff',
@@ -173,6 +172,17 @@ const styles = StyleSheet.create({
   tag: {
     color: '#fff',
     marginRight: 10,
+  },
+  zones: {
+    marginTop: 7,
+    backgroundColor: '#3d8af7',
+    color: '#fff',
+    fontSize: 50,
+    textAlign: 'center',
+    paddingVertical: 25,
+    fontFamily: "Verdana",
+    fontWeight: 'bold',
+    letterSpacing: -6,
   }
 });
 

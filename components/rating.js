@@ -81,7 +81,7 @@ export default class Rating extends Component {
   _onToZones = () => {
     this.props.navigator.push({
       component: TabBar,
-      title: 'BuzzPoint',
+      title: '',
     });
   }
   // goes to user page

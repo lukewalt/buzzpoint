@@ -76,7 +76,7 @@ export default class PostIt extends Component {
         <View style={styles.tagList}>
           <Text style={styles.tagForSubmit}>Patio</Text>
         </View>
-        <TouchableHighlight underlayColor='white' onPress={this.thanksForPost}>
+        <TouchableHighlight underlayColor='white' style={{alignSelf: 'stretch'}} onPress={this.thanksForPost}>
           <Text style={styles.thepost}>POST</Text>
         </TouchableHighlight>
       </View>
