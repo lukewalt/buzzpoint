@@ -102,8 +102,8 @@ export default class Rating extends Component {
           <Image style={styles.rateProfileImg} source={require('../img/profilePic.png')}/>
         </TouchableHighlight>
         <View style={{ justifyContent: 'center', alignItems: 'center'}}>
-          <TouchableHighlight underlayColor='white' onPress={this._onToZones}>
-          <Text style={styles.small}>ZONES</Text>
+          <TouchableHighlight  underlayColor='white' onPress={this._onToZones}>
+            <Text style={styles.small}>ZONES</Text>
           </TouchableHighlight>
           <TouchableHighlight underlayColor='white' onPress={this._onToPostPositive}>
             <Image style={styles.rateThumb} source={require('../img/thumbUpGreen.png')}/>

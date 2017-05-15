@@ -74,7 +74,9 @@ export default class PostIt extends Component {
         />
         <ImageBar />
         <View style={styles.tagList}>
+          <Text style={styles.tagForSubmit}>Resturant</Text>
           <Text style={styles.tagForSubmit}>Patio</Text>
+          <Text style={styles.tagForSubmit}>Drinks</Text>
         </View>
         <TouchableHighlight underlayColor='white' style={{alignSelf: 'stretch'}} onPress={this.thanksForPost}>
           <Text style={styles.thepost}>POST</Text>
