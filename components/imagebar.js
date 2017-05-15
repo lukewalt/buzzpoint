@@ -18,8 +18,8 @@ import styles from '../styles/styles';
 
 export default class ImageBar extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       photoSelected: false,
       animationType: 'slide',
@@ -37,12 +37,15 @@ export default class ImageBar extends Component {
 
   }
 
-  setIndex = (index, url) => {
-    if (index === this.state.index) {
+  selectImage = (i, uri) => {
+    if (i === this.state.index) {
       index = null
     }
-    this.setState({ index })
-    // this.props.imgSelected(url)
+    this.setState({
+      index: i,
+      photoSelected: uri
+    })
+    this.props.imgSelected(uri)
     this.toggleModal()
   }
 
@@ -62,14 +65,13 @@ export default class ImageBar extends Component {
 
 
   render() {
-    console.log(this.state);
     return (
       <View style={styles.imgBarCont}>
         <TouchableHighlight underlayColor='white' onPress={this._openCamera}>
           <Image style={styles.img} source={require('../img/takepic.png')} />
         </TouchableHighlight>
         <TouchableHighlight underlayColor='white' onPress={() => { this.toggleModal(); this.getImagesFromRoll() }}>
-          <Image style={styles.img} source={this.state.photoSelected ? require() : require('../img/selectpicture.png')} />
+          <Image style={styles.img} source={this.state.photoSelected ? {uri: this.state.photoSelected} : require('../img/selectpicture.png')} />
         </TouchableHighlight>
         <Modal
         animationType={"slide"}
@@ -86,13 +88,12 @@ export default class ImageBar extends Component {
         contentContainerStyle={styles.scrollView}>
         {
           this.state.photos.map((p, i) => {
-            console.log(p);
             return (
               <TouchableHighlight
                 style={{opacity: i === this.state.index ? 0.5 : 1}}
                 key={i}
                 underlayColor='transparent'
-                onPress={() => this.setIndex(i)}
+                onPress={() => this.selectImage(i, p.node.image.uri)}
               >
                 <Image
                   style={{

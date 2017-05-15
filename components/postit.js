@@ -20,7 +20,6 @@ export default class PostIt extends Component {
 
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
       user_id: 1,
@@ -33,7 +32,8 @@ export default class PostIt extends Component {
       zone: 2,
       timestamp: "2017-05-13T21:40:26.556Z",
       tag_ids: this.props.userTags
-    };
+    }
+
   }
 
   componentDidMount() {
@@ -44,13 +44,16 @@ export default class PostIt extends Component {
       this.setState({
         formattedAddress: addressFromReq,
       })
-      console.log(this.state);
       // gets all tags for carousel
       axios.get(`http://buzzpoint.herokuapp.com/api/tags`)
       .then( tags => {
 
       })
     })
+  }
+
+  imgSelected(uri) {
+    console.log(uri);
   }
 
   // feedback for successful post
@@ -73,7 +76,7 @@ export default class PostIt extends Component {
           value={this.state.comment}
           placeholder='Whats the Story?'
         />
-        <ImageBar image={this.props.image} />
+        <ImageBar imgSelected={this.imgSelected} />
         <View style={styles.tagList}>
           <Text style={styles.tagForSubmit}>Resturant</Text>
           <Text style={styles.tagForSubmit}>Patio</Text>

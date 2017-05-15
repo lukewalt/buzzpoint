@@ -95,6 +95,8 @@ export default class Rating extends Component {
     })
   }
 
+
+
   render() {
     return (
       <View style={styles.rateContainer}>
