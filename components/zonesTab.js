@@ -54,7 +54,7 @@ export default class ZonesTab extends Component {
     // Full Page
     return (
       <View style={{flex: 1}}>
-        <View style={styles.searchBarBackground}>
+        <View style={{backgroundColor: '#3d8af7', marginTop: 65, height: 50}}>
           <TextInput
           style={styles.searchBar}
           placeholder='Search'

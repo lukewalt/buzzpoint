@@ -11,6 +11,8 @@ import {
 } from 'react-native';
 
 import ZonesTab from './zonesTab'
+import PostsTab from './postsTab'
+import TagsTab from './tagsTab'
 
 export default class TabBar extends Component {
 
@@ -33,7 +35,6 @@ export default class TabBar extends Component {
         zoneId: zone
       }
     })
-
   }
 
   render() {
@@ -69,8 +70,8 @@ export default class TabBar extends Component {
           icon={require('../img/tags.png')}
           selected={this.state.selectedTab === 'tabTwo'}
           onPress={() => this.setTab('tabTwo')}>
-          <View style={styles.tabContainer}>
-            <Text style={styles.instructions}>Tab Two</Text>
+          <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <TagsTab />
           </View>
         </TabBarIOS.Item>
         <TabBarIOS.Item
@@ -78,8 +79,8 @@ export default class TabBar extends Component {
           icon={require('../img/post.png')}
           selected={this.state.selectedTab === 'tabThree'}
           onPress={() => this.setTab('tabThree')}>
-          <View style={styles.tabContainer}>
-            <Text style={styles.instructions}>Tab Three</Text>
+          <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <PostsTab />
           </View>
         </TabBarIOS.Item>
 
