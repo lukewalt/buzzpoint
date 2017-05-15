@@ -201,6 +201,15 @@ const styles = StyleSheet.create({
     flex: .1,
     borderRadius: 3,
   },
+  modalContainer: {
+   paddingTop: 20,
+   flex: 1
+  },
+   scrollView: {
+     flexDirection: 'row',
+     flexWrap: 'wrap',
+     justifyContent: 'flex-start'
+   },
 
 });
 
