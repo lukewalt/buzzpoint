@@ -21,6 +21,7 @@ export default class Rating extends Component {
     console.log(props);
     super(props);
     this.state = {
+      loggedIn: this.props.loggedIn,
       userId: 1,
       userLat: null,
       userLng: null,
@@ -92,12 +93,11 @@ export default class Rating extends Component {
       component: User,
       title: 'BuzzPoint',
       passProps: {
-        userId: this.state.userId
+        loggedIn: this.state.loggedIn,
+        userId: this.state.userId,
       }
     })
   }
-
-
 
   render() {
     return (

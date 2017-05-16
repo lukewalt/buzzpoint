@@ -16,12 +16,22 @@ import Rating from './components/rating'
 
 export default class buzzpoint extends Component {
 
+  constructor(){
+    super();
+    this.state = {
+      loggedIn: true
+    }
+  }
+
   render() {
     return (
       <NavigatorIOS
         initialRoute={{
-          component: Rating,
+          component: this.state.loggedIn ? Rating : LoginRegister,
           title: 'BuzzPoint',
+          passProps: {
+            loggedIn: this.state.loggedIn
+          }
         }}
         style={{flex: 1}}
       />

@@ -19,8 +19,10 @@ import TagsOnPost from './tagsOnPost'
 export default class User extends Component {
 
   constructor(props) {
+    console.log("USER PROPS", props);
     super(props);
     this.state = {
+      loggedIn: this.props.loggedIn,
       userId: this.props.userId,
       userName: null,
       dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
@@ -42,6 +44,7 @@ export default class User extends Component {
       axios.get(`https://buzzpoint.herokuapp.com/api/posts/user/${this.state.userId}`)
       .then( posts => {
         console.log(posts);
+
         this.setState({
           dataSource: this.state.dataSource.cloneWithRows(posts.data),
           loaded: true,
@@ -64,10 +67,12 @@ export default class User extends Component {
     return (
       <View style={{paddingTop: 100}}>
         <View style={{alignItems: 'center'}}>
-          <Image
-          style={styles.userProfileImg}
-          source={require('../img/profilePic.png')}
-          />
+          <TouchableHighlight underlayColor='white' onPress={this._doLogout}>
+            <Image
+              style={styles.userProfileImg}
+              source={require('../img/profilePic.png')}
+            />
+          </TouchableHighlight>
           <Text style={styles.userTite}>{this.state.userName}</Text>
         </View>
         <TotalCount style={{marginHorizontal: 50}}/>
@@ -95,7 +100,6 @@ export default class User extends Component {
 
   // List View of posts
   renderPosts(posts) {
-    console.log(posts.image);
     return (
       <View style={styles.post}>
         <View style={styles.innerPost}>
@@ -111,9 +115,21 @@ export default class User extends Component {
             <Image style={styles.postImg} source={{uri: 'https://cdn.pixabay.com/photo/2013/10/21/04/51/color-198892_640.jpg'}}/>
           </View>
         </View>
-        <TagsOnPost/>
+        <View style={styles.tagSection} >
+          { posts.tags.map(i => {
+              return (
+                <Text style={styles.tag}>{i.tag_name}</Text>
+              )
+            })
+          }
+        </View>
       </View>
     );
+  }
+
+  _doLogout() {
+    console.log("LOGOUT");
+    // getTagsOnPost={this._getTagsOnPost}
   }
 
 }
