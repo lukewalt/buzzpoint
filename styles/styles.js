@@ -132,7 +132,10 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 25,
     backgroundColor: '#9ec4ff',
-    color: '#0844a4'
+    color: '#0844a4',
+    textAlign: 'center',
+    fontWeight: 'bold',
+
   },
   tagOnCarousel: {
     marginVertical: 7,

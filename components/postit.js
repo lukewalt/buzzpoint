@@ -7,6 +7,7 @@ import {
   Alert,
   TextInput,
   ListView,
+  ScrollView,
 } from 'react-native'
 import axios from 'axios'
 
@@ -67,6 +68,7 @@ export default class PostIt extends Component {
 
   render() {
     return (
+
       <View style={styles.tabContainer}>
         <Text style={styles.address}> {this.state.formattedAddress} </Text>
         <TextInput
@@ -83,7 +85,6 @@ export default class PostIt extends Component {
               )
             })
           }
-
         </View>
 
         <TouchableHighlight underlayColor='white' style={{alignSelf: 'stretch'}} onPress={this.thanksForPost}>

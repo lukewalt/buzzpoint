@@ -5,6 +5,7 @@ import {
   Text,
   TouchableHighlight,
   Image,
+  Alert,
 } from 'react-native'
 import React, { Component, PropTypes } from 'react';
 import styles from '../styles/styles';
@@ -56,33 +57,41 @@ export default class Rating extends Component {
 
   // goes to post page to finalize post
   _onToPostPositive = () => {
-    this.props.navigator.push({
-      component: PostIt,
-      title: 'BuzzPoint',
-      passProps: {
-        userRating: true,
-        userLat: this.state.userLat,
-        userLng: this.state.userLng,
-        userId: this.state.userId,
-        userTags: this.state.selectedTagIds,
-        userTagNames: this.state.selectedTagNames
-      }
-    });
+    if (this.state.selectedTagIds.length > 0) {
+      this.props.navigator.push({
+        component: PostIt,
+        title: 'BuzzPoint',
+        passProps: {
+          userRating: true,
+          userLat: this.state.userLat,
+          userLng: this.state.userLng,
+          userId: this.state.userId,
+          userTags: this.state.selectedTagIds,
+          userTagNames: this.state.selectedTagNames
+        }
+      });
+    } else {
+      Alert.alert('Please Select A Tag')
+    }
   }
   // goes to post page to finalize post
   _onToPostNegative = () => {
-    this.props.navigator.push({
-      component: PostIt,
-      title: 'BuzzPoint',
-      passProps: {
-        userRating: false,
-        userLat: this.state.userLat,
-        userLng: this.state.userLng,
-        userId: this.state.userId,
-        userTags: this.state.selectedTagIds,
-        userTagNames: this.state.selectedTagNames
-      }
-    });
+    if (this.state.selectedTagIds.length > 0) {
+      this.props.navigator.push({
+        component: PostIt,
+        title: 'BuzzPoint',
+        passProps: {
+          userRating: false,
+          userLat: this.state.userLat,
+          userLng: this.state.userLng,
+          userId: this.state.userId,
+          userTags: this.state.selectedTagIds,
+          userTagNames: this.state.selectedTagNames
+        }
+      });
+    } else {
+      Alert.alert('Please Select A Tag')
+    }
   }
 
   // goes to zones to view aggregate posts
@@ -122,13 +131,15 @@ export default class Rating extends Component {
   render() {
     return (
       <View style={styles.rateContainer}>
-        <TouchableHighlight underlayColor='white' onPress={this._onToUserPage}>
-          <Image style={styles.rateProfileImg} source={require('../img/profilePic.png')}/>
-        </TouchableHighlight>
-        <View style={{ justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline'}}>
           <TouchableHighlight  underlayColor='white' onPress={this._onToZones}>
-            <Text style={styles.small}>ZONES</Text>
+            <Image style={styles.rateProfileImg} source={require('../img/target.png')}/>
           </TouchableHighlight>
+          <TouchableHighlight underlayColor='white' onPress={this._onToUserPage}>
+            <Image style={styles.rateProfileImg} source={require('../img/profilePic.png')}/>
+          </TouchableHighlight>
+        </View>
+        <View style={{ justifyContent: 'center', alignItems: 'center'}}>
           <TouchableHighlight underlayColor='white' onPress={this._onToPostPositive}>
             <Image style={styles.rateThumb} source={require('../img/thumbUpGreen.png')}/>
           </TouchableHighlight>
