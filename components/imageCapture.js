@@ -5,7 +5,9 @@ import {
   StyleSheet,
   Text,
   TouchableHighlight,
-  View
+  View,
+  Image,
+  Alert,
 } from 'react-native';
 import React, { Component } from 'react';
 import Camera from 'react-native-camera';
@@ -13,6 +15,14 @@ import Camera from 'react-native-camera';
 
 
 export default class ImageCapture extends Component {
+
+  constructor(props){
+    console.log(props);
+    super(props);
+    this.state = {
+
+    }
+  }
 
   render() {
       return (
@@ -23,7 +33,12 @@ export default class ImageCapture extends Component {
             }}
             style={styles.preview}
             aspect={Camera.constants.Aspect.fill}>
-            <Text style={styles.capture} onPress={this.takePicture.bind(this)}>[CAPTURE]</Text>
+            <TouchableHighlight>
+              <Text style={styles.capture} onPress={this.props.toggleCamera}>close</Text>
+            </TouchableHighlight>
+            <TouchableHighlight>
+              <Text style={styles.capture} onPress={this.takePicture.bind(this)}>[B]</Text>
+            </TouchableHighlight>
           </Camera>
         </View>
       );
@@ -31,9 +46,9 @@ export default class ImageCapture extends Component {
 
     takePicture() {
       const options = {};
-      //options.location = ...
+      Alert.alert('PICTURE')
       this.camera.capture({metadata: options})
-        .then((data) => console.log(data))
+        .then( data => data.path)
         .catch(err => console.error(err));
     }
   }
@@ -51,11 +66,12 @@ export default class ImageCapture extends Component {
     },
     capture: {
       flex: 0,
-      backgroundColor: '#fff',
+      backgroundColor: '#3d8af7',
       borderRadius: 5,
-      color: '#000',
+      color: '#fff',
       padding: 10,
-      margin: 40
+      margin: 40,
+
     }
   });
 

@@ -76,7 +76,7 @@ export default class PostIt extends Component {
           value={this.state.comment}
           placeholder='Whats the Story?'
         />
-        <ImageBar imgSelected={this.imgSelected} />
+        <ImageBar imgSelected={this.imgSelected}/>
         <View style={styles.tagList}>
           <Text style={styles.tagForSubmit}>Resturant</Text>
           <Text style={styles.tagForSubmit}>Patio</Text>

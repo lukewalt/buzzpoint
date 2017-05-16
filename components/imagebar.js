@@ -22,8 +22,8 @@ export default class ImageBar extends Component {
     super(props);
     this.state = {
       photoSelected: false,
-      animationType: 'slide',
-      modalVisible: false,
+      modalImgPickerVisible: false,
+      modalCameraVisible: false,
       transparent: false,
       selectedSupportedOrientation: 0,
       currentOrientation: 'unknown',
@@ -32,13 +32,6 @@ export default class ImageBar extends Component {
     };
   }
 
-  openCamera = () => {
-    this.props.navigator.push({
-      component: ImageCapture,
-      title: 'Camera',
-    })
-
-  }
 
   selectImage = (i, uri) => {
     if (i === this.state.index) {
@@ -49,7 +42,7 @@ export default class ImageBar extends Component {
       photoSelected: uri
     })
     this.props.imgSelected(uri)
-    this.toggleModal()
+    this.toggleImgPicker()
   }
 
 
@@ -62,56 +55,67 @@ export default class ImageBar extends Component {
 
   }
 
-  toggleModal = () => {
-    this.setState({ modalVisible: !this.state.modalVisible });
+  toggleImgPicker = () => {
+    this.setState({ modalImgPickerVisible: !this.state.modalImgPickerVisible });
+  }
+  toggleCamera = () => {
+    this.setState({ modalCameraVisible: !this.state.modalCameraVisible });
   }
 
 
   render() {
     return (
       <View style={styles.imgBarCont}>
-        <TouchableHighlight underlayColor='white' onPress={this.openCamera}>
+        <TouchableHighlight underlayColor='white' onPress={this.toggleCamera}>
           <Image style={styles.img} source={require('../img/takepic.png')} />
         </TouchableHighlight>
-        <TouchableHighlight underlayColor='white' onPress={() => { this.toggleModal(); this.getImagesFromRoll() }}>
+        <TouchableHighlight underlayColor='white' onPress={() => { this.toggleImgPicker(); this.getImagesFromRoll() }}>
           <Image style={styles.img} source={this.state.photoSelected ? {uri: this.state.photoSelected} : require('../img/selectpicture.png')} />
         </TouchableHighlight>
         <Modal
           animationType={"slide"}
           transparent={false}
-          visible={this.state.modalVisible}
+          visible={this.state.modalImgPickerVisible}
           onRequestClose={() => console.log('closed')}
         >
         <View style={styles.modalContainer}>
           <Button
           title='Close'
-          onPress={this.toggleModal}
+          onPress={this.toggleImgPicker}
           />
-        <ScrollView
-          contentContainerStyle={styles.scrollView}>
-            {
-              this.state.photos.map((p, i) => {
-                return (
-                  <TouchableHighlight
-                    style={{opacity: i === this.state.index ? 0.5 : 1}}
-                    key={i}
-                    underlayColor='transparent'
-                    onPress={() => this.selectImage(i, p.node.image.uri)}
-                  >
-                    <Image
-                      style={{
-                        width: 125,
-                        height: 125,
-                      }}
-                      source={{uri: p.node.image.uri}}
-                    />
-                  </TouchableHighlight>
-                )
-              })
-            }
-        </ScrollView>
+          <ScrollView
+            contentContainerStyle={styles.scrollView}>
+              {
+                this.state.photos.map((p, i) => {
+                  return (
+                    <TouchableHighlight
+                      style={{opacity: i === this.state.index ? 0.5 : 1}}
+                      key={i}
+                      underlayColor='transparent'
+                      onPress={() => this.selectImage(i, p.node.image.uri)}
+                    >
+                      <Image
+                        style={{
+                          width: 125,
+                          height: 125,
+                        }}
+                        source={{uri: p.node.image.uri}}
+                      />
+                    </TouchableHighlight>
+                  )
+                })
+              }
+          </ScrollView>
 
         </View>
+        </Modal>
+        <Modal
+          animationType={"slide"}
+          transparent={false}
+          visible={this.state.modalCameraVisible}
+          onRequestClose={() => console.log('closed')}
+        >
+          <ImageCapture toggleCamera={this.toggleCamera}/>
         </Modal>
       </View>
 

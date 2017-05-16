@@ -10,6 +10,7 @@ import {
 import styles from './styles/styles'
 
 import LoginRegister from './components/signInRegister'
+import Rating from './components/rating'
 
 
 
@@ -19,7 +20,7 @@ export default class buzzpoint extends Component {
     return (
       <NavigatorIOS
         initialRoute={{
-          component: LoginRegister,
+          component: Rating,
           title: 'BuzzPoint',
         }}
         style={{flex: 1}}
@@ -27,7 +28,7 @@ export default class buzzpoint extends Component {
 
     )
   }
-  
+
 }
 
 AppRegistry.registerComponent('buzzpoint', () => buzzpoint);
