@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
   loginRegisterContainer: {
     backgroundColor: '#3d8af7',
     flex: 1,
+    // justifyContent: 'center',
     alignItems: 'center',
     paddingTop: 100,
     paddingHorizontal: 25,
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
     margin: 10,
     fontWeight: 'normal',
     fontSize:20,
-    color: '#loginRegisterContainer',
+    color: '#3d8af7',
   },
   thepost: {
     borderColor: '#fbb767',
@@ -83,6 +84,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 5,
     color: '#3d8af7',
+  },
+  loginButton: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 40,
+    paddingVertical: 15,
+    margin: 10,
+    textAlign: 'center',
   },
   textInput: {
     height: 100,
