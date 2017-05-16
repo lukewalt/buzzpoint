@@ -6,6 +6,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  loginRegisterContainer: {
+    backgroundColor: '#3d8af7',
+    flex: 1,
+    alignItems: 'center',
+    paddingTop: 100,
+    paddingHorizontal: 25,
+  },
   rateContainer: {
     flex: 1,
     paddingTop: 100,
@@ -55,7 +62,7 @@ const styles = StyleSheet.create({
     margin: 10,
     fontWeight: 'normal',
     fontSize:20,
-    color: '#3d8af7',
+    color: '#loginRegisterContainer',
   },
   thepost: {
     borderColor: '#fbb767',
@@ -69,13 +76,20 @@ const styles = StyleSheet.create({
     fontFamily: "Verdana",
     letterSpacing: -6,
   },
+  signRegInput: {
+    height: 50,
+    paddingLeft: 20,
+    marginVertical: 10,
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    color: '#3d8af7',
+  },
   textInput: {
     height: 100,
     paddingHorizontal: 20,
     borderColor: '#3d8af7',
     borderWidth: 1,
     borderRadius: 7,
-    color: '#3d8af7',
     overflow: 'visible',
   },
   imgBarCont: {
@@ -210,7 +224,19 @@ const styles = StyleSheet.create({
      flexWrap: 'wrap',
      justifyContent: 'flex-start'
    },
-
+   preview: {
+     flex: 1,
+     justifyContent: 'flex-end',
+     alignItems: 'center'
+   },
+   capture: {
+     flex: 0,
+     backgroundColor: '#fff',
+     borderRadius: 5,
+     color: '#000',
+     padding: 10,
+     margin: 40
+   }
 });
 
 export default styles;

@@ -1,13 +1,14 @@
 'use strict';
 
-import React, { Component, PropTypes } from 'react';
 import {
   View,
   Text,
   TouchableHighlight,
   Image,
 } from 'react-native'
+import React, { Component, PropTypes } from 'react';
 import styles from '../styles/styles';
+
 import TabBar from './tabBar';
 import PostIt from './postit';
 import User from './user';
@@ -17,6 +18,7 @@ import TagCarousel from './tagCarousel'
 export default class Rating extends Component {
 
   constructor(props) {
+    console.log(props);
     super(props);
     this.state = {
       userId: 1,

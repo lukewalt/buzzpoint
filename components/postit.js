@@ -25,18 +25,18 @@ export default class PostIt extends Component {
       user_id: 1,
       positive: this.props.userRating,
       comment: null,
-      image: "http://dummyimage.com/100x100.jpg/ff4444/ffffff",
+      image: 'https://cdn.pixabay.com/photo/2013/10/21/04/51/color-198892_640.jpg',
       latitude: this.props.userLat,
       longitude: this.props.userLng,
       zipcode: 37152,
       zone: 2,
-      timestamp: "2017-05-13T21:40:26.556Z",
+      timestamp: new Date().toUTCString(),
       tag_ids: this.props.userTags
     }
-
   }
 
   componentDidMount() {
+    console.log(this.state);
     // makes a call to get formatted address
     axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.latitude},${this.state.longitude}&key=AIzaSyDvFLz0icFJDxnp8FyEJkZwhqWZQsp0qB8`)
     .then( geo => {

@@ -9,8 +9,7 @@ import {
 } from 'react-native';
 import styles from './styles/styles'
 
-import TabBar from './components/tabBar'
-import Rating from './components/rating'
+import LoginRegister from './components/signInRegister'
 
 
 
@@ -20,7 +19,7 @@ export default class buzzpoint extends Component {
     return (
       <NavigatorIOS
         initialRoute={{
-          component: Rating,
+          component: LoginRegister,
           title: 'BuzzPoint',
         }}
         style={{flex: 1}}
@@ -28,6 +27,7 @@ export default class buzzpoint extends Component {
 
     )
   }
+  
 }
 
 AppRegistry.registerComponent('buzzpoint', () => buzzpoint);

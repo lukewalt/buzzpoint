@@ -14,7 +14,7 @@ import {
 
 import React, { Component, PropTypes } from 'react';
 import styles from '../styles/styles';
-
+import ImageCapture from './imageCapture'
 
 export default class ImageBar extends Component {
 
@@ -32,8 +32,11 @@ export default class ImageBar extends Component {
     };
   }
 
-  _openCamera = () => {
-
+  openCamera = () => {
+    this.props.navigator.push({
+      component: ImageCapture,
+      title: 'Camera',
+    })
 
   }
 
@@ -55,7 +58,7 @@ export default class ImageBar extends Component {
       first: 20,
       assetType: 'All'
     })
-    .then( data  => this.setState({ photos: data.edges }) )
+    .then( cameraRoll  => this.setState({ photos: cameraRoll.edges }) )
 
   }
 
@@ -67,53 +70,50 @@ export default class ImageBar extends Component {
   render() {
     return (
       <View style={styles.imgBarCont}>
-        <TouchableHighlight underlayColor='white' onPress={this._openCamera}>
+        <TouchableHighlight underlayColor='white' onPress={this.openCamera}>
           <Image style={styles.img} source={require('../img/takepic.png')} />
         </TouchableHighlight>
         <TouchableHighlight underlayColor='white' onPress={() => { this.toggleModal(); this.getImagesFromRoll() }}>
           <Image style={styles.img} source={this.state.photoSelected ? {uri: this.state.photoSelected} : require('../img/selectpicture.png')} />
         </TouchableHighlight>
         <Modal
-        animationType={"slide"}
-        transparent={false}
-        visible={this.state.modalVisible}
-        onRequestClose={() => console.log('closed')}
+          animationType={"slide"}
+          transparent={false}
+          visible={this.state.modalVisible}
+          onRequestClose={() => console.log('closed')}
         >
         <View style={styles.modalContainer}>
-        <Button
-        title='Close'
-        onPress={this.toggleModal}
-        />
+          <Button
+          title='Close'
+          onPress={this.toggleModal}
+          />
         <ScrollView
-        contentContainerStyle={styles.scrollView}>
-        {
-          this.state.photos.map((p, i) => {
-            return (
-              <TouchableHighlight
-                style={{opacity: i === this.state.index ? 0.5 : 1}}
-                key={i}
-                underlayColor='transparent'
-                onPress={() => this.selectImage(i, p.node.image.uri)}
-              >
-                <Image
-                  style={{
-                    width: 125,
-                    height: 125,
-
-                  }}
-                  source={{uri: p.node.image.uri}}
-                />
-              </TouchableHighlight>
-            )
-          })
-        }
+          contentContainerStyle={styles.scrollView}>
+            {
+              this.state.photos.map((p, i) => {
+                return (
+                  <TouchableHighlight
+                    style={{opacity: i === this.state.index ? 0.5 : 1}}
+                    key={i}
+                    underlayColor='transparent'
+                    onPress={() => this.selectImage(i, p.node.image.uri)}
+                  >
+                    <Image
+                      style={{
+                        width: 125,
+                        height: 125,
+                      }}
+                      source={{uri: p.node.image.uri}}
+                    />
+                  </TouchableHighlight>
+                )
+              })
+            }
         </ScrollView>
 
         </View>
         </Modal>
       </View>
-
-
 
 
 
