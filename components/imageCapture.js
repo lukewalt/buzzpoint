@@ -20,7 +20,7 @@ export default class ImageCapture extends Component {
     console.log(props);
     super(props);
     this.state = {
-
+      capturedImg: null,
     }
   }
 
@@ -48,9 +48,11 @@ export default class ImageCapture extends Component {
       const options = {};
       Alert.alert('PICTURE')
       this.camera.capture({metadata: options})
-        .then( data => data.path)
+        .then( data => this.setState({ capturedImg: data.path}) )
         .catch(err => console.error(err));
     }
+
+
   }
 
 

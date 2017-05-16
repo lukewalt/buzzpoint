@@ -59,7 +59,10 @@ export default class ImageBar extends Component {
     this.setState({ modalImgPickerVisible: !this.state.modalImgPickerVisible });
   }
   toggleCamera = () => {
-    this.setState({ modalCameraVisible: !this.state.modalCameraVisible });
+    this.setState({
+      modalCameraVisible: !this.state.modalCameraVisible,
+      // photoSelected: img,
+    });
   }
 
 
