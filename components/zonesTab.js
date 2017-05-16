@@ -13,7 +13,6 @@ import {
 import React, { Component } from 'react';
 import styles from '../styles/styles.js'
 import axios from 'axios'
-import TagsOnPost from './tagsOnPost'
 import TotalCount from './totalCount'
 
 export default class ZonesTab extends Component {
@@ -102,7 +101,14 @@ export default class ZonesTab extends Component {
             <Image style={styles.postImg} source={{uri: 'https://cdn.pixabay.com/photo/2013/10/21/04/51/color-198892_640.jpg'}}/>
           </View>
         </View>
-        <TagsOnPost/>
+        <View style={styles.tagSection} >
+          { posts.tags.map(i => {
+              return (
+                <Text style={styles.tag}>{i.tag_name}</Text>
+              )
+            })
+          }
+        </View>
       </View>
     );
   }

@@ -13,7 +13,6 @@ import React, { Component, PropTypes } from 'react';
 import axios from 'axios';
 import styles from '../styles/styles';
 import TotalCount from './totalCount'
-import TagsOnPost from './tagsOnPost'
 
 
 export default class User extends Component {

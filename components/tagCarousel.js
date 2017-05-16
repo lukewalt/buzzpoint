@@ -5,6 +5,7 @@ import {
   Text,
   ListView,
   TouchableHighlight,
+  Alert,
 } from 'react-native'
 
 import React, { Component, PropTypes } from 'react';
@@ -21,6 +22,7 @@ export default class TagCarousel extends Component {
       userTagIds: null,
       canRate: false,
     }
+    this._setTags = this._setTags.bind(this)
   }
 
 
@@ -43,21 +45,19 @@ export default class TagCarousel extends Component {
     .done()
   }
 
-  _addTag = (tagId) => {
-    let arrayTagIds = []
-    arrayTagIds.push(tagId)
-    this.setState({
-      canRate: true,
-      userTagIds: arrayTagIds,
-    })
-  }
 
   render() {
     return (
       <View style={{height: 50}}>
         <ListView
           dataSource={this.state.dataSource}
-          renderRow={this.renderTags}
+          renderRow={(tag) => {
+            return (
+                <TouchableHighlight underlayColor='white' onPress={() => this._setTags(tag.id, tag.tag_name)}>
+                  <Text style={styles.tagOnCarousel} key={tag.id}>{tag.tag_name}</Text>
+                </TouchableHighlight>
+            )
+          }}
           style={styles.tagCarousel}
           horizontal={true}
           showsVerticalScrollIndicator={false}
@@ -68,13 +68,10 @@ export default class TagCarousel extends Component {
     )
   }
 
-  renderTags(tag) {
-    console.log(tag);
-    return (
-        <TouchableHighlight underlayColor='white' >
-          <Text style={styles.tagOnCarousel} key={tag.id}>{tag.tag_name}</Text>
-        </TouchableHighlight>
-    )
+  _setTags(tagId, tagName) {
+    this.props._setTags(tagId, tagName)
   }
+
+
 
 }

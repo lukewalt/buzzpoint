@@ -26,8 +26,11 @@ export default class Rating extends Component {
       userLat: null,
       userLng: null,
       formattedAddress: null,
-      locationERR: null
+      locationERR: null,
+      selectedTagIds: [],
+      selectedTagNames: [],
     }
+    this._setTags = this._setTags.bind(this)
   }
 
   static propTypes = {
@@ -61,7 +64,8 @@ export default class Rating extends Component {
         userLat: this.state.userLat,
         userLng: this.state.userLng,
         userId: this.state.userId,
-        userTags: [1 ,2, 4]
+        userTags: this.state.selectedTagIds,
+        userTagNames: this.state.selectedTagNames
       }
     });
   }
@@ -75,7 +79,8 @@ export default class Rating extends Component {
         userLat: this.state.userLat,
         userLng: this.state.userLng,
         userId: this.state.userId,
-        userTags: [1 ,2, 4]
+        userTags: this.state.selectedTagIds,
+        userTagNames: this.state.selectedTagNames
       }
     });
   }
@@ -99,6 +104,21 @@ export default class Rating extends Component {
     })
   }
 
+  _setTags(tagId, tagName) {
+    // set new array to state bc we reset it below
+    let tagIdArray = this.state.selectedTagIds;
+    let tagNameArray = this.state.selectedTagNames;
+    tagIdArray.push(tagId)
+    tagNameArray.push(tagName)
+
+    // takes prop from child and adds to array on state
+    this.setState({
+      selectedTagIds: tagIdArray,
+      selectedTagNames: tagNameArray
+    })
+    console.log(this.state);
+  }
+
   render() {
     return (
       <View style={styles.rateContainer}>
@@ -117,7 +137,7 @@ export default class Rating extends Component {
             <Image style={styles.rateThumb} source={require('../img/thumbDownRed.png')}/>
           </TouchableHighlight>
         </View>
-        <TagCarousel />
+        <TagCarousel _setTags={this._setTags}/>
       </View>
     )
   }

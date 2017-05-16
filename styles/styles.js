@@ -192,6 +192,7 @@ const styles = StyleSheet.create({
   tagSection: {
     backgroundColor: '#3d8af7',
     flexDirection: 'row',
+    flexWrap: 'wrap',
     paddingVertical: 5,
     paddingHorizontal: 10,
   },

@@ -19,6 +19,7 @@ import ImageBar from './imagebar'
 export default class PostIt extends Component {
 
   constructor(props) {
+    console.log(props);
     super(props);
     this.state = {
       dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
@@ -31,8 +32,10 @@ export default class PostIt extends Component {
       zipcode: 37152,
       zone: 2,
       timestamp: new Date().toUTCString(),
-      tag_ids: this.props.userTags
+      tag_ids: this.props.userTags,
+      tagNames: this.props.userTagNames
     }
+
   }
 
   componentDidMount() {
@@ -40,15 +43,11 @@ export default class PostIt extends Component {
     // makes a call to get formatted address
     axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.latitude},${this.state.longitude}&key=AIzaSyDvFLz0icFJDxnp8FyEJkZwhqWZQsp0qB8`)
     .then( geo => {
-      let addressFromReq = geo.data.results[0].formatted_address
+      let addressFromGoogle = geo.data.results[0].formatted_address
       this.setState({
-        formattedAddress: addressFromReq,
+        formattedAddress: addressFromGoogle,
       })
-      // gets all tags for carousel
-      axios.get(`http://buzzpoint.herokuapp.com/api/tags`)
-      .then( tags => {
-
-      })
+      console.log(this.state);
     })
   }
 
@@ -78,10 +77,15 @@ export default class PostIt extends Component {
         />
         <ImageBar imgSelected={this.imgSelected}/>
         <View style={styles.tagList}>
-          <Text style={styles.tagForSubmit}>Resturant</Text>
-          <Text style={styles.tagForSubmit}>Patio</Text>
-          <Text style={styles.tagForSubmit}>Drinks</Text>
+          { this.state.tagNames.map(i => {
+              return (
+                <Text style={styles.tagForSubmit}>{i}</Text>
+              )
+            })
+          }
+
         </View>
+
         <TouchableHighlight underlayColor='white' style={{alignSelf: 'stretch'}} onPress={this.thanksForPost}>
           <Text style={styles.thepost}>POST</Text>
         </TouchableHighlight>
