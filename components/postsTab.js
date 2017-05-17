@@ -136,12 +136,12 @@ export default class PostsTab extends Component {
             />
             <Text style={{fontWeight: 'bold', color: '#3d8af7'}}> {postZone.toUpperCase()}</Text>
           </View>
-          <View style={{flexDirection: 'column'}}>
+          <View style={styles.commentSect}>
             <Text style={styles.postTitle}>{posts.area_name}</Text>
             <Text style={styles.postTitle}>{posts.comment}</Text>
           </View>
           <View>
-            <Image style={styles.postImg} source={{uri: 'https://cdn.pixabay.com/photo/2013/10/21/04/51/color-198892_640.jpg'}}/>
+            <Image style={styles.postImg} source={require('../img/buzzicon.png')}/>
           </View>
         </View>
         <View style={styles.tagSection} >

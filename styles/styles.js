@@ -169,7 +169,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column'
   },
   post: {
-    paddingHorizontal: 0,
     borderWidth: 1,
     borderColor: '#3d8af7',
     paddingVertical: 0,
@@ -180,7 +179,12 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    paddingVertical: 20,
+    paddingVertical: 30,
+  },
+  commentSect: {
+    flexDirection: 'column',
+    maxWidth: 170,
+    overflow: 'hidden',
   },
   postTitle: {
     color: '#3d8af7',
