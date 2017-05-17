@@ -155,7 +155,7 @@ export default class User extends Component {
             <Text style={styles.postTitle}>{posts.comment}</Text>
           </View>
           <View>
-            <Image style={styles.postImg} source={require('../img/buzzicon.png')}/>
+            <Image style={styles.postImg} source={{uri: posts.image}}/>
           </View>
         </View>
         <View style={styles.tagSection} >

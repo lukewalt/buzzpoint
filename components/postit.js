@@ -27,14 +27,14 @@ export default class PostIt extends Component {
       user_id: 1,
       positive: this.props.userRating,
       comment: null,
-      image: 'https://cdn.pixabay.com/photo/2013/10/21/04/51/color-198892_640.jpg',
+      image: null,
       latitude: this.props.userLat,
       longitude: this.props.userLng,
       timestamp: new Date().toUTCString(),
       tag_ids: this.props.userTags,
       tagNames: this.props.userTagNames
     }
-
+    this.imgSelected = this.imgSelected.bind(this)
   }
 
   componentDidMount() {
@@ -50,10 +50,9 @@ export default class PostIt extends Component {
     })
   }
 
-  
-
   imgSelected(uri) {
-    console.log(uri);
+    this.setState({image: uri})
+    // console.log(this.state);
   }
 
   // feedback for successful post
@@ -65,7 +64,7 @@ export default class PostIt extends Component {
       this.setState({
         positive: null,
         comment: null,
-        image: 'https://cdn.pixabay.com/photo/2013/10/21/04/51/color-198892_640.jpg',
+        image: null,
         latitude: this.props.userLat,
         longitude: this.props.userLng,
         zipcode: 37152,
@@ -91,7 +90,7 @@ export default class PostIt extends Component {
           value={this.state.comment}
           placeholder='Whats the Story?'
         />
-        <ImageBar imgSelected={this.imgSelected}/>
+        <ImageBar photoSelected={this.state.image} handleImagePass={(uri) => this.imgSelected(uri)}/>
         <View style={styles.tagList}>
           { this.state.tagNames.map(i => {
               return (

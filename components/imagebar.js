@@ -21,7 +21,7 @@ export default class ImageBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      photoSelected: false,
+      photoSelected: this.props.photoSelected,
       modalImgPickerVisible: false,
       modalCameraVisible: false,
       transparent: false,
@@ -30,6 +30,10 @@ export default class ImageBar extends Component {
       photos: [],
       index: null
     };
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    nextState.photoSelected = nextProps.photoSelected
   }
 
 
@@ -41,7 +45,7 @@ export default class ImageBar extends Component {
       index: i,
       photoSelected: uri
     })
-    this.props.imgSelected(uri)
+    // sets
     this.toggleImgPicker()
   }
 
@@ -67,6 +71,7 @@ export default class ImageBar extends Component {
   }
 
   render() {
+    console.log(this.state.photoSelected);
     return (
       <View style={styles.imgBarCont}>
         <TouchableHighlight underlayColor='white' onPress={this.toggleCamera}>
@@ -118,7 +123,7 @@ export default class ImageBar extends Component {
           visible={this.state.modalCameraVisible}
           onRequestClose={() => console.log('closed')}
         >
-          <ImageCapture toggleCamera={this.toggleCamera}/>
+          <ImageCapture handleImagePass={(url) => this.props.handleImagePass(url)} toggleCamera={this.toggleCamera}/>
         </Modal>
       </View>
 

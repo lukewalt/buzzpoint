@@ -65,12 +65,13 @@ export default class ImageCapture extends Component {
           uploadImage(data.mediaUri)
           .then( imgUrl => {
             console.log("FIREBASE RES", imgUrl);
-            this.setState({ capturedImg: imgUrl})
-
+            this.props.handleImagePass(imgUrl)
           })
         })
         .catch(err => console.error(err));
     }
+
+
 }
 
 // Prepare Blob support
@@ -108,7 +109,6 @@ const uploadImage = (uri, mime = 'image/jpg') => {
       })
   })
 }
-
 
 const styles = StyleSheet.create({
   container: {
