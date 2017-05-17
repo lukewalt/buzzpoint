@@ -42,7 +42,7 @@ export default class User extends Component {
       this.setState({
         userName: userData.data.user_name
       })
-      axios.get(`https://buzzpoint.herokuapp.com/api/posts/user/${this.state.userId}`)
+      axios.get(`http://localhost:3000/api/posts/user/${this.state.userId}`)
       .then( posts => {
         let positive = this.state.numPos
         let negative = this.state.numNeg
@@ -146,11 +146,14 @@ export default class User extends Component {
           <View style={{marginRight: 10}}>
             <Image
               style={styles.thumbPost}
-              source={posts.positive === true ? require('../img/tu.png') : require('../img/td.png')}
+              source={posts.positive ? require('../img/tu.png') : require('../img/td.png')}
             />
             <Text style={{fontWeight: 'bold', color: '#3d8af7'}}>{postZone.toUpperCase()}</Text>
           </View>
-          <Text style={styles.postTitle}>{posts.comment}</Text>
+          <View style={{ flexDirection: 'column'}}>
+            <Text style={styles.postTitle}>{posts.area_name}</Text>
+            <Text style={styles.postTitle}>{posts.comment}</Text>
+          </View>
           <View>
             <Image style={styles.postImg} source={{uri: 'https://cdn.pixabay.com/photo/2013/10/21/04/51/color-198892_640.jpg'}}/>
           </View>

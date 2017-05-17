@@ -30,8 +30,6 @@ export default class PostIt extends Component {
       image: 'https://cdn.pixabay.com/photo/2013/10/21/04/51/color-198892_640.jpg',
       latitude: this.props.userLat,
       longitude: this.props.userLng,
-      zipcode: 37152,
-      zone: 2,
       timestamp: new Date().toUTCString(),
       tag_ids: this.props.userTags,
       tagNames: this.props.userTagNames
@@ -46,7 +44,7 @@ export default class PostIt extends Component {
     .then( geo => {
       let addressFromGoogle = geo.data.results[0].formatted_address
       this.setState({
-        formattedAddress: addressFromGoogle,
+        formattedAddress: "2 Infinite Loop, Cupertino, CA 37204, USA,"
       })
       console.log("STATE ON COMP MOUNT", this.state);
     })
@@ -59,25 +57,25 @@ export default class PostIt extends Component {
   // feedback for successful post
   _thanksForPost = () => {
     console.log("POST", this.state);
-    // axios.post(`https://buzzpoint.herokuapp.com/api/posts`, this.state)
-    // .then( res => {
-    //   console.log("RES FROM POST", res)
-    //   this.setState({
-    //     positive: null,
-    //     comment: null,
-    //     image: 'https://cdn.pixabay.com/photo/2013/10/21/04/51/color-198892_640.jpg',
-    //     latitude: this.props.userLat,
-    //     longitude: this.props.userLng,
-    //     zipcode: 37152,
-    //     zone: 2,
-    //     timestamp: new Date().toUTCString(),
-    //     tag_ids: [],
-    //     tagNames: []
-    //
-    //   })
-      Alert.alert('Thanks For Your Post')
-    // })
-    // .catch( err => console.log(err))
+    axios.post(`http://localhost:3000/api/posts`, this.state)
+    .then( res => {
+      console.log("RES FROM POST", res)
+      this.setState({
+        positive: null,
+        comment: null,
+        image: 'https://cdn.pixabay.com/photo/2013/10/21/04/51/color-198892_640.jpg',
+        latitude: this.props.userLat,
+        longitude: this.props.userLng,
+        zipcode: 37152,
+        zone: 2,
+        timestamp: new Date().toUTCString(),
+        tag_ids: [],
+        tagNames: []
+
+      })
+      console.log(this.state)
+    })
+    .catch( err => console.log(err))
   }
 
   render() {
