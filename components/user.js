@@ -14,6 +14,7 @@ import axios from 'axios';
 import styles from '../styles/styles';
 
 
+
 export default class User extends Component {
 
   constructor(props) {
@@ -35,7 +36,7 @@ export default class User extends Component {
   componentDidMount(){
     this.getCurrentUserInfo()
   }
-  // http request that gets user info then user posts
+
   getCurrentUserInfo() {
     axios.get(`https://buzzpoint.herokuapp.com/api/users/${this.state.userId}`)
     .then( userData => {
@@ -44,6 +45,7 @@ export default class User extends Component {
       })
       axios.get(`https://buzzpoint.herokuapp.com/api/posts/user/${this.state.userId}`)
       .then( posts => {
+
         let positive = this.state.numPos
         let negative = this.state.numNeg
         posts.data.map( i => {
@@ -57,6 +59,7 @@ export default class User extends Component {
           return b.id - a.id
         })
         // sends sorted posts to list view
+
         this.setState({
           dataSource: this.state.dataSource.cloneWithRows(sortedUserPosts),
           loaded: true,
