@@ -50,6 +50,8 @@ export default class PostIt extends Component {
     })
   }
 
+  
+
   imgSelected(uri) {
     console.log(uri);
   }

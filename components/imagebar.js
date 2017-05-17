@@ -58,13 +58,13 @@ export default class ImageBar extends Component {
   toggleImgPicker = () => {
     this.setState({ modalImgPickerVisible: !this.state.modalImgPickerVisible });
   }
+
   toggleCamera = () => {
     this.setState({
       modalCameraVisible: !this.state.modalCameraVisible,
       // photoSelected: img,
     });
   }
-
 
   render() {
     return (
@@ -121,8 +121,6 @@ export default class ImageBar extends Component {
           <ImageCapture toggleCamera={this.toggleCamera}/>
         </Modal>
       </View>
-
-
 
     )
   }
