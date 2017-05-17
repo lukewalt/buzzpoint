@@ -109,7 +109,6 @@ export default class ZonesTab extends Component {
   // List View of posts inside of page
   renderPosts(posts) {
 
-    console.log(posts.image);
     return (
       <View style={styles.post}>
         <View style={styles.innerPost}>

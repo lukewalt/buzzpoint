@@ -146,6 +146,18 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginHorizontal: 5,
   },
+  tagPosts: {
+    marginVertical: 7,
+    paddingVertical: 10,
+    paddingHorizontal: 25,
+    borderColor: '#fbb767',
+    borderWidth: 1,
+    borderRadius: 3,
+    color: '#fbb767',
+    textAlign: 'center',
+    fontWeight: 'bold',
+
+  },
   listview: {
     flex: 1,
     flexDirection: 'column'
@@ -183,6 +195,7 @@ const styles = StyleSheet.create({
   countSection: {
     flexDirection: 'row',
     marginRight: 7,
+    alignItems: 'baseline',
   },
   thumbcount: {
     marginHorizontal: 7,

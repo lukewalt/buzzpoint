@@ -34,10 +34,10 @@ export default class PostsTab extends Component {
   getAllPosts() {
     axios.get(`https://buzzpoint.herokuapp.com/api/posts`)
     .then( posts => {
-
+      console.log("POSTS FROM REQ", posts);
       let positive = this.state.numPos
       let negative = this.state.numNeg
-      
+
       posts.data.map( i => {
         i.positive ? positive.push(i.positive) : negative.push(i.positive)
       })
