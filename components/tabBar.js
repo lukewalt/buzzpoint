@@ -30,7 +30,10 @@ export default class TabBar extends Component {
   _getZone = (zone) => {
     this.props.navigator.push({
       component: ZonesTab,
-      title: 'ZONE',
+      title: 'ZONES',
+      titleTextColor: '#3d8af7',
+      translucent: false,
+      shadowHidden: true,
       passProps: {
         zoneId: zone
       }

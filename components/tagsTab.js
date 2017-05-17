@@ -10,7 +10,7 @@ import {
   TouchableHighlight,
 } from 'react-native';
 
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import styles from '../styles/styles.js'
 import axios from 'axios'
 

@@ -81,36 +81,36 @@ export default class ImageBar extends Component {
           visible={this.state.modalImgPickerVisible}
           onRequestClose={() => console.log('closed')}
         >
-        <View style={styles.modalContainer}>
-          <Button
-          title='Close'
-          onPress={this.toggleImgPicker}
-          />
-          <ScrollView
-            contentContainerStyle={styles.scrollView}>
-              {
-                this.state.photos.map((p, i) => {
-                  return (
-                    <TouchableHighlight
-                      style={{opacity: i === this.state.index ? 0.5 : 1}}
-                      key={i}
-                      underlayColor='transparent'
-                      onPress={() => this.selectImage(i, p.node.image.uri)}
-                    >
-                      <Image
-                        style={{
-                          width: 125,
-                          height: 125,
-                        }}
-                        source={{uri: p.node.image.uri}}
-                      />
-                    </TouchableHighlight>
-                  )
-                })
-              }
-          </ScrollView>
+          <View style={styles.modalContainer}>
+            <Button
+              title='Close'
+              onPress={this.toggleImgPicker}
+            />
+            <ScrollView
+              contentContainerStyle={styles.scrollView}>
+                {
+                  this.state.photos.map((p, i) => {
+                    return (
+                      <TouchableHighlight
+                        style={{opacity: i === this.state.index ? 0.5 : 1}}
+                        key={i}
+                        underlayColor='transparent'
+                        onPress={() => this.selectImage(i, p.node.image.uri)}
+                      >
+                        <Image
+                          style={{
+                            width: 125,
+                            height: 125,
+                          }}
+                          source={{uri: p.node.image.uri}}
+                        />
+                      </TouchableHighlight>
+                    )
+                  })
+                }
+            </ScrollView>
 
-        </View>
+          </View>
         </Modal>
         <Modal
           animationType={"slide"}

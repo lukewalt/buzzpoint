@@ -42,7 +42,7 @@ export default class User extends Component {
       this.setState({
         userName: userData.data.user_name
       })
-      axios.get(`http://localhost:3000/api/posts/user/${this.state.userId}`)
+      axios.get(`https://buzzpoint.herokuapp.com/api/posts/user/${this.state.userId}`)
       .then( posts => {
         let positive = this.state.numPos
         let negative = this.state.numNeg
@@ -78,7 +78,7 @@ export default class User extends Component {
 
     // View Structure
     return (
-      <View style={{paddingTop: 100}}>
+      <View style={{paddingTop: 0}}>
         <View style={{alignItems: 'center'}}>
           <TouchableHighlight underlayColor='white' onPress={this._doLogout}>
             <Image
@@ -151,7 +151,7 @@ export default class User extends Component {
             <Text style={{fontWeight: 'bold', color: '#3d8af7'}}>{postZone.toUpperCase()}</Text>
           </View>
           <View style={{ flexDirection: 'column'}}>
-            <Text style={styles.postTitle}>{posts.area_name}</Text>
+            <Text style={styles.postTitle}>{posts.area_name.replace(/[, ]+/g, " ").trim()}</Text>
             <Text style={styles.postTitle}>{posts.comment}</Text>
           </View>
           <View>

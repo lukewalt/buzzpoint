@@ -28,7 +28,9 @@ export default class buzzpoint extends Component {
       <NavigatorIOS
         initialRoute={{
           component: this.state.loggedIn ? Rating : LoginRegister,
-          title: 'BuzzPoint',
+          title: '',
+          translucent: false,
+          shadowHidden: true,
           passProps: {
             loggedIn: this.state.loggedIn
           }

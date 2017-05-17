@@ -6,6 +6,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  banner: {
+    fontWeight: 'bold',
+    color: '#3d8af7',
+    fontSize: 40,
+    alignItems: 'baseline'
+  },
   loginRegisterContainer: {
     backgroundColor: '#3d8af7',
     flex: 1,
@@ -16,7 +22,7 @@ const styles = StyleSheet.create({
   },
   rateContainer: {
     flex: 1,
-    paddingTop: 100,
+    paddingTop: 0,
     paddingHorizontal: 25,
   },
   tabContainer: {
@@ -114,6 +120,7 @@ const styles = StyleSheet.create({
   userProfileImg: {
     height: 90,
     width: 90,
+    marginVertical: 10,
   },
   address: {
     margin: 10,

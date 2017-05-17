@@ -99,13 +99,16 @@ export default class Rating extends Component {
     this.props.navigator.push({
       component: TabBar,
       title: '',
+      shadowHidden: true,
     });
   }
   // goes to user page
   _onToUserPage = () => {
     this.props.navigator.push({
       component: User,
-      title: 'BuzzPoint',
+      title: '',
+      translucent: false,
+      shadowHidden: true,
       passProps: {
         loggedIn: this.state.loggedIn,
         userId: this.state.userId,
@@ -131,15 +134,16 @@ export default class Rating extends Component {
   render() {
     return (
       <View style={styles.rateContainer}>
-        <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline'}}>
+        <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
           <TouchableHighlight  underlayColor='white' onPress={this._onToZones}>
             <Image style={styles.rateProfileImg} source={require('../img/target.png')}/>
           </TouchableHighlight>
+          <Text style={styles.banner}>BuzzPoint</Text>
           <TouchableHighlight underlayColor='white' onPress={this._onToUserPage}>
             <Image style={styles.rateProfileImg} source={require('../img/profilePic.png')}/>
           </TouchableHighlight>
         </View>
-        <View style={{ justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 40}}>
           <TouchableHighlight underlayColor='white' onPress={this._onToPostPositive}>
             <Image style={styles.rateThumb} source={require('../img/thumbUpGreen.png')}/>
           </TouchableHighlight>
