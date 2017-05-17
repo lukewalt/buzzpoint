@@ -1,95 +1,77 @@
 'use strict';
 
 import {
-  View,
   Text,
-  TouchableHighlight,
+  View,
+  TextInput,
   ListView,
   Image,
   ActivityIndicator,
-} from 'react-native'
+  TouchableHighlight,
+} from 'react-native';
 
-import React, { Component, PropTypes } from 'react';
-import axios from 'axios';
-import styles from '../styles/styles';
+import React, { Component } from 'react';
+import styles from '../styles/styles.js'
+import axios from 'axios'
 
-
-
-export default class User extends Component {
+export default class PostsTab extends Component {
 
   constructor(props) {
-    console.log("USER PROPS", props);
     super(props);
-    this.state = {
-      loggedIn: this.props.loggedIn,
-      userId: this.props.userId,
-      userName: null,
+    console.log(props);
+    this.state={
       dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
       loaded: false,
       numPos: [],
-      numNeg: [],
+      numNeg: []
     }
-
   }
 
-  // fires http request when the component loads
   componentDidMount(){
-    this.getCurrentUserInfo()
+    this.getAllPosts()
   }
 
-  getCurrentUserInfo() {
-    axios.get(`https://buzzpoint.herokuapp.com/api/users/${this.state.userId}`)
-    .then( userData => {
+  getAllPosts() {
+    axios.get(`https://buzzpoint.herokuapp.com/api/posts`)
+    .then( posts => {
+
+      let positive = this.state.numPos
+      let negative = this.state.numNeg
+      
+      posts.data.map( i => {
+        i.positive ? positive.push(i.positive) : negative.push(i.positive)
+      })
+      // assigns user posts array of objs to variable
+      let sortedPosts = posts.data
+      // sorts those posts from newest to oldest
+      sortedPosts.sort((a, b) => {
+        return b.id - a.id
+      })
       this.setState({
-        userName: userData.data.user_name
+        dataSource: this.state.dataSource.cloneWithRows(sortedPosts),
+        loaded: true,
       })
-      axios.get(`https://buzzpoint.herokuapp.com/api/posts/user/${this.state.userId}`)
-      .then( posts => {
-
-        let positive = this.state.numPos
-        let negative = this.state.numNeg
-        posts.data.map( i => {
-          i.positive ? positive.push(i.positive) : negative.push(i.positive)
-        })
-
-        // assigns user posts array of objs to variable
-        let sortedUserPosts = posts.data
-        // sorts those posts from newest to oldest
-        sortedUserPosts.sort((a, b) => {
-          return b.id - a.id
-        })
-        // sends sorted posts to list view
-
-        this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(sortedUserPosts),
-          loaded: true,
-        })
-        console.log(this.state);
-      })
-      .done()
+      console.log(this.state);
     })
+    .done()
   }
 
 
+  render(){
 
-  render() {
-
-    // sets a loading view until posts load
+    // checks loading state
     if (!this.state.loaded) {
       return this.renderLoadingView()
     }
 
-    // View Structure
+    // Full Page
     return (
-      <View style={{paddingTop: 100}}>
-        <View style={{alignItems: 'center'}}>
-          <TouchableHighlight underlayColor='white' onPress={this._doLogout}>
-            <Image
-              style={styles.userProfileImg}
-              source={require('../img/profilePic.png')}
-            />
-          </TouchableHighlight>
-          <Text style={styles.userTite}>{this.state.userName}</Text>
+      <View style={{flex: 1, alignSelf: 'stretch'}}>
+        <View style={styles.searchBarBackground}>
+          <TextInput
+          style={styles.searchBar}
+          placeholder='Search'
+          />
         </View>
         <View style={styles.countContainer}>
           <View style={styles.countSection}>
@@ -110,10 +92,11 @@ export default class User extends Component {
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderPosts}
-          style={styles.userPosts}
+          style={styles.zonePosts}
         />
       </View>
     )
+
   }
 
   // Activity Indicator
@@ -129,7 +112,7 @@ export default class User extends Component {
     );
   }
 
-  // List View of posts
+  // List View of posts inside of page
   renderPosts(posts) {
     // converts zone number to name
     let postZone = null
@@ -149,9 +132,9 @@ export default class User extends Component {
           <View style={{marginRight: 10}}>
             <Image
               style={styles.thumbPost}
-              source={posts.positive === true ? require('../img/tu.png') : require('../img/td.png')}
+              source={posts.positive ? require('../img/tu.png') : require('../img/td.png')}
             />
-            <Text style={{fontWeight: 'bold', color: '#3d8af7'}}>{postZone.toUpperCase()}</Text>
+            <Text style={{fontWeight: 'bold', color: '#3d8af7'}}> {postZone.toUpperCase()}</Text>
           </View>
           <Text style={styles.postTitle}>{posts.comment}</Text>
           <View>
@@ -170,10 +153,5 @@ export default class User extends Component {
     );
   }
 
-
-  _doLogout() {
-    console.log("LOGOUT");
-    // getTagsOnPost={this._getTagsOnPost}
-  }
 
 }
