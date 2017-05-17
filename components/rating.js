@@ -19,7 +19,7 @@ import TagCarousel from './tagCarousel'
 export default class Rating extends Component {
 
   constructor(props) {
-    console.log(props);
+    console.log("PROPS ON RATING", props);
     super(props);
     this.state = {
       loggedIn: this.props.loggedIn,
@@ -42,7 +42,7 @@ export default class Rating extends Component {
   componentDidMount() {
     // gets current position
     navigator.geolocation.getCurrentPosition( position => {
-        console.log(position);
+        console.log("USER LAT LNG", position);
         this.setState({
           userLat: position.coords.latitude,
           userLng: position.coords.longitude,
@@ -125,7 +125,7 @@ export default class Rating extends Component {
       selectedTagIds: tagIdArray,
       selectedTagNames: tagNameArray
     })
-    console.log(this.state);
+    console.log("UPDATED STATE ON ADDED TAG", this.state);
   }
 
   render() {

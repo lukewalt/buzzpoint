@@ -20,7 +20,7 @@ import ImageBar from './imagebar'
 export default class PostIt extends Component {
 
   constructor(props) {
-    console.log(props);
+    console.log("POSTIT PROPS", props);
     super(props);
     this.state = {
       dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
@@ -48,7 +48,7 @@ export default class PostIt extends Component {
       this.setState({
         formattedAddress: addressFromGoogle,
       })
-      console.log(this.state);
+      console.log("STATE ON COMP MOUNT", this.state);
     })
   }
 
@@ -60,7 +60,20 @@ export default class PostIt extends Component {
   thanksForPost = () => {
     axios.post(`https://buzzpoint.herokuapp.com/api/posts`, this.state)
     .then( res => {
-      console.log(res)
+      console.log("RES FROM POST", res)
+      this.setState({
+        positive: null,
+        comment: null,
+        image: 'https://cdn.pixabay.com/photo/2013/10/21/04/51/color-198892_640.jpg',
+        latitude: this.props.userLat,
+        longitude: this.props.userLng,
+        zipcode: 37152,
+        zone: 2,
+        timestamp: new Date().toUTCString(),
+        tag_ids: [],
+        tagNames: []
+
+      })
       Alert.alert('Thanks For Your Post')
     })
     .catch( err => console.log(err))

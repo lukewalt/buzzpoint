@@ -13,7 +13,6 @@ import {
 import React, { Component } from 'react';
 import styles from '../styles/styles.js'
 import axios from 'axios'
-import TotalCount from './totalCount'
 
 export default class ZonesTab extends Component {
 
@@ -24,6 +23,8 @@ export default class ZonesTab extends Component {
       zone: this.props.zoneId,
       dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
       loaded: false,
+      numPos: [],
+      numNeg: [],
     }
   }
 
@@ -34,9 +35,16 @@ export default class ZonesTab extends Component {
   getPostsByZone() {
     axios.get(`https://buzzpoint.herokuapp.com/api/posts/zones/${this.state.zone}`)
     .then( posts => {
+      let positive = this.state.numPos
+      let negative = this.state.numNeg
+      posts.data.map( i => {
+        i.positive ? positive.push(i.positive) : negative.push(i.positive)
+      })
+
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(posts.data),
         loaded: true,
+
       })
       console.log(this.state);
     })
@@ -59,7 +67,22 @@ export default class ZonesTab extends Component {
           placeholder='Search'
           />
         </View>
-        <TotalCount style={{marginHorizontal: 50}}/>
+        <View style={styles.countContainer}>
+          <View style={styles.countSection}>
+            <Text style={{color: '#32a800'}}>{this.state.numPos.length}</Text>
+            <Image
+            style={styles.thumbcount}
+            source={require('../img/thumbUpGreen.png')}
+          />
+          </View>
+          <View style={styles.countSection}>
+            <Text style={{color: '#ff5a5a'}}>{this.state.numNeg.length}</Text>
+            <Image
+            style={styles.thumbcount}
+            source={require('../img/thumbDownRed.png')}
+          />
+          </View>
+        </View>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderPosts}
@@ -85,6 +108,7 @@ export default class ZonesTab extends Component {
 
   // List View of posts inside of page
   renderPosts(posts) {
+
     console.log(posts.image);
     return (
       <View style={styles.post}>
@@ -92,9 +116,8 @@ export default class ZonesTab extends Component {
           <View style={{marginRight: 10}}>
             <Image
               style={styles.thumbPost}
-              source={posts.positive === true ? require('../img/tu.png') : require('../img/td.png')}
+              source={posts.positive ? require('../img/tu.png') : require('../img/td.png')}
             />
-            <Text style={{fontWeight: 'bold', color: '#3d8af7'}}> {posts.zone}</Text>
           </View>
           <Text style={styles.postTitle}>{posts.comment}</Text>
           <View>

@@ -12,7 +12,6 @@ import {
 import React, { Component, PropTypes } from 'react';
 import axios from 'axios';
 import styles from '../styles/styles';
-import TotalCount from './totalCount'
 
 
 export default class User extends Component {
@@ -26,7 +25,10 @@ export default class User extends Component {
       userName: null,
       dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
       loaded: false,
+      numPos: [],
+      numNeg: [],
     }
+
   }
 
   // fires http request when the component loads
@@ -42,10 +44,21 @@ export default class User extends Component {
       })
       axios.get(`https://buzzpoint.herokuapp.com/api/posts/user/${this.state.userId}`)
       .then( posts => {
-        console.log(posts);
+        let positive = this.state.numPos
+        let negative = this.state.numNeg
+        posts.data.map( i => {
+          i.positive ? positive.push(i.positive) : negative.push(i.positive)
+        })
 
+        // assigns user posts array of objs to variable
+        let sortedUserPosts = posts.data
+        // sorts those posts from newest to oldest
+        sortedUserPosts.sort((a, b) => {
+          return b.id - a.id
+        })
+        // sends sorted posts to list view
         this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(posts.data),
+          dataSource: this.state.dataSource.cloneWithRows(sortedUserPosts),
           loaded: true,
         })
         console.log(this.state);
@@ -53,6 +66,7 @@ export default class User extends Component {
       .done()
     })
   }
+
 
 
   render() {
@@ -74,7 +88,22 @@ export default class User extends Component {
           </TouchableHighlight>
           <Text style={styles.userTite}>{this.state.userName}</Text>
         </View>
-        <TotalCount style={{marginHorizontal: 50}}/>
+        <View style={styles.countContainer}>
+          <View style={styles.countSection}>
+            <Text style={{color: '#32a800'}}>{this.state.numPos.length}</Text>
+            <Image
+            style={styles.thumbcount}
+            source={require('../img/thumbUpGreen.png')}
+          />
+          </View>
+          <View style={styles.countSection}>
+            <Text style={{color: '#ff5a5a'}}>{this.state.numNeg.length}</Text>
+            <Image
+            style={styles.thumbcount}
+            source={require('../img/thumbDownRed.png')}
+          />
+          </View>
+        </View>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderPosts}
@@ -99,6 +128,18 @@ export default class User extends Component {
 
   // List View of posts
   renderPosts(posts) {
+    // converts zone number to name
+    let postZone = null
+    if (posts.zone === 1) {
+      postZone = "North"
+    } else if (posts.zone === 2) {
+      postZone = "East"
+    } else if (posts.zone === 3) {
+      postZone = "South"
+    } else {
+      postZone = "West"
+    }
+
     return (
       <View style={styles.post}>
         <View style={styles.innerPost}>
@@ -107,7 +148,7 @@ export default class User extends Component {
               style={styles.thumbPost}
               source={posts.positive === true ? require('../img/tu.png') : require('../img/td.png')}
             />
-            <Text style={{fontWeight: 'bold', color: '#3d8af7'}}> {posts.zone}</Text>
+            <Text style={{fontWeight: 'bold', color: '#3d8af7'}}>{postZone.toUpperCase()}</Text>
           </View>
           <Text style={styles.postTitle}>{posts.comment}</Text>
           <View>
@@ -125,6 +166,7 @@ export default class User extends Component {
       </View>
     );
   }
+
 
   _doLogout() {
     console.log("LOGOUT");

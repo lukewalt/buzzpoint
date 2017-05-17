@@ -13,7 +13,6 @@ import {
 import React, { Component } from 'react';
 import styles from '../styles/styles.js'
 import axios from 'axios'
-import TotalCount from './totalCount'
 
 export default class PostsTab extends Component {
 
@@ -23,6 +22,8 @@ export default class PostsTab extends Component {
     this.state={
       dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
       loaded: false,
+      numPos: [],
+      numNeg: []
     }
   }
 
@@ -33,14 +34,28 @@ export default class PostsTab extends Component {
   getAllPosts() {
     axios.get(`https://buzzpoint.herokuapp.com/api/posts`)
     .then( posts => {
+
+      let positive = this.state.numPos
+      let negative = this.state.numNeg
+      
+      posts.data.map( i => {
+        i.positive ? positive.push(i.positive) : negative.push(i.positive)
+      })
+      // assigns user posts array of objs to variable
+      let sortedPosts = posts.data
+      // sorts those posts from newest to oldest
+      sortedPosts.sort((a, b) => {
+        return b.id - a.id
+      })
       this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(posts.data),
+        dataSource: this.state.dataSource.cloneWithRows(sortedPosts),
         loaded: true,
       })
       console.log(this.state);
     })
     .done()
   }
+
 
   render(){
 
@@ -58,7 +73,22 @@ export default class PostsTab extends Component {
           placeholder='Search'
           />
         </View>
-        <TotalCount style={{marginHorizontal: 50}}/>
+        <View style={styles.countContainer}>
+          <View style={styles.countSection}>
+            <Text style={{color: '#32a800'}}>{this.state.numPos.length}</Text>
+            <Image
+            style={styles.thumbcount}
+            source={require('../img/thumbUpGreen.png')}
+          />
+          </View>
+          <View style={styles.countSection}>
+            <Text style={{color: '#ff5a5a'}}>{this.state.numNeg.length}</Text>
+            <Image
+            style={styles.thumbcount}
+            source={require('../img/thumbDownRed.png')}
+          />
+          </View>
+        </View>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderPosts}
@@ -84,16 +114,27 @@ export default class PostsTab extends Component {
 
   // List View of posts inside of page
   renderPosts(posts) {
-    console.log(posts.image);
+    // converts zone number to name
+    let postZone = null
+    if (posts.zone === 1) {
+      postZone = "North"
+    } else if (posts.zone === 2) {
+      postZone = "East"
+    } else if (posts.zone === 3) {
+      postZone = "South"
+    } else {
+      postZone = "West"
+    }
+
     return (
       <View style={styles.post}>
         <View style={styles.innerPost}>
           <View style={{marginRight: 10}}>
             <Image
               style={styles.thumbPost}
-              source={posts.positive === true ? require('../img/tu.png') : require('../img/td.png')}
+              source={posts.positive ? require('../img/tu.png') : require('../img/td.png')}
             />
-            <Text style={{fontWeight: 'bold', color: '#3d8af7'}}> {posts.zone}</Text>
+            <Text style={{fontWeight: 'bold', color: '#3d8af7'}}> {postZone.toUpperCase()}</Text>
           </View>
           <Text style={styles.postTitle}>{posts.comment}</Text>
           <View>

@@ -13,7 +13,6 @@ import {
 import React, { Component } from 'react';
 import styles from '../styles/styles.js'
 import axios from 'axios'
-import TotalCount from './totalCount'
 
 export default class TagsTab extends Component {
 
@@ -58,7 +57,6 @@ export default class TagsTab extends Component {
           placeholder='Search'
           />
         </View>
-        <TotalCount style={{marginHorizontal: 50}}/>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderPosts}
@@ -90,7 +88,7 @@ export default class TagsTab extends Component {
           <View style={{marginRight: 10}}>
             <Image
               style={styles.thumbPost}
-              source={posts.positive === true ? require('../img/tu.png') : require('../img/td.png')}
+              source={posts.positive ? require('../img/tu.png') : require('../img/td.png')}
             />
             <Text style={{fontWeight: 'bold', color: '#3d8af7'}}> {posts.zone}</Text>
           </View>
