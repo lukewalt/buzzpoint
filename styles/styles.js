@@ -150,10 +150,9 @@ const styles = StyleSheet.create({
     marginVertical: 7,
     paddingVertical: 10,
     paddingHorizontal: 25,
-    borderColor: '#fbb767',
-    borderWidth: 1,
+    backgroundColor: '#fbb767',
     borderRadius: 3,
-    color: '#fbb767',
+    color: '#fff',
     textAlign: 'center',
     fontWeight: 'bold',
 

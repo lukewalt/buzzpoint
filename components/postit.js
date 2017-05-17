@@ -57,26 +57,27 @@ export default class PostIt extends Component {
   }
 
   // feedback for successful post
-  thanksForPost = () => {
-    axios.post(`https://buzzpoint.herokuapp.com/api/posts`, this.state)
-    .then( res => {
-      console.log("RES FROM POST", res)
-      this.setState({
-        positive: null,
-        comment: null,
-        image: 'https://cdn.pixabay.com/photo/2013/10/21/04/51/color-198892_640.jpg',
-        latitude: this.props.userLat,
-        longitude: this.props.userLng,
-        zipcode: 37152,
-        zone: 2,
-        timestamp: new Date().toUTCString(),
-        tag_ids: [],
-        tagNames: []
-
-      })
+  _thanksForPost = () => {
+    console.log("POST", this.state);
+    // axios.post(`https://buzzpoint.herokuapp.com/api/posts`, this.state)
+    // .then( res => {
+    //   console.log("RES FROM POST", res)
+    //   this.setState({
+    //     positive: null,
+    //     comment: null,
+    //     image: 'https://cdn.pixabay.com/photo/2013/10/21/04/51/color-198892_640.jpg',
+    //     latitude: this.props.userLat,
+    //     longitude: this.props.userLng,
+    //     zipcode: 37152,
+    //     zone: 2,
+    //     timestamp: new Date().toUTCString(),
+    //     tag_ids: [],
+    //     tagNames: []
+    //
+    //   })
       Alert.alert('Thanks For Your Post')
-    })
-    .catch( err => console.log(err))
+    // })
+    // .catch( err => console.log(err))
   }
 
   render() {
@@ -100,7 +101,7 @@ export default class PostIt extends Component {
           }
         </View>
 
-        <TouchableHighlight underlayColor='white' style={{alignSelf: 'stretch'}} onPress={this.thanksForPost}>
+        <TouchableHighlight underlayColor='white' style={{alignSelf: 'stretch'}} onPress={this._thanksForPost}>
           <Text style={styles.thepost}>POST</Text>
         </TouchableHighlight>
       </View>

@@ -69,6 +69,7 @@ export default class TabBar extends Component {
           title={'TAGS'}
           icon={require('../img/tags.png')}
           selected={this.state.selectedTab === 'tabTwo'}
+          badgeColor='#fbb767'
           onPress={() => this.setTab('tabTwo')}>
           <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
             <TagsTab />
