@@ -14,14 +14,18 @@ import React, { Component } from 'react';
 import styles from '../styles/styles.js'
 import axios from 'axios'
 
+
+const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
+
 export default class PostsTab extends Component {
 
   constructor(props) {
     super(props);
     console.log(props);
     this.state={
-      dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
+      dataSource: ds,
       loaded: false,
+      searchTerm: null,
       numPos: [],
       numNeg: []
     }
@@ -51,10 +55,19 @@ export default class PostsTab extends Component {
         dataSource: this.state.dataSource.cloneWithRows(sortedPosts),
         loaded: true,
       })
+
       console.log(this.state);
     })
     .done()
   }
+
+  // looks for changes in search bar and sets state to input
+  onSearchChange(text) {
+    this.setState({
+      searchTerm: text
+    });
+  }
+
 
 
   render(){
@@ -66,13 +79,8 @@ export default class PostsTab extends Component {
 
     // Full Page
     return (
-      <View style={{flex: 1, alignSelf: 'stretch'}}>
-        <View style={styles.searchBarBackground}>
-          <TextInput
-          style={styles.searchBar}
-          placeholder='Search'
-          />
-        </View>
+      <View style={{flex: 1, alignSelf: 'stretch', marginTop: 70}}>
+        <Text style={styles.tabHeader}>Posts</Text>
         <View style={styles.countContainer}>
           <View style={styles.countSection}>
             <Text style={{color: '#32a800'}}>{this.state.numPos.length}</Text>
@@ -84,9 +92,9 @@ export default class PostsTab extends Component {
           <View style={styles.countSection}>
             <Text style={{color: '#ff5a5a'}}>{this.state.numNeg.length}</Text>
             <Image
-            style={styles.thumbcount}
-            source={require('../img/thumbDownRed.png')}
-          />
+              style={styles.thumbcount}
+              source={require('../img/thumbDownRed.png')}
+            />
           </View>
         </View>
         <ListView
@@ -127,7 +135,7 @@ export default class PostsTab extends Component {
     }
 
     return (
-      <View style={styles.post}>
+      <View key={posts.id} style={styles.post}>
         <View style={styles.innerPost}>
           <View style={{marginRight: 10}}>
             <Image
@@ -141,7 +149,7 @@ export default class PostsTab extends Component {
             <Text style={styles.postTitle}>{posts.comment}</Text>
           </View>
           <View>
-            <Image style={styles.postImg} source={require('../img/buzzicon.png')}/>
+            <Image style={styles.postImg} source={{uri: posts.image}}/>
           </View>
         </View>
         <View style={styles.tagSection} >

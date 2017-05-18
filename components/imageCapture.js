@@ -35,9 +35,6 @@ export default class ImageCapture extends Component {
       capturedImg: null,
     }
   }
-  componentDidMount(){
-
-  }
 
   render() {
       return (

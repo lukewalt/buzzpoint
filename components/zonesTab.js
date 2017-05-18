@@ -68,12 +68,7 @@ export default class ZonesTab extends Component {
     // Full Page
     return (
       <View style={{flex: 1}}>
-        <View style={{backgroundColor: '#3d8af7', height: 50}}>
-          <TextInput
-          style={styles.searchBar}
-          placeholder='Search'
-          />
-        </View>
+          <Text style={styles.tabHeader}>{this.props.zoneName.toUpperCase()}</Text>
         <View style={styles.countContainer}>
           <View style={styles.countSection}>
             <Text style={{color: '#32a800'}}>{this.state.numPos.length}</Text>
@@ -117,7 +112,7 @@ export default class ZonesTab extends Component {
   renderPosts(posts) {
 
     return (
-      <View style={styles.post}>
+      <View key={posts.id} style={styles.post}>
         <View style={styles.innerPost}>
           <View style={{marginRight: 10}}>
             <Image

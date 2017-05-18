@@ -35,8 +35,14 @@ const styles = StyleSheet.create({
   },
   zonePosts: {
     paddingHorizontal: 25,
-    marginTop: 20,
+    marginTop: 10,
     marginBottom: 70
+  },
+  tagAggregate: {
+    paddingHorizontal: 25,
+    marginTop: 80,
+    paddingBottom: 200,
+    marginBottom: 60,
   },
   rateProfileImg: {
     height: 30,
@@ -207,7 +213,7 @@ const styles = StyleSheet.create({
   countContainer: {
     marginLeft: 25,
     flexDirection: 'row',
-    marginTop: 15,
+    marginTop: 10,
   },
   countSection: {
     flexDirection: 'row',
@@ -288,6 +294,14 @@ const styles = StyleSheet.create({
      fontFamily: 'GillSans-UltraBold',
      letterSpacing: -3,
      fontSize: 20,
+   },
+   tabHeader: {
+     textAlign: 'center',
+     fontWeight: 'bold',
+     color: '#3d8af7',
+     fontFamily: 'GillSans-UltraBold',
+     letterSpacing: -3,
+     fontSize: 30,
    }
 });
 
