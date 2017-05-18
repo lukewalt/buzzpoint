@@ -59,16 +59,11 @@ export default class TagsTab extends Component {
     // Full Page
     return (
       <View style={{flex: 1, alignSelf: 'stretch'}}>
-        <View style={styles.searchBarBackground}>
-          <TextInput
-          style={styles.searchBar}
-          placeholder='Search'
-          />
-        </View>
+
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderTags}
-          style={styles.zonePosts}
+          style={styles.tagAggregate}
         />
       </View>
     )

@@ -27,7 +27,7 @@ export default class TabBar extends Component {
     this.setState({selectedTab: tabId})
   }
 
-  _getZone = (zone) => {
+  _getZone = (zone, name) => {
     this.props.navigator.push({
       component: ZonesTab,
       title: '',
@@ -35,7 +35,8 @@ export default class TabBar extends Component {
       translucent: false,
       shadowHidden: true,
       passProps: {
-        zoneId: zone
+        zoneId: zone,
+        zoneName: name
       }
     })
   }
@@ -51,19 +52,19 @@ export default class TabBar extends Component {
           selected={this.state.selectedTab === 'tabOne'}
           onPress={() => this.setTab('tabOne')}>
           <View style={styles.tabContainer}>
-            <TouchableHighlight underlayColor='white' style={{alignSelf: 'stretch'}} onPress={() => this._getZone(2)}>
+            <TouchableHighlight underlayColor='white' style={{alignSelf: 'stretch'}} onPress={() => this._getZone(2, ' East')}>
               <Text style={styles.zones}>EAST</Text>
             </TouchableHighlight>
 
-            <TouchableHighlight underlayColor='white' style={{alignSelf: 'stretch'}} onPress={() => this._getZone(4)}>
+            <TouchableHighlight underlayColor='white' style={{alignSelf: 'stretch'}} onPress={() => this._getZone(4, 'West')}>
               <Text style={styles.zones}>WEST</Text>
             </TouchableHighlight>
 
-            <TouchableHighlight underlayColor='white' style={{alignSelf: 'stretch'}} onPress={() => this._getZone(3)}>
+            <TouchableHighlight underlayColor='white' style={{alignSelf: 'stretch'}} onPress={() => this._getZone(3, 'South')}>
               <Text style={styles.zones}>SOUTH</Text>
             </TouchableHighlight>
 
-            <TouchableHighlight underlayColor='white' style={{alignSelf: 'stretch'}} onPress={() => this._getZone(1)}>
+            <TouchableHighlight underlayColor='white' style={{alignSelf: 'stretch'}} onPress={() => this._getZone(1, 'North')}>
               <Text style={styles.zones}>NORTH</Text>
             </TouchableHighlight>
           </View>

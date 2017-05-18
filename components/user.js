@@ -136,7 +136,7 @@ export default class User extends Component {
     } else {
       postZone = "West"
     }
-
+    console.log(posts.image);
     return (
       <View key={posts.id} style={styles.post}>
         <View style={styles.innerPost}>

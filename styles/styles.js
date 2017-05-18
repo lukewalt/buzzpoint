@@ -35,8 +35,14 @@ const styles = StyleSheet.create({
   },
   zonePosts: {
     paddingHorizontal: 25,
-    marginTop: 20,
+    marginTop: 10,
     marginBottom: 70
+  },
+  tagAggregate: {
+    paddingHorizontal: 25,
+    marginTop: 80,
+    paddingBottom: 200,
+    marginBottom: 60,
   },
   rateProfileImg: {
     height: 30,
@@ -207,7 +213,7 @@ const styles = StyleSheet.create({
   countContainer: {
     marginLeft: 25,
     flexDirection: 'row',
-    marginTop: 15,
+    marginTop: 10,
   },
   countSection: {
     flexDirection: 'row',

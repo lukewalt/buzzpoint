@@ -80,7 +80,7 @@ export default class PostsTab extends Component {
     // Full Page
     return (
       <View style={{flex: 1, alignSelf: 'stretch', marginTop: 70}}>
-        <Text style={styles.tabHeader}>POSTS</Text>
+        <Text style={styles.tabHeader}>Posts</Text>
         <View style={styles.countContainer}>
           <View style={styles.countSection}>
             <Text style={{color: '#32a800'}}>{this.state.numPos.length}</Text>
