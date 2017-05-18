@@ -66,7 +66,6 @@ export default class User extends Component {
   }
 
 
-
   render() {
 
     // sets a loading view until posts load
@@ -139,7 +138,7 @@ export default class User extends Component {
     }
 
     return (
-      <View style={styles.post}>
+      <View key={posts.id} style={styles.post}>
         <View style={styles.innerPost}>
           <View style={{marginRight: 10}}>
             <Image

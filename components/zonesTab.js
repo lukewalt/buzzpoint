@@ -117,7 +117,7 @@ export default class ZonesTab extends Component {
   renderPosts(posts) {
 
     return (
-      <View style={styles.post}>
+      <View key={posts.id} style={styles.post}>
         <View style={styles.innerPost}>
           <View style={{marginRight: 10}}>
             <Image

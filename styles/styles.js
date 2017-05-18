@@ -288,6 +288,14 @@ const styles = StyleSheet.create({
      fontFamily: 'GillSans-UltraBold',
      letterSpacing: -3,
      fontSize: 20,
+   },
+   tabHeader: {
+     textAlign: 'center',
+     fontWeight: 'bold',
+     color: '#3d8af7',
+     fontFamily: 'GillSans-UltraBold',
+     letterSpacing: -3,
+     fontSize: 30,
    }
 });
 
