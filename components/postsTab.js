@@ -34,10 +34,10 @@ export default class PostsTab extends Component {
   getAllPosts() {
     axios.get(`https://buzzpoint.herokuapp.com/api/posts`)
     .then( posts => {
-
+      console.log("POSTS FROM REQ", posts);
       let positive = this.state.numPos
       let negative = this.state.numNeg
-      
+
       posts.data.map( i => {
         i.positive ? positive.push(i.positive) : negative.push(i.positive)
       })
@@ -134,11 +134,14 @@ export default class PostsTab extends Component {
               style={styles.thumbPost}
               source={posts.positive ? require('../img/tu.png') : require('../img/td.png')}
             />
-            <Text style={{fontWeight: 'bold', color: '#3d8af7'}}> {postZone.toUpperCase()}</Text>
+            <Text style={styles.zoneName}> {postZone.toUpperCase()}</Text>
           </View>
-          <Text style={styles.postTitle}>{posts.comment}</Text>
+          <View style={styles.commentSect}>
+            <Text style={styles.area_name}>{posts.area_name}</Text>
+            <Text style={styles.postTitle}>{posts.comment}</Text>
+          </View>
           <View>
-            <Image style={styles.postImg} source={{uri: 'https://cdn.pixabay.com/photo/2013/10/21/04/51/color-198892_640.jpg'}}/>
+            <Image style={styles.postImg} source={require('../img/buzzicon.png')}/>
           </View>
         </View>
         <View style={styles.tagSection} >

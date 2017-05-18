@@ -27,16 +27,14 @@ export default class PostIt extends Component {
       user_id: 1,
       positive: this.props.userRating,
       comment: null,
-      image: 'https://cdn.pixabay.com/photo/2013/10/21/04/51/color-198892_640.jpg',
+      image: null,
       latitude: this.props.userLat,
       longitude: this.props.userLng,
-      zipcode: 37152,
-      zone: 2,
       timestamp: new Date().toUTCString(),
       tag_ids: this.props.userTags,
       tagNames: this.props.userTagNames
     }
-
+    this.imgSelected = this.imgSelected.bind(this)
   }
 
   componentDidMount() {
@@ -46,25 +44,27 @@ export default class PostIt extends Component {
     .then( geo => {
       let addressFromGoogle = geo.data.results[0].formatted_address
       this.setState({
-        formattedAddress: addressFromGoogle,
+        formattedAddress: addressFromGoogle.replace(/[, ]+/g, " ").trim()
       })
       console.log("STATE ON COMP MOUNT", this.state);
     })
   }
 
   imgSelected(uri) {
-    console.log(uri);
+    this.setState({image: uri})
+    // console.log(this.state);
   }
 
   // feedback for successful post
-  thanksForPost = () => {
+  _thanksForPost = () => {
+    console.log("POST", this.state);
     axios.post(`https://buzzpoint.herokuapp.com/api/posts`, this.state)
     .then( res => {
       console.log("RES FROM POST", res)
       this.setState({
         positive: null,
         comment: null,
-        image: 'https://cdn.pixabay.com/photo/2013/10/21/04/51/color-198892_640.jpg',
+        image: null,
         latitude: this.props.userLat,
         longitude: this.props.userLng,
         zipcode: 37152,
@@ -74,7 +74,7 @@ export default class PostIt extends Component {
         tagNames: []
 
       })
-      Alert.alert('Thanks For Your Post')
+      console.log(this.state)
     })
     .catch( err => console.log(err))
   }
@@ -82,30 +82,28 @@ export default class PostIt extends Component {
   render() {
     return (
 
-      <View style={styles.tabContainer}>
-        <Text style={styles.address}> {this.state.formattedAddress} </Text>
-        <TextInput
-          style={styles.textInput}
-          onChangeText={comment => this.setState({comment})}
-          value={this.state.comment}
-          placeholder='Whats the Story?'
-        />
-        <ImageBar imgSelected={this.imgSelected}/>
-        <View style={styles.tagList}>
-          { this.state.tagNames.map(i => {
-              return (
-                <Text style={styles.tagForSubmit}>{i}</Text>
-              )
-            })
-          }
+        <View style={{paddingHorizontal: 25, paddingVertical: 5}}>
+          <Text style={styles.address}> {this.state.formattedAddress} </Text>
+          <TextInput
+            style={styles.textInput}
+            onChangeText={comment => this.setState({comment})}
+            value={this.state.comment}
+            placeholder='Whats the Story?'
+          />
+          <ImageBar photoSelected={this.state.image} handleImagePass={(uri) => this.imgSelected(uri)}/>
+          <View style={styles.tagList}>
+            { this.state.tagNames.map(i => {
+                return (
+                  <Text style={styles.tagForSubmit}>{i}</Text>
+                )
+              })
+            }
+          </View>
+          <TouchableHighlight underlayColor='white' style={{alignSelf: 'stretch'}} onPress={this._thanksForPost}>
+            <Text style={styles.thepost}>POST</Text>
+          </TouchableHighlight>
         </View>
-
-        <TouchableHighlight underlayColor='white' style={{alignSelf: 'stretch'}} onPress={this.thanksForPost}>
-          <Text style={styles.thepost}>POST</Text>
-        </TouchableHighlight>
-      </View>
     )
   }
-
 
 }

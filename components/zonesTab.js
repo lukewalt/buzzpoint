@@ -41,8 +41,15 @@ export default class ZonesTab extends Component {
         i.positive ? positive.push(i.positive) : negative.push(i.positive)
       })
 
+      // assigns user posts array of objs to variable
+      let sortedPosts = posts.data
+      // sorts those posts from newest to oldest
+      sortedPosts.sort((a, b) => {
+        return b.id - a.id
+      })
+
       this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(posts.data),
+        dataSource: this.state.dataSource.cloneWithRows(sortedPosts),
         loaded: true,
 
       })
@@ -61,7 +68,7 @@ export default class ZonesTab extends Component {
     // Full Page
     return (
       <View style={{flex: 1}}>
-        <View style={{backgroundColor: '#3d8af7', marginTop: 65, height: 50}}>
+        <View style={{backgroundColor: '#3d8af7', height: 50}}>
           <TextInput
           style={styles.searchBar}
           placeholder='Search'
@@ -109,7 +116,6 @@ export default class ZonesTab extends Component {
   // List View of posts inside of page
   renderPosts(posts) {
 
-    console.log(posts.image);
     return (
       <View style={styles.post}>
         <View style={styles.innerPost}>
@@ -119,9 +125,12 @@ export default class ZonesTab extends Component {
               source={posts.positive ? require('../img/tu.png') : require('../img/td.png')}
             />
           </View>
-          <Text style={styles.postTitle}>{posts.comment}</Text>
+          <View style={styles.commentSect}>
+            <Text style={styles.area_name}>{posts.area_name}</Text>
+            <Text style={styles.postTitle}>{posts.comment}</Text>
+          </View>
           <View>
-            <Image style={styles.postImg} source={{uri: 'https://cdn.pixabay.com/photo/2013/10/21/04/51/color-198892_640.jpg'}}/>
+            <Image style={styles.postImg} source={require('../img/buzzicon.png')}/>
           </View>
         </View>
         <View style={styles.tagSection} >

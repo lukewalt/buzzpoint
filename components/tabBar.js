@@ -30,7 +30,10 @@ export default class TabBar extends Component {
   _getZone = (zone) => {
     this.props.navigator.push({
       component: ZonesTab,
-      title: 'ZONE',
+      title: '',
+      titleTextColor: '#3d8af7',
+      translucent: false,
+      shadowHidden: true,
       passProps: {
         zoneId: zone
       }
@@ -69,6 +72,7 @@ export default class TabBar extends Component {
           title={'TAGS'}
           icon={require('../img/tags.png')}
           selected={this.state.selectedTab === 'tabTwo'}
+          badgeColor='#fbb767'
           onPress={() => this.setTab('tabTwo')}>
           <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
             <TagsTab />

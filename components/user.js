@@ -18,7 +18,6 @@ import styles from '../styles/styles';
 export default class User extends Component {
 
   constructor(props) {
-    console.log("USER PROPS", props);
     super(props);
     this.state = {
       loggedIn: this.props.loggedIn,
@@ -64,7 +63,6 @@ export default class User extends Component {
           dataSource: this.state.dataSource.cloneWithRows(sortedUserPosts),
           loaded: true,
         })
-        console.log(this.state);
       })
       .done()
     })
@@ -81,7 +79,7 @@ export default class User extends Component {
 
     // View Structure
     return (
-      <View style={{paddingTop: 100}}>
+      <View style={{paddingTop: 0}}>
         <View style={{alignItems: 'center'}}>
           <TouchableHighlight underlayColor='white' onPress={this._doLogout}>
             <Image
@@ -89,7 +87,7 @@ export default class User extends Component {
               source={require('../img/profilePic.png')}
             />
           </TouchableHighlight>
-          <Text style={styles.userTite}>{this.state.userName}</Text>
+          <Text style={styles.userTite}>luke_handle</Text>
         </View>
         <View style={styles.countContainer}>
           <View style={styles.countSection}>
@@ -149,17 +147,21 @@ export default class User extends Component {
           <View style={{marginRight: 10}}>
             <Image
               style={styles.thumbPost}
-              source={posts.positive === true ? require('../img/tu.png') : require('../img/td.png')}
+              source={posts.positive ? require('../img/tu.png') : require('../img/td.png')}
             />
-            <Text style={{fontWeight: 'bold', color: '#3d8af7'}}>{postZone.toUpperCase()}</Text>
+            <Text style={styles.zoneName}>{postZone.toUpperCase()}</Text>
           </View>
-          <Text style={styles.postTitle}>{posts.comment}</Text>
+          <View style={styles.commentSect}>
+            <Text style={styles.area_name}>{posts.area_name.replace(/[, ]+/g, " ").trim()}</Text>
+            <Text style={styles.postTitle}>{posts.comment}</Text>
+          </View>
           <View>
-            <Image style={styles.postImg} source={{uri: 'https://cdn.pixabay.com/photo/2013/10/21/04/51/color-198892_640.jpg'}}/>
+            <Image style={styles.postImg} source={{uri: posts.image}}/>
           </View>
         </View>
         <View style={styles.tagSection} >
-          { posts.tags.map(i => {
+          {
+            posts.tags.map(i => {
               return (
                 <Text style={styles.tag}>{i.tag_name}</Text>
               )
@@ -170,10 +172,5 @@ export default class User extends Component {
     );
   }
 
-
-  _doLogout() {
-    console.log("LOGOUT");
-    // getTagsOnPost={this._getTagsOnPost}
-  }
 
 }

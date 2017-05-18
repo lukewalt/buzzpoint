@@ -10,7 +10,7 @@ import {
   TouchableHighlight,
 } from 'react-native';
 
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import styles from '../styles/styles.js'
 import axios from 'axios'
 
@@ -18,7 +18,6 @@ export default class TagsTab extends Component {
 
   constructor(props) {
     super(props);
-    console.log(props);
     this.state={
       dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
       loaded: false,
@@ -30,13 +29,22 @@ export default class TagsTab extends Component {
   }
 
   getAllPosts() {
-    axios.get(`https://buzzpoint.herokuapp.com/api/posts`)
-    .then( posts => {
+    console.log("THIS AFTER COMP MOUNT", this);
+    axios.get(`https://buzzpoint.herokuapp.com/api/tags`)
+    .then( tags => {
+
+      // defines instance of returned data
+      let sortedPosts = tags.data
+      // sorts tags based on length of posts array [which tag has the most posts]
+      sortedPosts.sort((a, b) => {
+        return b.posts.length - a.posts.length
+      })
+
       this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(posts.data),
+        dataSource: this.state.dataSource.cloneWithRows(sortedPosts),
         loaded: true,
       })
-      console.log(this.state);
+      console.log("TAGS STATE AFTER CALL", this.state);
     })
     .done()
   }
@@ -59,7 +67,7 @@ export default class TagsTab extends Component {
         </View>
         <ListView
           dataSource={this.state.dataSource}
-          renderRow={this.renderPosts}
+          renderRow={this.renderTags}
           style={styles.zonePosts}
         />
       </View>
@@ -80,32 +88,43 @@ export default class TagsTab extends Component {
     );
   }
 
+
   // List View of posts inside of page
-  renderPosts(posts) {
+  renderTags(tags) {
+    // defines empty arrays to push boolean values of each post related to tag
+    let numPos = [];
+    let numNeg = [];
+    // drills to posts obj in each tag
+    tags.posts.map( i => {
+      // all trues pushed into numPos | all false into numNeg
+      i.positive ? numPos.push(i.positive) : numNeg.push(i.positive)
+    })
     return (
-      <View style={styles.post}>
-        <View style={styles.innerPost}>
-          <View style={{marginRight: 10}}>
-            <Image
-              style={styles.thumbPost}
-              source={posts.positive ? require('../img/tu.png') : require('../img/td.png')}
-            />
-            <Text style={{fontWeight: 'bold', color: '#3d8af7'}}> {posts.zone}</Text>
-          </View>
-          <Text style={styles.postTitle}>{posts.comment}</Text>
-          <View>
-            <Image style={styles.postImg} source={{uri: 'https://cdn.pixabay.com/photo/2013/10/21/04/51/color-198892_640.jpg'}}/>
+      <TouchableHighlight >
+        <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}} >
+          <Text style={styles.tagPosts}>
+            {tags.tag_name}
+          </Text>
+          <View style={{flexDirection: 'row'}}>
+            <View style={styles.countSection}>
+              <Text style={{color: '#32a800'}}>{numPos.length}</Text>
+              <Image
+                style={styles.thumbcount}
+                source={require('../img/thumbUpGreen.png')}
+              />
+            </View>
+            <View style={styles.countSection}>
+              <Text style={{color: '#ff5a5a'}}>{numNeg.length}</Text>
+              <Image
+                style={styles.thumbcount}
+                source={require('../img/thumbDownRed.png')}
+              />
+            </View>
+
           </View>
         </View>
-        <View style={styles.tagSection} >
-          { posts.tags.map(i => {
-              return (
-                <Text style={styles.tag}>{i.tag_name}</Text>
-              )
-            })
-          }
-        </View>
-      </View>
+      </TouchableHighlight>
+
     );
   }
 

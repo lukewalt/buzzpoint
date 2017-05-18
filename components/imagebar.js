@@ -19,9 +19,10 @@ import ImageCapture from './imageCapture'
 export default class ImageBar extends Component {
 
   constructor(props) {
+    console.log(props);
     super(props);
     this.state = {
-      photoSelected: false,
+      photoSelected: this.props.photoSelected,
       modalImgPickerVisible: false,
       modalCameraVisible: false,
       transparent: false,
@@ -32,8 +33,14 @@ export default class ImageBar extends Component {
     };
   }
 
+  // looks for any change in state coming from parent and reflects that in this state
+  componentWillUpdate(nextProps, nextState) {
+    nextState.photoSelected = nextProps.photoSelected
+  }
+
 
   selectImage = (i, uri) => {
+
     if (i === this.state.index) {
       index = null
     }
@@ -41,8 +48,7 @@ export default class ImageBar extends Component {
       index: i,
       photoSelected: uri
     })
-    this.props.imgSelected(uri)
-    this.toggleImgPicker()
+    console.log(this.state);
   }
 
 
@@ -58,13 +64,13 @@ export default class ImageBar extends Component {
   toggleImgPicker = () => {
     this.setState({ modalImgPickerVisible: !this.state.modalImgPickerVisible });
   }
+
   toggleCamera = () => {
     this.setState({
       modalCameraVisible: !this.state.modalCameraVisible,
       // photoSelected: img,
     });
   }
-
 
   render() {
     return (
@@ -81,36 +87,39 @@ export default class ImageBar extends Component {
           visible={this.state.modalImgPickerVisible}
           onRequestClose={() => console.log('closed')}
         >
-        <View style={styles.modalContainer}>
-          <Button
-          title='Close'
-          onPress={this.toggleImgPicker}
-          />
-          <ScrollView
-            contentContainerStyle={styles.scrollView}>
-              {
-                this.state.photos.map((p, i) => {
-                  return (
-                    <TouchableHighlight
-                      style={{opacity: i === this.state.index ? 0.5 : 1}}
-                      key={i}
-                      underlayColor='transparent'
-                      onPress={() => this.selectImage(i, p.node.image.uri)}
-                    >
-                      <Image
-                        style={{
-                          width: 125,
-                          height: 125,
+          <View style={styles.modalContainer}>
+            <Button
+              title='Close'
+              onPress={this.toggleImgPicker}
+            />
+            <ScrollView
+              contentContainerStyle={styles.scrollView}>
+                {
+                  this.state.photos.map((p, i) => {
+                    return (
+                      <TouchableHighlight
+                        style={{opacity: i === this.state.index ? 0.5 : 1}}
+                        key={i}
+                        underlayColor='transparent'
+                        onPress={() => {
+                          this.props.handleImagePass(p.node.image.uri);
+                          this.toggleImgPicker()
                         }}
-                        source={{uri: p.node.image.uri}}
-                      />
-                    </TouchableHighlight>
-                  )
-                })
-              }
-          </ScrollView>
+                      >
+                        <Image
+                          style={{
+                            width: 125,
+                            height: 125,
+                          }}
+                          source={{uri: p.node.image.uri}}
+                        />
+                      </TouchableHighlight>
+                    )
+                  })
+                }
+            </ScrollView>
 
-        </View>
+          </View>
         </Modal>
         <Modal
           animationType={"slide"}
@@ -118,11 +127,9 @@ export default class ImageBar extends Component {
           visible={this.state.modalCameraVisible}
           onRequestClose={() => console.log('closed')}
         >
-          <ImageCapture toggleCamera={this.toggleCamera}/>
+          <ImageCapture handleImagePass={(url) => this.props.handleImagePass(url)} toggleCamera={this.toggleCamera}/>
         </Modal>
       </View>
-
-
 
     )
   }

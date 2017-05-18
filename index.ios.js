@@ -12,8 +12,6 @@ import styles from './styles/styles'
 import LoginRegister from './components/signInRegister'
 import Rating from './components/rating'
 
-
-
 export default class buzzpoint extends Component {
 
   constructor(){
@@ -23,12 +21,16 @@ export default class buzzpoint extends Component {
     }
   }
 
+
   render() {
+
     return (
       <NavigatorIOS
         initialRoute={{
           component: this.state.loggedIn ? Rating : LoginRegister,
-          title: 'BuzzPoint',
+          title: '',
+          translucent: false,
+          shadowHidden: true,
           passProps: {
             loggedIn: this.state.loggedIn
           }
