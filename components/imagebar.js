@@ -19,6 +19,7 @@ import ImageCapture from './imageCapture'
 export default class ImageBar extends Component {
 
   constructor(props) {
+    console.log(props);
     super(props);
     this.state = {
       photoSelected: this.props.photoSelected,
@@ -32,12 +33,14 @@ export default class ImageBar extends Component {
     };
   }
 
+  // looks for any change in state coming from parent and reflects that in this state
   componentWillUpdate(nextProps, nextState) {
     nextState.photoSelected = nextProps.photoSelected
   }
 
 
   selectImage = (i, uri) => {
+
     if (i === this.state.index) {
       index = null
     }
@@ -45,8 +48,7 @@ export default class ImageBar extends Component {
       index: i,
       photoSelected: uri
     })
-    // sets
-    this.toggleImgPicker()
+    console.log(this.state);
   }
 
 
@@ -71,7 +73,6 @@ export default class ImageBar extends Component {
   }
 
   render() {
-    console.log(this.state.photoSelected);
     return (
       <View style={styles.imgBarCont}>
         <TouchableHighlight underlayColor='white' onPress={this.toggleCamera}>
@@ -100,7 +101,10 @@ export default class ImageBar extends Component {
                         style={{opacity: i === this.state.index ? 0.5 : 1}}
                         key={i}
                         underlayColor='transparent'
-                        onPress={() => this.selectImage(i, p.node.image.uri)}
+                        onPress={() => {
+                          this.props.handleImagePass(p.node.image.uri);
+                          this.toggleImgPicker()
+                        }}
                       >
                         <Image
                           style={{

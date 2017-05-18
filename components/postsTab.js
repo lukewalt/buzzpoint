@@ -134,10 +134,10 @@ export default class PostsTab extends Component {
               style={styles.thumbPost}
               source={posts.positive ? require('../img/tu.png') : require('../img/td.png')}
             />
-            <Text style={{fontWeight: 'bold', color: '#3d8af7'}}> {postZone.toUpperCase()}</Text>
+            <Text style={styles.zoneName}> {postZone.toUpperCase()}</Text>
           </View>
           <View style={styles.commentSect}>
-            <Text style={styles.postTitle}>{posts.area_name}</Text>
+            <Text style={styles.area_name}>{posts.area_name}</Text>
             <Text style={styles.postTitle}>{posts.comment}</Text>
           </View>
           <View>

@@ -126,7 +126,7 @@ export default class ZonesTab extends Component {
             />
           </View>
           <View style={styles.commentSect}>
-            <Text style={styles.postTitle}>{posts.area_name}</Text>
+            <Text style={styles.area_name}>{posts.area_name}</Text>
             <Text style={styles.postTitle}>{posts.comment}</Text>
           </View>
           <View>

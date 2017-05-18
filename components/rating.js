@@ -60,7 +60,9 @@ export default class Rating extends Component {
     if (this.state.selectedTagIds.length > 0) {
       this.props.navigator.push({
         component: PostIt,
-        title: 'BuzzPoint',
+        title: '',
+        shadowHidden: true,
+        translucent: false,
         passProps: {
           userRating: true,
           userLat: this.state.userLat,
@@ -79,7 +81,9 @@ export default class Rating extends Component {
     if (this.state.selectedTagIds.length > 0) {
       this.props.navigator.push({
         component: PostIt,
-        title: 'BuzzPoint',
+        title: '',
+        shadowHidden: true,
+        translucent: false,
         passProps: {
           userRating: false,
           userLat: this.state.userLat,

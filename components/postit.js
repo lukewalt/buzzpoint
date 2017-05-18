@@ -44,7 +44,7 @@ export default class PostIt extends Component {
     .then( geo => {
       let addressFromGoogle = geo.data.results[0].formatted_address
       this.setState({
-        formattedAddress: "2 Infinite Loop, Cupertino, CA 37204, USA,"
+        formattedAddress: addressFromGoogle.replace(/[, ]+/g, " ").trim()
       })
       console.log("STATE ON COMP MOUNT", this.state);
     })
@@ -82,30 +82,28 @@ export default class PostIt extends Component {
   render() {
     return (
 
-      <View style={styles.tabContainer}>
-        <Text style={styles.address}> {this.state.formattedAddress} </Text>
-        <TextInput
-          style={styles.textInput}
-          onChangeText={comment => this.setState({comment})}
-          value={this.state.comment}
-          placeholder='Whats the Story?'
-        />
-        <ImageBar photoSelected={this.state.image} handleImagePass={(uri) => this.imgSelected(uri)}/>
-        <View style={styles.tagList}>
-          { this.state.tagNames.map(i => {
-              return (
-                <Text style={styles.tagForSubmit}>{i}</Text>
-              )
-            })
-          }
+        <View style={{paddingHorizontal: 25, paddingVertical: 5}}>
+          <Text style={styles.address}> {this.state.formattedAddress} </Text>
+          <TextInput
+            style={styles.textInput}
+            onChangeText={comment => this.setState({comment})}
+            value={this.state.comment}
+            placeholder='Whats the Story?'
+          />
+          <ImageBar photoSelected={this.state.image} handleImagePass={(uri) => this.imgSelected(uri)}/>
+          <View style={styles.tagList}>
+            { this.state.tagNames.map(i => {
+                return (
+                  <Text style={styles.tagForSubmit}>{i}</Text>
+                )
+              })
+            }
+          </View>
+          <TouchableHighlight underlayColor='white' style={{alignSelf: 'stretch'}} onPress={this._thanksForPost}>
+            <Text style={styles.thepost}>POST</Text>
+          </TouchableHighlight>
         </View>
-
-        <TouchableHighlight underlayColor='white' style={{alignSelf: 'stretch'}} onPress={this._thanksForPost}>
-          <Text style={styles.thepost}>POST</Text>
-        </TouchableHighlight>
-      </View>
     )
   }
-
 
 }

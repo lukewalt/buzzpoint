@@ -10,12 +10,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#3d8af7',
     fontSize: 40,
-    alignItems: 'baseline'
+    alignItems: 'baseline',
+    fontFamily: 'GillSans-UltraBold',
+    letterSpacing: -4,
   },
   loginRegisterContainer: {
     backgroundColor: '#3d8af7',
     flex: 1,
-    // justifyContent: 'center',
+    justifyContent: 'center',
     alignItems: 'center',
     paddingTop: 100,
     paddingHorizontal: 25,
@@ -33,7 +35,8 @@ const styles = StyleSheet.create({
   },
   zonePosts: {
     paddingHorizontal: 25,
-    marginVertical: 20,
+    marginTop: 20,
+    marginBottom: 70
   },
   rateProfileImg: {
     height: 30,
@@ -48,14 +51,14 @@ const styles = StyleSheet.create({
   userPosts: {
     marginTop: 10,
     paddingHorizontal: 25,
-    marginBottom: 180,
+    marginBottom: 275,
   },
   userTite: {
     fontSize: 35,
     fontWeight: 'bold',
-    fontFamily: "Verdana",
+    fontFamily: "GillSans-UltraBold",
     color: '#3d8af7',
-    letterSpacing: -4,
+    letterSpacing: -3,
   },
   instructions: {
     textAlign: 'center',
@@ -80,8 +83,8 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
     fontSize: 45,
-    fontFamily: "Verdana",
-    letterSpacing: -6,
+    fontFamily: 'GillSans-UltraBold',
+    letterSpacing: -4,
   },
   signRegInput: {
     height: 50,
@@ -103,13 +106,15 @@ const styles = StyleSheet.create({
     height: 100,
     paddingHorizontal: 20,
     borderColor: '#3d8af7',
+    color: '#3d8af7',
     borderWidth: 1,
     borderRadius: 7,
     overflow: 'visible',
   },
   imgBarCont: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   img: {
     marginVertical: 10,
@@ -123,10 +128,11 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   address: {
-    margin: 10,
+    marginVertical: 10,
     textAlign: 'left',
     color: '#3d8af7',
     fontWeight: 'bold',
+
   },
   tagList: {
     flexDirection: 'row',
@@ -180,6 +186,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     paddingVertical: 30,
+    alignItems: 'center'
   },
   commentSect: {
     flexDirection: 'column',
@@ -233,7 +240,7 @@ const styles = StyleSheet.create({
     fontSize: 50,
     textAlign: 'center',
     paddingVertical: 25,
-    fontFamily: "Verdana",
+    fontFamily: "GillSans-UltraBold",
     fontWeight: 'bold',
     letterSpacing: -6,
   },
@@ -266,12 +273,21 @@ const styles = StyleSheet.create({
      alignItems: 'center'
    },
    capture: {
-     flex: 0,
-     backgroundColor: '#fff',
      borderRadius: 5,
-     color: '#000',
-     padding: 10,
-     margin: 40
+     height: 70,
+     width: 70,
+     margin: 50,
+   },
+   area_name: {
+     color: '#3d8af7',
+     fontWeight: 'bold'
+   },
+   zoneName: {
+     fontWeight: 'bold',
+     color: '#3d8af7',
+     fontFamily: 'GillSans-UltraBold',
+     letterSpacing: -3,
+     fontSize: 20,
    }
 });
 
