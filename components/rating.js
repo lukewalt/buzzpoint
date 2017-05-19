@@ -27,9 +27,7 @@ export default class Rating extends Component {
       userLat: null,
       userLng: null,
       formattedAddress: null,
-      locationERR: null,
-      selectedTagIds: [],
-      selectedTagNames: [],
+      locationERR: null
     }
     this._setTags = this._setTags.bind(this)
   }
@@ -40,6 +38,10 @@ export default class Rating extends Component {
   }
 
   componentDidMount() {
+    this.setState({
+      selectedTagIds: [],
+      selectedTagNames: []
+    })
     // gets current position
     navigator.geolocation.getCurrentPosition( position => {
         console.log("USER LAT LNG", position);
@@ -52,6 +54,8 @@ export default class Rating extends Component {
       (error) => this.setState({ locationERR: error.message }),
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
     )
+
+
   }
 
 
