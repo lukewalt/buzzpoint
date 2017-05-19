@@ -83,7 +83,7 @@ export default class User extends Component {
               source={require('../img/profilePic.png')}
             />
           </TouchableHighlight>
-          <Text style={styles.userTite}>luke_handle</Text>
+          <Text style={styles.userTite}>luke@dev.com</Text>
         </View>
         <View style={styles.countContainer}>
           <View style={styles.countSection}>
