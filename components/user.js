@@ -125,6 +125,7 @@ export default class User extends Component {
 
   // List View of posts
   renderPosts(posts) {
+    console.log(posts.image);
     // converts zone number to name
     let postZone = null
     if (posts.zone === 1) {
@@ -136,7 +137,6 @@ export default class User extends Component {
     } else {
       postZone = "West"
     }
-    console.log(posts.image);
     return (
       <View key={posts.id} style={styles.post}>
         <View style={styles.innerPost}>

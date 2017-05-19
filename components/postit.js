@@ -57,31 +57,37 @@ export default class PostIt extends Component {
 
   // feedback for successful post
   _thanksForPost = () => {
-    console.log("POST", this.state);
-    axios.post(`https://buzzpoint.herokuapp.com/api/posts`, this.state)
+    axios.post(`http://localhost:3000/api/posts`, this.state)
     .then( res => {
-      console.log("RES FROM POST", res)
       this.setState({
         positive: null,
         comment: null,
         image: null,
         latitude: this.props.userLat,
         longitude: this.props.userLng,
-        zipcode: 37152,
-        zone: 2,
-        timestamp: new Date().toUTCString(),
         tag_ids: [],
         tagNames: []
-
       })
-      console.log(this.state)
+    })
+    .then( e => {
+      console.log("STATE AFTER POST", this.state);
+      this.props.navigator.pop({
+        component: Rating,
+        title: '',
+        shadowHidden: true,
+        passProps: {
+
+        }
+      });
     })
     .catch( err => console.log(err))
   }
 
+
+
+
   render() {
     return (
-
         <View style={{paddingHorizontal: 25, paddingVertical: 5}}>
           <Text style={styles.address}> {this.state.formattedAddress} </Text>
           <TextInput
