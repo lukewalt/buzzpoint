@@ -110,7 +110,7 @@ export default class ZonesTab extends Component {
 
   // List View of posts inside of page
   renderPosts(posts) {
-
+    console.log(posts.image);
     return (
       <View key={posts.id} style={styles.post}>
         <View style={styles.innerPost}>
@@ -125,7 +125,7 @@ export default class ZonesTab extends Component {
             <Text style={styles.postTitle}>{posts.comment}</Text>
           </View>
           <View>
-            <Image style={styles.postImg} source={require('../img/buzzicon.png')}/>
+            <Image style={styles.postImg} source={{uri: posts.image}}/>
           </View>
         </View>
         <View style={styles.tagSection} >

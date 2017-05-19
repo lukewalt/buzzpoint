@@ -75,9 +75,7 @@ export default class PostIt extends Component {
         component: Rating,
         title: '',
         shadowHidden: true,
-        passProps: {
 
-        }
       });
     })
     .catch( err => console.log(err))
