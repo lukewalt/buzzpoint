@@ -44,7 +44,8 @@ export default class PostIt extends Component {
     .then( geo => {
       let addressFromGoogle = geo.data.results[0].formatted_address
       this.setState({
-        formattedAddress: addressFromGoogle.replace(/[, ]+/g, " ").trim()
+        // formattedAddress: addressFromGoogle.replace(/[, ]+/g, " ").trim()
+        formattedAddress: '37204'
       })
       console.log("STATE ON COMP MOUNT", this.state);
     })
