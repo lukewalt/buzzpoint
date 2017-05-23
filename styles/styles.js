@@ -192,7 +192,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     paddingVertical: 30,
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingHorizontal: 7,
   },
   commentSect: {
     flexDirection: 'column',

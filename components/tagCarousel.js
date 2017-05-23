@@ -51,13 +51,13 @@ export default class TagCarousel extends Component {
       <View style={{height: 50}}>
         <ListView
           dataSource={this.state.dataSource}
-          renderRow={(tag) => {
+          renderRow={ tag => {
             return (
                 <TouchableHighlight underlayColor='white' onPress={() => this._setTags(tag.id, tag.tag_name)}>
                   <Text style={styles.tagOnCarousel} key={tag.id}>{tag.tag_name}</Text>
                 </TouchableHighlight>
-            )
-          }}
+              )
+            }}
           style={styles.tagCarousel}
           horizontal={true}
           showsVerticalScrollIndicator={false}

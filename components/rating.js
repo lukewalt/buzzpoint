@@ -42,6 +42,7 @@ export default class Rating extends Component {
       selectedTagIds: [],
       selectedTagNames: []
     })
+
     // gets current position
     navigator.geolocation.getCurrentPosition( position => {
         console.log("USER LAT LNG", position);

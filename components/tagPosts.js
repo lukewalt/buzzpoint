@@ -7,56 +7,54 @@ import {
   ListView,
   Image,
   ActivityIndicator,
-  TouchableHighlight,
 } from 'react-native';
 
 import React, { Component } from 'react';
 import styles from '../styles/styles.js'
 import axios from 'axios'
 
-export default class ZonesTab extends Component {
+
+export default class TagPosts extends Component {
 
   constructor(props) {
     super(props);
-    console.log(props);
     this.state={
-      zone: this.props.zoneId,
       dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
       loaded: false,
       numPos: [],
-      numNeg: [],
+      numNeg: []
     }
   }
 
   componentDidMount(){
-    this.getPostsByZone()
+    this.getTagsPosts()
   }
 
-  getPostsByZone() {
-    axios.get(`https://buzzpoint.herokuapp.com/api/posts/zones/${this.state.zone}`)
-    .then( posts => {
+  getTagsPosts() {
+    axios.get(`https://buzzpoint.herokuapp.com/api/tags/${this.props.tagId}`)
+    .then( tag => {
       let positive = this.state.numPos
       let negative = this.state.numNeg
-      posts.data.map( i => {
+
+      tag.data.posts.map( i => {
         i.positive ? positive.push(i.positive) : negative.push(i.positive)
       })
-
       // assigns user posts array of objs to variable
-      let sortedPosts = posts.data
+      let sortedPosts = tag.data.posts
       // sorts those posts from newest to oldest
       sortedPosts.sort((a, b) => {
         return b.id - a.id
       })
-
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(sortedPosts),
         loaded: true,
-
+        tagName: tag.data.tag_name
       })
-      console.log(this.state);
+
     })
     .done()
   }
+
 
   render(){
 
@@ -67,8 +65,8 @@ export default class ZonesTab extends Component {
 
     // Full Page
     return (
-      <View style={{flex: 1}}>
-          <Text style={styles.tabHeader}>{this.props.zoneName.toUpperCase()}</Text>
+      <View style={{flex: 1, alignSelf: 'stretch', marginTop: 70}}>
+        <Text style={styles.tabHeader}>{this.state.tagName}</Text>
         <View style={styles.countContainer}>
           <View style={styles.countSection}>
             <Text style={{color: '#32a800'}}>{this.state.numPos.length}</Text>
@@ -80,9 +78,9 @@ export default class ZonesTab extends Component {
           <View style={styles.countSection}>
             <Text style={{color: '#ff5a5a'}}>{this.state.numNeg.length}</Text>
             <Image
-            style={styles.thumbcount}
-            source={require('../img/thumbDownRed.png')}
-          />
+              style={styles.thumbcount}
+              source={require('../img/thumbDownRed.png')}
+            />
           </View>
         </View>
         <ListView
@@ -110,7 +108,7 @@ export default class ZonesTab extends Component {
 
   // List View of posts inside of page
   renderPosts(posts) {
-    console.log(posts.image);
+
     return (
       <View key={posts.id} style={styles.post}>
         <View style={styles.innerPost}>
@@ -128,14 +126,7 @@ export default class ZonesTab extends Component {
             <Image style={styles.postImg} source={{uri: posts.image}}/>
           </View>
         </View>
-        <View style={styles.tagSection} >
-          { posts.tags.map(i => {
-              return (
-                <Text style={styles.tag}>{i.tag_name}</Text>
-              )
-            })
-          }
-        </View>
+
       </View>
     );
   }
