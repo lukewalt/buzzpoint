@@ -44,8 +44,8 @@ export default class PostIt extends Component {
     .then( geo => {
       let addressFromGoogle = geo.data.results[0].formatted_address
       this.setState({
-        // formattedAddress: addressFromGoogle.replace(/[, ]+/g, " ").trim()
-        formattedAddress: '37204'
+        formattedAddress: addressFromGoogle.replace(/[, ]+/g, " ").trim()
+        // formattedAddress: '37204'
       })
       console.log("STATE ON COMP MOUNT", this.state);
     })
@@ -70,7 +70,6 @@ export default class PostIt extends Component {
         tagNames: []
       })
     })
-
     .catch( err => console.log(err))
   }
 
@@ -86,7 +85,7 @@ export default class PostIt extends Component {
           />
           <ImageBar photoSelected={this.state.image} handleImagePass={(uri) => this.imgSelected(uri)}/>
           <View style={styles.tagList}>
-            { this.state.tagNames.map(i => {
+            { this.state.tagNames.map( i => {
                 return (
                   <Text style={styles.tagForSubmit}>{i}</Text>
                 )

@@ -13,6 +13,8 @@ import {
 import ZonesTab from './zonesTab'
 import PostsTab from './postsTab'
 import TagsTab from './tagsTab'
+import TagPosts from './tagPosts'
+import axios from 'axios'
 
 export default class TabBar extends Component {
 
@@ -20,7 +22,8 @@ export default class TabBar extends Component {
     super(props);
     this.state = {
       selectedTab: 'tabOne',
-    };
+    }
+    this._goToTagsPosts = this._goToTagsPosts.bind(this)
   }
 
   setTab(tabId) {
@@ -40,6 +43,20 @@ export default class TabBar extends Component {
       }
     })
   }
+
+  _goToTagsPosts(tagId) {
+    console.log("TAG ID BEFORE HTTP REQ", tagId);
+    this.props.navigator.push({
+      component: TagPosts,
+      title: '',
+      shadowHidden: true,
+      passProps: {
+        tagId: tagId
+      }
+    })
+
+  }
+
 
   render() {
 
@@ -73,10 +90,9 @@ export default class TabBar extends Component {
           title={'TAGS'}
           icon={require('../img/tags.png')}
           selected={this.state.selectedTab === 'tabTwo'}
-          badgeColor='#fbb767'
           onPress={() => this.setTab('tabTwo')}>
           <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-            <TagsTab />
+            <TagsTab _goToTagsPosts={this._goToTagsPosts} />
           </View>
         </TabBarIOS.Item>
         <TabBarIOS.Item
