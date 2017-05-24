@@ -3,16 +3,16 @@
 import {
   View,
   Text,
-  TouchableHighlight,
-  ListView,
   Image,
   ActivityIndicator,
+  ListView,
+  Alert,
 } from 'react-native'
 
 import React, { Component, PropTypes } from 'react';
 import axios from 'axios';
 import styles from '../styles/styles';
-
+import Swipeout from 'react-native-swipeout'
 
 export default class User extends Component {
 
@@ -77,12 +77,10 @@ export default class User extends Component {
     return (
       <View style={{paddingTop: 0}}>
         <View style={{alignItems: 'center'}}>
-          <TouchableHighlight underlayColor='white' onPress={this._doLogout}>
             <Image
               style={styles.userProfileImg}
               source={require('../img/profilePic.png')}
             />
-          </TouchableHighlight>
           <Text style={styles.userTite}>luke@dev.com</Text>
         </View>
         <View style={styles.countContainer}>
@@ -103,7 +101,7 @@ export default class User extends Component {
         </View>
         <ListView
           dataSource={this.state.dataSource}
-          renderRow={this.renderPosts}
+          renderRow={this.renderPosts.bind(this)}
           style={styles.userPosts}
         />
       </View>
@@ -125,7 +123,6 @@ export default class User extends Component {
 
   // List View of posts
   renderPosts(posts) {
-    console.log(posts.image);
     // converts zone number to name
     let postZone = null
     if (posts.zone === 1) {
@@ -137,35 +134,61 @@ export default class User extends Component {
     } else {
       postZone = "West"
     }
+
+    // Swipe to delete
+    let swipeBtns = [{
+      text: 'Delete',
+      backgroundColor: 'red',
+      underlayColor: '#fff',
+      onPress: () => { this._deleteNote(posts.id) }
+    }];
+
     return (
+
       <View key={posts.id} style={styles.post}>
-        <View style={styles.innerPost}>
-          <View style={{marginRight: 10}}>
-            <Image
-              style={styles.thumbPost}
-              source={posts.positive ? require('../img/tu.png') : require('../img/td.png')}
-            />
-            <Text style={styles.zoneName}>{postZone.toUpperCase()}</Text>
+
+        <Swipeout
+          right={swipeBtns}
+          backgroundColor= 'transparent'
+        >
+          <View style={styles.innerPost}>
+            <View style={{marginRight: 10}}>
+              <Image
+                style={styles.thumbPost}
+                source={posts.positive ? require('../img/tu.png') : require('../img/td.png')}
+              />
+              <Text style={styles.zoneName}>{postZone.toUpperCase()}</Text>
+            </View>
+            <View style={styles.commentSect}>
+              <Text style={styles.area_name}>{posts.area_name.replace(/[, ]+/g, " ").trim()}</Text>
+              <Text style={styles.postTitle}>{posts.comment}</Text>
+            </View>
+            <View>
+              <Image style={styles.postImg} source={{uri: posts.image}}/>
+            </View>
           </View>
-          <View style={styles.commentSect}>
-            <Text style={styles.area_name}>{posts.area_name.replace(/[, ]+/g, " ").trim()}</Text>
-            <Text style={styles.postTitle}>{posts.comment}</Text>
+          <View style={styles.tagSection} >
+            {
+              posts.tags.map(i => {
+                return (
+                  <Text style={styles.tag}>{i.tag_name}</Text>
+                )
+              })
+            }
           </View>
-          <View>
-            <Image style={styles.postImg} source={{uri: posts.image}}/>
-          </View>
-        </View>
-        <View style={styles.tagSection} >
-          {
-            posts.tags.map(i => {
-              return (
-                <Text style={styles.tag}>{i.tag_name}</Text>
-              )
-            })
-          }
-        </View>
+        </Swipeout>
       </View>
+
     );
+  }
+
+  _deleteNote(id){
+    let idToString = JSON.stringify(id)
+    // axios.delete(`https://localhost:3000/api/posts/${idToString}`)
+    axios.delete(`https://buzzpoint.herokuapp.com/api/posts/${idToString}`)
+    .then( e => {
+      console.log(e);
+    })
   }
 
 
