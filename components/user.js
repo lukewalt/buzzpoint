@@ -14,6 +14,8 @@ import axios from 'axios';
 import styles from '../styles/styles';
 import Swipeout from 'react-native-swipeout'
 
+const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
+
 export default class User extends Component {
 
   constructor(props) {
@@ -22,7 +24,6 @@ export default class User extends Component {
       loggedIn: this.props.loggedIn,
       userId: this.props.userId,
       userName: null,
-      dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
       loaded: false,
       numPos: [],
       numNeg: [],
@@ -34,6 +35,7 @@ export default class User extends Component {
   componentDidMount(){
     this.getCurrentUserInfo()
   }
+
   // http request that gets user info then user posts
   getCurrentUserInfo() {
     axios.get(`https://buzzpoint.herokuapp.com/api/users/${this.state.userId}`)
@@ -57,14 +59,13 @@ export default class User extends Component {
         })
         // sends sorted posts to list view
         this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(sortedUserPosts),
+          dataSource: ds.cloneWithRows(sortedUserPosts),
           loaded: true,
         })
       })
       .done()
     })
   }
-
 
   render() {
 
@@ -183,10 +184,14 @@ export default class User extends Component {
   }
 
   _deleteNote(id){
+    console.log(this.state);
     let idToString = JSON.stringify(id)
     // axios.delete(`https://localhost:3000/api/posts/${idToString}`)
     axios.delete(`https://buzzpoint.herokuapp.com/api/posts/${idToString}`)
     .then( e => {
+      this.setState({
+
+      })
       console.log(e);
     })
   }
