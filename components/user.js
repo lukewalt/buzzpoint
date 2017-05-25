@@ -33,38 +33,42 @@ export default class User extends Component {
 
   // fires http request when the component loads
   componentDidMount(){
-    this.getCurrentUserInfo()
+    this._getCurrentUserInfo()
   }
 
   // http request that gets user info then user posts
-  getCurrentUserInfo() {
+  _getCurrentUserInfo() {
     axios.get(`https://buzzpoint.herokuapp.com/api/users/${this.state.userId}`)
     .then( userData => {
       this.setState({
         userName: userData.data.user_name
       })
-      axios.get(`https://buzzpoint.herokuapp.com/api/posts/user/${this.state.userId}`)
-      .then( posts => {
-        let positive = this.state.numPos
-        let negative = this.state.numNeg
-        posts.data.map( i => {
-          i.positive ? positive.push(i.positive) : negative.push(i.positive)
-        })
-
-        // assigns user posts array of objs to variable
-        let sortedUserPosts = posts.data
-        // sorts those posts from newest to oldest
-        sortedUserPosts.sort((a, b) => {
-          return b.id - a.id
-        })
-        // sends sorted posts to list view
-        this.setState({
-          dataSource: ds.cloneWithRows(sortedUserPosts),
-          loaded: true,
-        })
-      })
-      .done()
+      this._getUserPosts()
     })
+  }
+
+  _getUserPosts(){
+    axios.get(`https://buzzpoint.herokuapp.com/api/posts/user/${this.state.userId}`)
+    .then( posts => {
+      let positive = this.state.numPos
+      let negative = this.state.numNeg
+      posts.data.map( i => {
+        i.positive ? positive.push(i.positive) : negative.push(i.positive)
+      })
+
+      // assigns user posts array of objs to variable
+      let sortedUserPosts = posts.data
+      // sorts those posts from newest to oldest
+      sortedUserPosts.sort((a, b) => {
+        return b.id - a.id
+      })
+      // sends sorted posts to list view
+      this.setState({
+        dataSource: ds.cloneWithRows(sortedUserPosts),
+        loaded: true,
+      })
+    })
+    .done()
   }
 
   render() {
@@ -189,10 +193,8 @@ export default class User extends Component {
     // axios.delete(`https://localhost:3000/api/posts/${idToString}`)
     axios.delete(`https://buzzpoint.herokuapp.com/api/posts/${idToString}`)
     .then( e => {
-      this.setState({
-
-      })
       console.log(e);
+      this._getUserPosts()
     })
   }
 
