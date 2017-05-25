@@ -58,6 +58,7 @@ export default class PostIt extends Component {
 
   // feedback for successful post
   _thanksForPost = () => {
+
     axios.post(`https://buzzpoint.herokuapp.com/api/posts`, this.state)
     .then( res => {
       this.setState({
