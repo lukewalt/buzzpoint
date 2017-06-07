@@ -65,7 +65,7 @@ export default class TagPosts extends Component {
 
     // Full Page
     return (
-      <View style={{flex: 1, alignSelf: 'stretch', marginTop: 70}}>
+      <View style={{flex: 1, alignSelf: 'stretch', marginTop: 70, marginBottom: 0}}>
         <Text style={styles.tabHeader}>{this.state.tagName}</Text>
         <View style={styles.countContainer}>
           <View style={styles.countSection}>
@@ -86,7 +86,7 @@ export default class TagPosts extends Component {
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderPosts}
-          style={styles.zonePosts}
+          style={styles.postsFromTag}
         />
       </View>
     )
@@ -109,6 +109,18 @@ export default class TagPosts extends Component {
   // List View of posts inside of page
   renderPosts(posts) {
 
+    // converts zone number to name
+    let postZone = null
+    if (posts.zone === 1) {
+      postZone = "North"
+    } else if (posts.zone === 2) {
+      postZone = "East"
+    } else if (posts.zone === 3) {
+      postZone = "South"
+    } else {
+      postZone = "West"
+    }
+
     return (
       <View key={posts.id} style={styles.post}>
         <View style={styles.innerPost}>
@@ -117,6 +129,7 @@ export default class TagPosts extends Component {
               style={styles.thumbPost}
               source={posts.positive ? require('../img/tu.png') : require('../img/td.png')}
             />
+            <Text style={styles.zoneName}> {postZone.toUpperCase()}</Text>
           </View>
           <View style={styles.commentSect}>
             <Text style={styles.area_name}>{posts.area_name}</Text>
