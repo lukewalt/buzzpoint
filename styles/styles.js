@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
     borderColor: '#3d8af7',
     paddingVertical: 0,
     marginVertical: 5,
-    borderRadius: 4,
+    borderRadius: 3,
   },
   innerPost: {
     flex: 1,
@@ -197,8 +197,9 @@ const styles = StyleSheet.create({
   },
   commentSect: {
     flexDirection: 'column',
-    maxWidth: 170,
+    maxWidth: 150,
     overflow: 'hidden',
+    paddingHorizontal: 10,
   },
   postTitle: {
     color: '#3d8af7',
@@ -206,6 +207,7 @@ const styles = StyleSheet.create({
   thumbPost: {
     height: 30,
     width: 30,
+    alignSelf: 'center',
   },
   postImg: {
     height: 50,
@@ -303,6 +305,11 @@ const styles = StyleSheet.create({
      fontFamily: 'GillSans-UltraBold',
      letterSpacing: -3,
      fontSize: 30,
+   },
+   postsFromTag: {
+     marginVertical: 5,
+     paddingHorizontal: 25,
+
    }
 });
 

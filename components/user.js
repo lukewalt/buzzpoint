@@ -184,6 +184,7 @@ export default class User extends Component {
             }
           </View>
         </Swipeout>
+
       </View>
 
     );
@@ -192,10 +193,8 @@ export default class User extends Component {
   _deleteNote(id){
     console.log(this.state);
     let idToString = JSON.stringify(id)
-    // axios.delete(`https://localhost:3000/api/posts/${idToString}`)
     axios.delete(`https://buzzpoint.herokuapp.com/api/posts/${idToString}`)
     .then( e => {
-      console.log(e);
       this._getUserPosts()
     })
   }
