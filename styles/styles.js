@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   banner: {
     fontWeight: 'bold',
     color: '#3d8af7',
-    fontSize: 40,
+    fontSize: 35,
     alignItems: 'baseline',
     fontFamily: 'GillSans-UltraBold',
     letterSpacing: -4,

@@ -143,7 +143,7 @@ export default class Rating extends Component {
   render() {
     return (
       <View style={styles.rateContainer}>
-        <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+        <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 5}}>
           <TouchableHighlight  underlayColor='white' onPress={this._onToZones}>
             <Image style={styles.rateProfileImg} source={require('../img/target.png')}/>
           </TouchableHighlight>
