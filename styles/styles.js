@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     marginBottom: 275,
   },
   userTite: {
-    fontSize: 35,
+    fontSize: 21,
     fontWeight: 'bold',
     fontFamily: "GillSans-UltraBold",
     color: '#3d8af7',
@@ -246,7 +246,7 @@ const styles = StyleSheet.create({
     marginTop: 7,
     backgroundColor: '#3d8af7',
     color: '#fff',
-    fontSize: 50,
+    fontSize: 30,
     textAlign: 'center',
     paddingVertical: 25,
     fontFamily: "GillSans-UltraBold",
