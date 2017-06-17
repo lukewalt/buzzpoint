@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   banner: {
     fontWeight: 'bold',
     color: '#3d8af7',
-    fontSize: 35,
+    fontSize: 30,
     alignItems: 'baseline',
     fontFamily: 'GillSans-UltraBold',
     letterSpacing: -4,
@@ -45,8 +45,8 @@ const styles = StyleSheet.create({
     marginBottom: 60,
   },
   rateProfileImg: {
-    height: 30,
-    width: 30,
+    height: 28,
+    width: 28,
     alignSelf: 'flex-end',
   },
   rateThumb: {
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#fff',
     fontWeight: 'bold',
-    fontSize: 45,
+    fontSize: 40,
     fontFamily: 'GillSans-UltraBold',
     letterSpacing: -4,
   },
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   textInput: {
-    height: 100,
+    height: 80,
     paddingHorizontal: 20,
     borderColor: '#3d8af7',
     color: '#3d8af7',
@@ -125,8 +125,8 @@ const styles = StyleSheet.create({
   img: {
     marginVertical: 10,
     marginHorizontal: 30,
-    height: 120,
-    width: 120,
+    height: 100,
+    width: 100,
   },
   userProfileImg: {
     height: 90,
@@ -203,6 +203,7 @@ const styles = StyleSheet.create({
   },
   postTitle: {
     color: '#3d8af7',
+    fontSize: 12,
   },
   thumbPost: {
     height: 30,
@@ -296,7 +297,7 @@ const styles = StyleSheet.create({
      color: '#3d8af7',
      fontFamily: 'GillSans-UltraBold',
      letterSpacing: -3,
-     fontSize: 20,
+     fontSize: 15,
    },
    tabHeader: {
      textAlign: 'center',

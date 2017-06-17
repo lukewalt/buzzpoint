@@ -60,7 +60,6 @@ export default class TabBar extends Component {
 
   render() {
 
-
     return (
       <TabBarIOS>
         <TabBarIOS.Item
