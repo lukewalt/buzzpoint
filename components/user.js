@@ -4,6 +4,7 @@ import {
   View,
   Text,
   Image,
+  TouchableHighlight,
   ActivityIndicator,
   ListView,
   Alert,
@@ -12,7 +13,8 @@ import {
 import React, { Component, PropTypes } from 'react';
 import axios from 'axios';
 import styles from '../styles/styles';
-import Swipeout from 'react-native-swipeout'
+import Swipeout from 'react-native-swipeout';
+import SingleView from './singleView';
 
 const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
 
@@ -151,7 +153,7 @@ export default class User extends Component {
     }];
 
     return (
-
+      <TouchableHighlight underlayColor='white' onPress={this._showSingle(posts.id)}>
       <View key={posts.id} style={styles.post}>
 
         <Swipeout
@@ -186,8 +188,19 @@ export default class User extends Component {
         </Swipeout>
 
       </View>
-
+      </TouchableHighlight>
     );
+  }
+
+  _showSingle(tagId) {
+    this.props.navigator.push({
+      component: SingleView,
+      title: '',
+      shadowHidden: true,
+      passProps: {
+        tagId: tagId
+      }
+    })
   }
 
   _deleteNote(id){
