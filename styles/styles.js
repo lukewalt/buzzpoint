@@ -310,7 +310,15 @@ const styles = StyleSheet.create({
    postsFromTag: {
      marginVertical: 5,
      paddingHorizontal: 25,
-
+   },
+   singleViewCont: {
+     flex: 1,
+     alignItems: 'center',
+     paddingTop: 100
+   },
+   singleViewImg: {
+    height: 300,
+    width: 300
    }
 });
 
