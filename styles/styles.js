@@ -314,12 +314,53 @@ const styles = StyleSheet.create({
    singleViewCont: {
      flex: 1,
      alignItems: 'center',
-     paddingTop: 100
+     paddingTop: 80,
+     paddingHorizontal: 25,
    },
    singleViewImg: {
-    height: 300,
-    width: 300
-   }
+    height: 325,
+    width: 325,
+    marginVertical: 10
+  },
+  singleComment: {
+    color: '#3d8af7',
+    fontSize: 21,
+    marginVertical: 7
+  },
+  singleBanner: {
+    color: '#3d8af7',
+    fontSize: 27,
+    fontWeight: 'bold'
+  },
+  zoneNameSingle: {
+    fontWeight: 'bold',
+    color: '#3d8af7',
+    fontFamily: 'GillSans-UltraBold',
+    letterSpacing: -3,
+    fontSize: 25,
+  },
+  thumbPostSingle: {
+    height: 40,
+    width: 40,
+    marginRight: 15
+  },
+  tagCont: {
+    flexDirection: 'row',
+    alignSelf: 'flex-start',
+    justifyContent: 'flex-start',
+    flexWrap: 'wrap',
+
+  },
+  tagsSinglePage: {
+    margin: 7,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    backgroundColor: '#9ec4ff',
+    color: '#0844a4',
+    fontSize: 12,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  }
 });
 
 export default styles;

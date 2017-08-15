@@ -23,25 +23,24 @@ export default class SingleView extends Component {
 
     return (
       <View style={styles.singleViewCont}>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Image
+            style={styles.thumbPostSingle}
+            source={post.positive ? require('../img/tu.png') : require('../img/td.png')}
+          />
+          <Text style={styles.singleBanner}>{post.area_name}</Text>
+        </View>
         <Image style={styles.singleViewImg} source={{uri: post.image}}/>
-        <Image
-          style={styles.thumbPost}
-          source={post.positive ? require('../img/tu.png') : require('../img/td.png')}
-        />
-        <View style={{marginRight: 10}}>
-
-          <Text style={styles.zoneName}>{this._zoneName(post.zone).toUpperCase()}</Text>
-        </View>
-        <Text>{post.comment}</Text>
-        <Text>{post.area_name}</Text>
-        <View style={styles.tagList}>
+        <Text style={styles.singleComment}>{post.comment.toLowerCase() }</Text>
+        <View style={styles.tagCont}>
           { post.tags.map( i => {
-              return (
-                <Text key={i.id} style={styles.tagForSubmit}>{i.tag_name}</Text>
-              )
-            })
-          }
+            return (
+              <Text key={i.id} style={styles.tagsSinglePage}>{i.tag_name}</Text>
+            )
+          })
+        }
         </View>
+        <Text style={styles.zoneNameSingle}> {'Zone :   ' + this._zoneName(post.zone).toUpperCase()}</Text>
       </View>
     );
   }
