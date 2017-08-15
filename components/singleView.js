@@ -17,15 +17,6 @@ export default class SingleView extends Component {
     }
   }
 
-  _convertTime(timestamp){
-    var date = new Date(timestamp*1000);
-    var hours = date.getHours();
-    var minutes = "0" + date.getMinutes();
-    var seconds = "0" + date.getSeconds();
-    var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-    return date
-  }
-
   render() {
     const post = this.props.postInfo
     console.log(post);
@@ -43,9 +34,8 @@ export default class SingleView extends Component {
         </View>
         <Text>{post.comment}</Text>
         <Text>{post.area_name}</Text>
-        <Text>{this._convertTime(post.timestamp)}</Text>
         <View style={styles.tagList}>
-          { post.postInfo.tags.map( i => {
+          { post.tags.map( i => {
               return (
                 <Text key={i.id} style={styles.tagForSubmit}>{i.tag_name}</Text>
               )
