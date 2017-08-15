@@ -5,6 +5,7 @@ import { TouchableHighlight, View, Text } from 'react-native';
 export default class SingleView extends Component {
 
   constructor(props) {
+    console.log(props);
     super(props);
     this.state = {
 
@@ -14,7 +15,7 @@ export default class SingleView extends Component {
   render() {
     return (
       <View>
-        <Text>I am a single</Text>
+        <Text>Hello</Text>
       </View>
     );
   }

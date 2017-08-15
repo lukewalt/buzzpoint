@@ -153,34 +153,32 @@ export default class User extends Component {
     }];
 
     return (
-      <TouchableHighlight underlayColor='white' onPress={this._showSingle(posts.id)}>
       <View key={posts.id} style={styles.post}>
 
-        <Swipeout
-          right={swipeBtns}
-          backgroundColor= 'transparent'
-        >
-          <View style={styles.innerPost}>
-            <View style={{marginRight: 10}}>
-              <Image
-                style={styles.thumbPost}
-                source={posts.positive ? require('../img/tu.png') : require('../img/td.png')}
-              />
-              <Text style={styles.zoneName}>{postZone.toUpperCase()}</Text>
+        <Swipeout right={swipeBtns} backgroundColor= 'transparent'>
+          <TouchableHighlight underlayColor='white' onPress={() => {this._showSingle(posts)} }>
+            <View style={styles.innerPost}>
+              <View style={{marginRight: 10}}>
+                <Image
+                  style={styles.thumbPost}
+                  source={posts.positive ? require('../img/tu.png') : require('../img/td.png')}
+                />
+                <Text style={styles.zoneName}>{postZone.toUpperCase()}</Text>
+              </View>
+              <View style={styles.commentSect}>
+                <Text style={styles.area_name}>{posts.area_name.replace(/[, ]+/g, " ").trim()}</Text>
+                <Text style={styles.postTitle}>{posts.comment}</Text>
+              </View>
+              <View>
+                <Image style={styles.postImg} source={{uri: posts.image}}/>
+              </View>
             </View>
-            <View style={styles.commentSect}>
-              <Text style={styles.area_name}>{posts.area_name.replace(/[, ]+/g, " ").trim()}</Text>
-              <Text style={styles.postTitle}>{posts.comment}</Text>
-            </View>
-            <View>
-              <Image style={styles.postImg} source={{uri: posts.image}}/>
-            </View>
-          </View>
+          </TouchableHighlight>
           <View style={styles.tagSection} >
             {
               posts.tags.map(i => {
                 return (
-                  <Text style={styles.tag}>{i.tag_name}</Text>
+                  <Text key={i.id} style={styles.tag}>{i.tag_name}</Text>
                 )
               })
             }
@@ -188,17 +186,16 @@ export default class User extends Component {
         </Swipeout>
 
       </View>
-      </TouchableHighlight>
     );
   }
 
-  _showSingle(tagId) {
+  _showSingle(postInfo) {
     this.props.navigator.push({
       component: SingleView,
       title: '',
       shadowHidden: true,
       passProps: {
-        tagId: tagId
+        postInfo
       }
     })
   }
