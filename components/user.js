@@ -152,6 +152,7 @@ export default class User extends Component {
       onPress: () => { this._deleteNote(posts.id) }
     }];
 
+    console.log(posts);
     return (
       <View key={posts.id} style={styles.post}>
 

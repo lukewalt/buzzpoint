@@ -18,12 +18,12 @@ export default class SingleView extends Component {
   }
 
   render() {
-    const post = this.props.postInfo
-    console.log(post);
 
+    const post = this.props.postInfo;
+    
     return (
       <View style={styles.singleViewCont}>
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+        <View style={{ flexDirection: 'row', alignItems: 'center'}}>
           <Image
             style={styles.thumbPostSingle}
             source={post.positive ? require('../img/tu.png') : require('../img/td.png')}

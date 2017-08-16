@@ -312,24 +312,23 @@ const styles = StyleSheet.create({
      paddingHorizontal: 25,
    },
    singleViewCont: {
-     flex: 1,
      alignItems: 'center',
      paddingTop: 80,
      paddingHorizontal: 25,
    },
    singleViewImg: {
-    height: 325,
-    width: 325,
+    height: 200,
+    width: 200,
     marginVertical: 10
   },
   singleComment: {
     color: '#3d8af7',
-    fontSize: 21,
+    fontSize: 17,
     marginVertical: 7
   },
   singleBanner: {
     color: '#3d8af7',
-    fontSize: 27,
+    fontSize: 25,
     fontWeight: 'bold'
   },
   zoneNameSingle: {
@@ -337,24 +336,24 @@ const styles = StyleSheet.create({
     color: '#3d8af7',
     fontFamily: 'GillSans-UltraBold',
     letterSpacing: -3,
-    fontSize: 25,
+    fontSize: 20,
+    marginTop: 5
   },
   thumbPostSingle: {
-    height: 40,
-    width: 40,
+    height: 25,
+    width: 25,
     marginRight: 15
   },
   tagCont: {
     flexDirection: 'row',
-    alignSelf: 'flex-start',
     justifyContent: 'flex-start',
     flexWrap: 'wrap',
-
+    paddingHorizontal: 10
   },
   tagsSinglePage: {
-    margin: 7,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    margin: 5,
+    paddingVertical: 7,
+    paddingHorizontal: 19,
     backgroundColor: '#9ec4ff',
     color: '#0844a4',
     fontSize: 12,
