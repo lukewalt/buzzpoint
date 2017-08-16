@@ -11,14 +11,14 @@ import {
 } from 'react-native';
 
 import React, { Component } from 'react';
-import styles from '../styles/styles.js'
-import axios from 'axios'
+import SingleView from './singleView';
+import styles from '../styles/styles.js';
+import axios from 'axios';
 
 export default class ZonesTab extends Component {
 
   constructor(props) {
     super(props);
-    console.log(props);
     this.state={
       zone: this.props.zoneId,
       dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
@@ -26,6 +26,7 @@ export default class ZonesTab extends Component {
       numPos: [],
       numNeg: [],
     }
+
   }
 
   componentDidMount(){
@@ -53,10 +54,10 @@ export default class ZonesTab extends Component {
         loaded: true,
 
       })
-      console.log(this.state);
     })
     .done()
   }
+
 
   render(){
 
@@ -110,13 +111,12 @@ export default class ZonesTab extends Component {
 
   // List View of posts inside of page
   renderPosts(posts) {
-    console.log(posts.image);
     return (
       <View key={posts.id} style={styles.post}>
         <View style={styles.innerPost}>
           <View style={{marginRight: 10}}>
             <Image
-              style={styles.thumbPost}
+              style={styles.thumbPostSingle}
               source={posts.positive ? require('../img/tu.png') : require('../img/td.png')}
             />
           </View>
@@ -131,7 +131,7 @@ export default class ZonesTab extends Component {
         <View style={styles.tagSection} >
           { posts.tags.map(i => {
               return (
-                <Text style={styles.tag}>{i.tag_name}</Text>
+                <Text key={i.id} style={styles.tag}>{i.tag_name}</Text>
               )
             })
           }

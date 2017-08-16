@@ -6,6 +6,7 @@ import {
   ListView,
   TouchableHighlight,
   Alert,
+  ActivityIndicator
 } from 'react-native'
 
 import React, { Component, PropTypes } from 'react';
@@ -21,6 +22,7 @@ export default class TagCarousel extends Component {
       dataSource: new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2}),
       userTagIds: null,
       canRate: false,
+      loaded: false
     }
     this._setTags = this._setTags.bind(this)
   }
@@ -40,6 +42,7 @@ export default class TagCarousel extends Component {
       console.log('TAGS', tags.data);
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(tags.data),
+        loaded: true
       })
     })
     .done()
@@ -47,6 +50,11 @@ export default class TagCarousel extends Component {
 
 
   render() {
+    // sets a loading view until posts load
+    if (!this.state.loaded) {
+      return this.renderLoadingView()
+    }
+
     return (
       <View style={{height: 50}}>
         <ListView
@@ -66,6 +74,20 @@ export default class TagCarousel extends Component {
         />
       </View>
     )
+  }
+
+
+  // Activity Indicator
+  renderLoadingView() {
+    return (
+      <View style={styles.tabContainer}>
+        <ActivityIndicator
+          animating={true}
+          size="large"
+          color='#3d8af7'
+        />
+      </View>
+    );
   }
 
   _setTags(tagId, tagName) {

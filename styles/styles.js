@@ -310,8 +310,56 @@ const styles = StyleSheet.create({
    postsFromTag: {
      marginVertical: 5,
      paddingHorizontal: 25,
-
-   }
+   },
+   singleViewCont: {
+     alignItems: 'center',
+     paddingTop: 80,
+     paddingHorizontal: 25,
+   },
+   singleViewImg: {
+    height: 200,
+    width: 200,
+    marginVertical: 10
+  },
+  singleComment: {
+    color: '#3d8af7',
+    fontSize: 17,
+    marginVertical: 7
+  },
+  singleBanner: {
+    color: '#3d8af7',
+    fontSize: 25,
+    fontWeight: 'bold'
+  },
+  zoneNameSingle: {
+    fontWeight: 'bold',
+    color: '#3d8af7',
+    fontFamily: 'GillSans-UltraBold',
+    letterSpacing: -3,
+    fontSize: 20,
+    marginTop: 5
+  },
+  thumbPostSingle: {
+    height: 25,
+    width: 25,
+    marginRight: 15
+  },
+  tagCont: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    flexWrap: 'wrap',
+    paddingHorizontal: 10
+  },
+  tagsSinglePage: {
+    margin: 5,
+    paddingVertical: 7,
+    paddingHorizontal: 19,
+    backgroundColor: '#9ec4ff',
+    color: '#0844a4',
+    fontSize: 12,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  }
 });
 
 export default styles;

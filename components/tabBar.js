@@ -10,11 +10,11 @@ import {
   Alert,
 } from 'react-native';
 
-import ZonesTab from './zonesTab'
-import PostsTab from './postsTab'
-import TagsTab from './tagsTab'
-import TagPosts from './tagPosts'
-import axios from 'axios'
+import ZonesTab from './zonesTab';
+import PostsTab from './postsTab';
+import TagsTab from './tagsTab';
+import TagPosts from './tagPosts';
+import axios from 'axios';
 
 export default class TabBar extends Component {
 
@@ -45,7 +45,6 @@ export default class TabBar extends Component {
   }
 
   _goToTagsPosts(tagId) {
-    console.log("TAG ID BEFORE HTTP REQ", tagId);
     this.props.navigator.push({
       component: TagPosts,
       title: '',
@@ -54,9 +53,7 @@ export default class TabBar extends Component {
         tagId: tagId
       }
     })
-
   }
-
 
   render() {
 
