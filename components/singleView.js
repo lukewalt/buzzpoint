@@ -7,10 +7,6 @@ import zoneCalc from './_zone-calc'
 
 export default class SingleView extends Component {
 
-  _zoneName(zoneNum) {
-    return zoneCalc(zoneNum)
-  }
-
   render() {
     const post = this.props.postInfo;
 
@@ -33,7 +29,7 @@ export default class SingleView extends Component {
           })
         }
         </View>
-        <Text style={styles.zoneNameSingle}> {'Zone :   ' + this._zoneName(post.zone)}</Text>
+        <Text style={styles.zoneNameSingle}> {'Zone :   ' + zoneCalc(post.zone)}</Text>
       </View>
     );
   }

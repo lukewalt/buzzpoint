@@ -1,6 +1,5 @@
 'use strict';
 
-
 export default function zoneCalc(postZone) {
   if (postZone === 1) {
     return "North"
