@@ -11,9 +11,9 @@ import {
 } from 'react-native';
 
 import React, { Component } from 'react';
-import styles from '../styles/styles.js'
-import axios from 'axios'
-
+import styles from '../styles/styles.js';
+import axios from 'axios';
+import zoneCalc from './_zone-calc';
 
 const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
 
@@ -68,8 +68,6 @@ export default class PostsTab extends Component {
     });
   }
 
-
-
   render(){
 
     // checks loading state
@@ -122,17 +120,6 @@ export default class PostsTab extends Component {
 
   // List View of posts inside of page
   renderPosts(posts) {
-    // converts zone number to name
-    let postZone = null
-    if (posts.zone === 1) {
-      postZone = "North"
-    } else if (posts.zone === 2) {
-      postZone = "East"
-    } else if (posts.zone === 3) {
-      postZone = "South"
-    } else {
-      postZone = "West"
-    }
 
     return (
       <View key={posts.id} style={styles.post}>
@@ -142,7 +129,7 @@ export default class PostsTab extends Component {
               style={styles.thumbPost}
               source={posts.positive ? require('../img/tu.png') : require('../img/td.png')}
             />
-            <Text style={styles.zoneName}> {postZone.toUpperCase()}</Text>
+          <Text style={styles.zoneName}> {zoneCalc(posts.zone).toUpperCase()}</Text>
           </View>
           <View style={styles.commentSect}>
             <Text style={styles.area_name}>{posts.area_name}</Text>
@@ -155,7 +142,7 @@ export default class PostsTab extends Component {
         <View style={styles.tagSection} >
           { posts.tags.map(i => {
               return (
-                <Text style={styles.tag}>{i.tag_name}</Text>
+                <Text key={i.tag_name} style={styles.tag}>{i.tag_name}</Text>
               )
             })
           }

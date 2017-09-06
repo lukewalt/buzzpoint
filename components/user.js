@@ -12,12 +12,13 @@ import {
 
 import React, { Component, PropTypes } from 'react';
 import axios from 'axios';
+import zoneCalc from './_zone-calc';
 import styles from '../styles/styles';
 import Swipeout from 'react-native-swipeout';
 import SingleView from './singleView';
 
+// instantiates data store for list view
 const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
-
 
 export default class User extends Component {
 
@@ -132,17 +133,6 @@ export default class User extends Component {
 
   // List View of posts
   renderPosts(posts) {
-    // converts zone number to name
-    let postZone = null
-    if (posts.zone === 1) {
-      postZone = "North"
-    } else if (posts.zone === 2) {
-      postZone = "East"
-    } else if (posts.zone === 3) {
-      postZone = "South"
-    } else {
-      postZone = "West"
-    }
 
     // Swipe to delete
     let swipeBtns = [{
@@ -152,7 +142,6 @@ export default class User extends Component {
       onPress: () => { this._deleteNote(posts.id) }
     }];
 
-    console.log(posts);
     return (
       <View key={posts.id} style={styles.post}>
 
@@ -164,7 +153,7 @@ export default class User extends Component {
                   style={styles.thumbPost}
                   source={posts.positive ? require('../img/tu.png') : require('../img/td.png')}
                 />
-                <Text style={styles.zoneName}>{postZone.toUpperCase()}</Text>
+              <Text style={styles.zoneName}>{zoneCalc(posts.zone).toUpperCase()}</Text>
               </View>
               <View style={styles.commentSect}>
                 <Text style={styles.area_name}>{posts.area_name.replace(/[, ]+/g, " ").trim()}</Text>
@@ -190,6 +179,7 @@ export default class User extends Component {
     );
   }
 
+  // navigates to single view
   _showSingle(postInfo) {
     this.props.navigator.push({
       component: SingleView,
@@ -201,6 +191,7 @@ export default class User extends Component {
     })
   }
 
+  // delete function for respective post
   _deleteNote(id){
     console.log(this.state);
     let idToString = JSON.stringify(id)

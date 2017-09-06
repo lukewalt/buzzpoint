@@ -2,25 +2,14 @@
 import React, {Component} from 'react';
 import { TouchableHighlight, View, Text, Image } from 'react-native';
 import styles from '../styles/styles';
+import zoneCalc from './_zone-calc'
+
 
 export default class SingleView extends Component {
 
-  _zoneName(postZone) {
-    if (postZone === 1) {
-      return "North"
-    } else if (postZone === 2) {
-      return "East"
-    } else if (postZone === 3) {
-      return "South"
-    } else {
-      return "West"
-    }
-  }
-
   render() {
-
     const post = this.props.postInfo;
-    
+
     return (
       <View style={styles.singleViewCont}>
         <View style={{ flexDirection: 'row', alignItems: 'center'}}>
@@ -40,7 +29,7 @@ export default class SingleView extends Component {
           })
         }
         </View>
-        <Text style={styles.zoneNameSingle}> {'Zone :   ' + this._zoneName(post.zone).toUpperCase()}</Text>
+        <Text style={styles.zoneNameSingle}> {'Zone :   ' + zoneCalc(post.zone)}</Text>
       </View>
     );
   }

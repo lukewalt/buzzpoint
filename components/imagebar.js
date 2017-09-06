@@ -38,7 +38,6 @@ export default class ImageBar extends Component {
     nextState.photoSelected = nextProps.photoSelected
   }
 
-
   selectImage = (i, uri) => {
 
     if (i === this.state.index) {
@@ -48,9 +47,7 @@ export default class ImageBar extends Component {
       index: i,
       photoSelected: uri
     })
-    console.log(this.state);
   }
-
 
   getImagesFromRoll = () => {
     CameraRoll.getPhotos({
