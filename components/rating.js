@@ -37,6 +37,7 @@ export default class Rating extends Component {
   }
 
   componentDidMount() {
+
     this.setState({
       selectedTagIds: [],
       selectedTagNames: []
@@ -57,10 +58,13 @@ export default class Rating extends Component {
 
   }
 
+  componentWillUpdate(nextProps, nextState) {
+    console.log(nextProps, nextState);
+  }
+
 
   // goes to post page to finalize post
   _onToPost(boolean) {
-    console.log(boolean);
     //checks to see if any tags have been selected
     if (this.state.selectedTagIds.length > 0) {
       this.props.navigator.push({

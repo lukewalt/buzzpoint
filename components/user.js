@@ -193,11 +193,17 @@ export default class User extends Component {
 
   // delete function for respective post
   _deleteNote(id){
-    console.log(this.state);
     let idToString = JSON.stringify(id)
     axios.delete(`https://buzzpoint.herokuapp.com/api/posts/${idToString}`)
     .then( e => {
+      this.setState({
+        numPos: [],
+        numNeg: [],
+      })
+    })
+    .then( res => {
       this._getUserPosts()
+
     })
   }
 

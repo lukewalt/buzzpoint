@@ -31,7 +31,6 @@ export default class TagCarousel extends Component {
   // fires when parent component is mounted
   componentDidMount() {
     this.fetchAllTags();
-    console.log("Tags Listed for submit fired");
   }
 
   // holds the http req

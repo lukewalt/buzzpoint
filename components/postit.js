@@ -47,16 +47,13 @@ export default class PostIt extends Component {
     })
   }
 
+  // cleans state after post
   componentWillUnmount() {
-    console.log("UNMOUNTED");
-    this.setState({
 
-    })
   }
 
   imgSelected(uri) {
     this.setState({image: uri})
-    // console.log(this.state);
   }
 
   // feedback for successful post
