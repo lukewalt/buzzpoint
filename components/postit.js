@@ -22,7 +22,6 @@ export default class PostIt extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
       user_id: 1,
       positive: this.props.userRating,
       comment: null,
@@ -37,14 +36,21 @@ export default class PostIt extends Component {
   }
 
   componentDidMount() {
-    // makes a call to get formatted address
+    // makes a call to Google API to get formatted address
     axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.latitude},${this.state.longitude}&key=AIzaSyDvFLz0icFJDxnp8FyEJkZwhqWZQsp0qB8`)
     .then( geo => {
       let addressFromGoogle = geo.data.results[0].formatted_address
       this.setState({
         formattedAddress: addressFromGoogle.replace(/[, ]+/g, " ").trim()
-        // formattedAddress: '37204'
+        // formattedAddress: '1 Park Plaza, Nashville, TN 37203'
       })
+    })
+  }
+
+  componentWillUnmount() {
+    console.log("UNMOUNTED");
+    this.setState({
+
     })
   }
 
@@ -58,14 +64,20 @@ export default class PostIt extends Component {
 
     axios.post(`https://buzzpoint.herokuapp.com/api/posts`, this.state)
     .then( res => {
-      this.setState({
-        positive: null,
-        comment: null,
-        image: null,
-        latitude: this.props.userLat,
-        longitude: this.props.userLng,
-        tag_ids: [],
-        tagNames: []
+      this.props.navigator.pop({
+        component: Rating,
+        title: '',
+        shadowHidden: true,
+        translucent: false,
+        passProps: {
+          positive: null,
+          comment: null,
+          image: null,
+          latitude: this.props.userLat,
+          longitude: this.props.userLng,
+          tag_ids: [],
+          tagNames: []
+        }
       })
     })
     .catch( err => console.log(err))

@@ -142,12 +142,12 @@ const styles = StyleSheet.create({
   },
   tagList: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     alignSelf: 'stretch',
     flexWrap: 'wrap',
   },
   tagForSubmit: {
-    marginVertical: 7,
+    margin: 5,
     paddingVertical: 10,
     paddingHorizontal: 25,
     backgroundColor: '#9ec4ff',
