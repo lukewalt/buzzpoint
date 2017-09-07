@@ -184,6 +184,7 @@ export default class User extends Component {
     this.props.navigator.push({
       component: SingleView,
       title: '',
+      translucent: false,
       shadowHidden: true,
       passProps: {
         postInfo
