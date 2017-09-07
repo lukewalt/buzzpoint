@@ -19,7 +19,6 @@ import TagCarousel from './tagCarousel'
 export default class Rating extends Component {
 
   constructor(props) {
-    console.log("PROPS ON RATING", props);
     super(props);
     this.state = {
       loggedIn: this.props.loggedIn,
@@ -45,7 +44,6 @@ export default class Rating extends Component {
 
     // gets current position
     navigator.geolocation.getCurrentPosition( position => {
-        console.log("USER LAT LNG", position);
         this.setState({
           userLat: position.coords.latitude,
           userLng: position.coords.longitude,
@@ -61,7 +59,9 @@ export default class Rating extends Component {
 
 
   // goes to post page to finalize post
-  _onToPostPositive = () => {
+  _onToPost(boolean) {
+    console.log(boolean);
+    //checks to see if any tags have been selected
     if (this.state.selectedTagIds.length > 0) {
       this.props.navigator.push({
         component: PostIt,
@@ -69,28 +69,7 @@ export default class Rating extends Component {
         shadowHidden: true,
         translucent: false,
         passProps: {
-          userRating: true,
-          userLat: this.state.userLat,
-          userLng: this.state.userLng,
-          userId: this.state.userId,
-          userTags: this.state.selectedTagIds,
-          userTagNames: this.state.selectedTagNames
-        }
-      });
-    } else {
-      Alert.alert('Please Select A Tag')
-    }
-  }
-  // goes to post page to finalize post
-  _onToPostNegative = () => {
-    if (this.state.selectedTagIds.length > 0) {
-      this.props.navigator.push({
-        component: PostIt,
-        title: '',
-        shadowHidden: true,
-        translucent: false,
-        passProps: {
-          userRating: false,
+          userRating: boolean,
           userLat: this.state.userLat,
           userLng: this.state.userLng,
           userId: this.state.userId,
@@ -125,6 +104,7 @@ export default class Rating extends Component {
     })
   }
 
+  //
   _setTags(tagId, tagName) {
     // set new array to state bc we reset it below
     let tagIdArray = this.state.selectedTagIds;
@@ -132,12 +112,11 @@ export default class Rating extends Component {
     tagIdArray.push(tagId)
     tagNameArray.push(tagName)
 
-    // takes prop from child and adds to array on state
+    // takes props from child and adds to array on state
     this.setState({
       selectedTagIds: tagIdArray,
       selectedTagNames: tagNameArray
     })
-    console.log("UPDATED STATE ON ADDED TAG", this.state);
   }
 
   render() {
@@ -153,11 +132,11 @@ export default class Rating extends Component {
           </TouchableHighlight>
         </View>
         <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 20}}>
-          <TouchableHighlight underlayColor='white' onPress={this._onToPostPositive}>
+          <TouchableHighlight underlayColor='white' onPress={() => {this._onToPost(true)} }>
             <Image style={styles.rateThumb} source={require('../img/thumbUpGreen.png')}/>
           </TouchableHighlight>
           <Image style={{height: 5, width: 150}} source={require('../img.subtract.png')}/>
-          <TouchableHighlight underlayColor='white' onPress={this._onToPostNegative}>
+          <TouchableHighlight underlayColor='white' onPress={() => {this._onToPost(false)} }>
             <Image style={styles.rateThumb} source={require('../img/thumbDownRed.png')}/>
           </TouchableHighlight>
         </View>

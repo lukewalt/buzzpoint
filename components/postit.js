@@ -20,7 +20,6 @@ import ImageBar from './imagebar'
 export default class PostIt extends Component {
 
   constructor(props) {
-    console.log("POSTIT PROPS", props);
     super(props);
     this.state = {
       dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
@@ -38,7 +37,6 @@ export default class PostIt extends Component {
   }
 
   componentDidMount() {
-    console.log(this.state);
     // makes a call to get formatted address
     axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.latitude},${this.state.longitude}&key=AIzaSyDvFLz0icFJDxnp8FyEJkZwhqWZQsp0qB8`)
     .then( geo => {
@@ -47,7 +45,6 @@ export default class PostIt extends Component {
         formattedAddress: addressFromGoogle.replace(/[, ]+/g, " ").trim()
         // formattedAddress: '37204'
       })
-      console.log("STATE ON COMP MOUNT", this.state);
     })
   }
 
