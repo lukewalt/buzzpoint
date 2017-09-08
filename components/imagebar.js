@@ -105,8 +105,8 @@ export default class ImageBar extends Component {
                       >
                         <Image
                           style={{
-                            width: 125,
-                            height: 125,
+                            width: 106,
+                            height: 106,
                           }}
                           source={{uri: p.node.image.uri}}
                         />
