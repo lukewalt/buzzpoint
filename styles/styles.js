@@ -20,26 +20,26 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingTop: 100,
-    paddingHorizontal: 25,
+    paddingHorizontal: 15,
   },
   rateContainer: {
     flex: 1,
     paddingTop: 0,
-    paddingHorizontal: 25,
+    paddingHorizontal: 15,
   },
   tabContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 25,
+    paddingHorizontal: 15,
   },
   zonePosts: {
-    paddingHorizontal: 25,
+    paddingHorizontal: 15,
     marginTop: 10,
     marginBottom: 70
   },
   tagAggregate: {
-    paddingHorizontal: 25,
+    paddingHorizontal: 15,
     marginTop: 80,
     paddingBottom: 200,
     marginBottom: 60,
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   },
   userPosts: {
     marginTop: 10,
-    paddingHorizontal: 25,
+    paddingHorizontal: 15,
     marginBottom: 275,
   },
   userTite: {
@@ -309,12 +309,11 @@ const styles = StyleSheet.create({
    },
    postsFromTag: {
      marginVertical: 5,
-     paddingHorizontal: 25,
+     paddingHorizontal: 15,
    },
    singleViewCont: {
      alignItems: 'center',
-     paddingTop: 80,
-     paddingHorizontal: 25,
+     paddingHorizontal: 15,
    },
    singleViewImg: {
     height: 200,

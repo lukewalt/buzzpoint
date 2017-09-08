@@ -139,6 +139,7 @@ export default class User extends Component {
       text: 'Delete',
       backgroundColor: 'red',
       underlayColor: '#fff',
+      style: {width: 100},
       onPress: () => { this._deleteNote(posts.id) }
     }];
 

@@ -48,6 +48,7 @@ export default class TabBar extends Component {
     this.props.navigator.push({
       component: TagPosts,
       title: '',
+      translucent: false,
       shadowHidden: true,
       passProps: {
         tagId: tagId

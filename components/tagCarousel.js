@@ -79,7 +79,7 @@ export default class TagCarousel extends Component {
   // Activity Indicator
   renderLoadingView() {
     return (
-      <View style={styles.tabContainer}>
+      <View >
         <ActivityIndicator
           animating={true}
           size="large"

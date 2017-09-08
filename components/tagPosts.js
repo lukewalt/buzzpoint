@@ -69,7 +69,7 @@ export default class TagPosts extends Component {
 
     // Full Page
     return (
-      <View style={{flex: 1, alignSelf: 'stretch', marginTop: 70, marginBottom: 0}}>
+      <View style={{flex: 1, alignSelf: 'stretch', marginBottom: 0}}>
         <Text style={styles.tabHeader}>{this.state.tagName}</Text>
         <View style={styles.countContainer}>
           <View style={styles.countSection}>
